@@ -2,11 +2,6 @@
 
 Production-ready, fast-loading, highly animated single-page website for mobile and laptop.
 
-## Latest Branding Integration
-- Local logo set everywhere from: `assets/IMG-20260713-WA0153.jpg`
-- Poster section uses: `assets/123.png` with fallback to logo if missing
-- Contact email updated: `zerotoproaccedmy@gmail.com`
-- Facebook page integrated
 
 ## Features Included
 - Sticky navigation with section links + active state highlight
