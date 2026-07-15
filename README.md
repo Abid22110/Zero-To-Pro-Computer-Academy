@@ -1,26 +1,32 @@
 # Zero to Pro Computer & AI Academy Website
 
-This repository contains the official website for **Zero to Pro Computer & AI Academy**.
+A fully responsive, animated, professional single-page website for **mobile and laptop**.
 
-## Live Preview (GitHub Pages)
-After enabling GitHub Pages, your site will be available at:
+## Included
+- Animated hero + floating icons
+- Scholarship CTA linked to Google Form
+- Course cards, upcoming courses, why choose us, audience, contact
+- WhatsApp quick action buttons
+- Sticky navbar + mobile menu
+- Placeholder branding assets (logo, favicon, poster)
 
-`https://abid22110.github.io/Zero-To-Pro-Computer-Academy/`
+## Important: Replace Placeholder Branding
+Currently using placeholder files in `assets/`:
+- `assets/logo-placeholder.svg`
+- `assets/poster-placeholder.svg`
+- `assets/favicon.svg`
 
-## Files
-- `index.html` — main website structure/content
-- `styles.css` — styling and responsive layout
-- `script.js` — small JS enhancements
+When your real files are ready, replace these and (optionally) rename them, then update paths in `index.html`.
 
-## How to Enable GitHub Pages
-1. Open repository settings.
-2. Go to **Pages**.
-3. Under **Build and deployment**, choose:
-   - **Source:** Deploy from a branch
-   - **Branch:** `main` and `/ (root)`
-4. Save and wait 1–2 minutes.
+## Scholarship Form Link (already connected)
+https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog
 
-## Contact
-- WhatsApp: +92 306 1565858
-- Support: +92 315 5344783
-- Founder & CEO: Abid Hussain
+## WhatsApp Links
+- Main: https://wa.me/923061565858
+- Support: https://wa.me/923155344783
+
+## GitHub Pages
+1. Go to **Settings → Pages**
+2. Source: **Deploy from a branch**
+3. Branch: `main` and `/ (root)`
+4. Save
