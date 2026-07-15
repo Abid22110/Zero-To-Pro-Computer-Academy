@@ -2,6 +2,12 @@
 
 Production-ready, fast-loading, highly animated single-page website for mobile and laptop.
 
+## Latest Branding Integration
+- Local logo set everywhere from: `assets/IMG-20260713-WA0153.jpg`
+- Poster section uses: `assets/123.png` with fallback to logo if missing
+- Contact email updated: `zerotoproaccedmy@gmail.com`
+- Facebook page integrated
+
 ## Features Included
 - Sticky navigation with section links + active state highlight
 - Mobile hamburger menu with slide-down animation
@@ -10,11 +16,7 @@ Production-ready, fast-loading, highly animated single-page website for mobile a
 - Expand/collapse course topics
 - Enroll buttons that open WhatsApp with pre-filled course message
 - Upcoming courses, why us, who can join, contact
-- Facebook page button added
 - Footer with logo + policy text
-
-## Logo Source (used in header + footer)
-https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG
 
 ## Form Links
 - Scholarship Form:
