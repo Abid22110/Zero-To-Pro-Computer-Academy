@@ -28,9 +28,3 @@ https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nn
 - Main WhatsApp: https://wa.me/923061565858
 - Support WhatsApp: https://wa.me/923155344783
 - Facebook: https://www.facebook.com/share/1Bb9JsgW3G/
-
-## Deploy (GitHub Pages)
-1. Go to **Settings → Pages**
-2. Source: **Deploy from a branch**
-3. Branch: `main` and `/ (root)`
-4. Save and wait 1–2 minutes
