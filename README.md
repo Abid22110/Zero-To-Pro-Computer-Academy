@@ -1,32 +1,34 @@
 # Zero to Pro Computer & AI Academy Website
 
-A fully responsive, animated, professional single-page website for **mobile and laptop**.
+Production-ready, fast-loading, highly animated single-page website for mobile and laptop.
 
-## Included
-- Animated hero + floating icons
-- Scholarship CTA linked to Google Form
-- Course cards, upcoming courses, why choose us, audience, contact
-- WhatsApp quick action buttons
-- Sticky navbar + mobile menu
-- Placeholder branding assets (logo, favicon, poster)
+## Features Included
+- Sticky navigation with section links + active state highlight
+- Mobile hamburger menu with slide-down animation
+- Hero with floating icons + animated star background
+- Scholarship section with confetti effect and both Google Forms
+- Expand/collapse course topics
+- Enroll buttons that open WhatsApp with pre-filled course message
+- Upcoming courses, why us, who can join, contact
+- Facebook page button added
+- Footer with logo + policy text
 
-## Important: Replace Placeholder Branding
-Currently using placeholder files in `assets/`:
-- `assets/logo-placeholder.svg`
-- `assets/poster-placeholder.svg`
-- `assets/favicon.svg`
+## Logo Source (used in header + footer)
+https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG
 
-When your real files are ready, replace these and (optionally) rename them, then update paths in `index.html`.
-
-## Scholarship Form Link (already connected)
+## Form Links
+- Scholarship Form:
 https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog
+- Admission Form:
+https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nnP-DE5WEelw/viewform?usp=dialog
 
-## WhatsApp Links
-- Main: https://wa.me/923061565858
-- Support: https://wa.me/923155344783
+## Contact Links
+- Main WhatsApp: https://wa.me/923061565858
+- Support WhatsApp: https://wa.me/923155344783
+- Facebook: https://www.facebook.com/share/1Bb9JsgW3G/
 
-## GitHub Pages
+## Deploy (GitHub Pages)
 1. Go to **Settings → Pages**
 2. Source: **Deploy from a branch**
 3. Branch: `main` and `/ (root)`
-4. Save
+4. Save and wait 1–2 minutes

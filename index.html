@@ -4,53 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zero to Pro Computer & AI Academy</title>
-    <meta
-      name="description"
-      content="Learn Today • Build Tomorrow • Lead the Future — practical, affordable, career-focused computer and AI training."
-    />
-
+    <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future. Beginner-friendly, practical, career-focused training for everyone." />
     <meta property="og:title" content="Zero to Pro Computer & AI Academy" />
-    <meta
-      property="og:description"
-      content="Beginner-friendly computer and AI training with scholarship opportunities."
-    />
+    <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills, and build your future." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/poster-placeholder.svg" />
+    <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG" />
 
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" href="https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="styles.css" />
+
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
-    <div class="particles" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
 
-    <header class="site-header" id="top">
-      <div class="container nav">
-        <a class="brand" href="#top" aria-label="Zero to Pro home">
-          <img src="assets/logo-placeholder.svg" alt="Zero to Pro Academy logo" class="brand-logo" />
-          <div>
-            <h1>Zero to Pro Computer & AI Academy</h1>
-            <p>Learn Today • Build Tomorrow • Lead the Future</p>
+    <header class="site-header" id="home">
+      <div class="container nav-wrap">
+        <a class="brand" href="#home" aria-label="Zero to Pro Home">
+          <img src="https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG" alt="Zero to Pro Academy Logo" class="logo" />
+          <div class="brand-text">
+            <strong>Zero to Pro Computer & AI Academy</strong>
+            <span>Learn Today • Build Tomorrow • Lead the Future</span>
           </div>
         </a>
 
-        <nav class="menu" id="menu">
-          <a href="#courses">Courses</a>
-          <a href="#upcoming">Upcoming</a>
-          <a href="#why">Why Us</a>
-          <a href="#contact">Contact</a>
-          <a class="btn btn-small btn-outline" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">Scholarship Test</a>
-        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu">☰</button>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#scholarship" class="nav-link">Scholarship Test</a>
+          <a href="#courses" class="nav-link">Courses</a>
+          <a href="#why-us" class="nav-link">Why Us</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#courses" class="btn btn-nav">Enroll Now</a>
+        </nav>
       </div>
     </header>
 
@@ -58,202 +52,142 @@
       <section class="hero section">
         <div class="container hero-grid">
           <div data-aos="fade-right" data-aos-duration="900">
-            <p class="kicker">Beginner-Friendly • Practical • Career-Focused</p>
-            <h2>Zero to Pro Computer & AI Academy</h2>
-            <p class="lead">Learn Today • Build Tomorrow • Lead the Future</p>
-            <p>
-              Beginner-friendly, practical, career-focused training for everyone.
-              School students, college/university students, job seekers,
-              freelancers, business owners — all are welcome.
-            </p>
+            <h1>Zero to Pro Computer & AI Academy</h1>
+            <p class="sub">Learn Today • Build Tomorrow • Lead the Future</p>
+            <p class="desc">Beginner-friendly, practical, career-focused training for everyone.</p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary pulse" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">🚀 Apply for Scholarship Test</a>
-              <a class="btn btn-outline" href="#courses">Explore Courses</a>
+              <a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">🎓 Take Scholarship Test</a>
+              <a class="btn btn-outline" href="#courses">🚀 Explore Courses</a>
             </div>
 
-            <p class="flash-banner">✨ Full scholarship available – pass the test, study free!</p>
+            <div class="free-badge">FREE learning for test passers!</div>
           </div>
 
           <div class="hero-visual" data-aos="zoom-in" data-aos-duration="1000">
-            <img src="assets/poster-placeholder.svg" alt="Zero to Pro Academy poster" class="poster" />
-            <span class="float-icon i1">💻</span>
-            <span class="float-icon i2">🧠</span>
-            <span class="float-icon i3">🤖</span>
-            <span class="float-icon i4">🎓</span>
-            <span class="float-icon i5">🚀</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section scholarship" data-aos="fade-up" data-aos-duration="900">
-        <div class="container">
-          <div class="scholar-card shine">
-            <h3>🎓 Want to Learn for FREE? Take the Scholarship Test!</h3>
-            <p>
-              Yes! First, you take a simple online test. If you pass, you get a
-              scholarship and can study any basic course completely free. No
-              hidden fees. Just your talent and effort.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-gold" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">📝 Take the Test Now</a>
-              <span class="limited">Limited seats – apply today!</span>
+            <div class="floating i1">💻</div>
+            <div class="floating i2">🧠</div>
+            <div class="floating i3">🚀</div>
+            <div class="floating i4">🎓</div>
+            <div class="floating i5">🤖</div>
+            <div class="hero-card">
+              <img src="https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG" alt="Academy Logo" />
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" data-aos="fade-up">
+      <section id="scholarship" class="section scholarship">
         <div class="container">
-          <h3 class="section-title">🌟 Our Mission</h3>
-          <blockquote class="mission-quote">
-            To empower students with modern computer and AI skills through
-            practical learning, real-world projects, and continuous guidance.
-          </blockquote>
+          <div class="scholar-card shine" data-aos="fade-up" data-aos-duration="900">
+            <h2>🎓 Want to Learn for FREE?</h2>
+            <p>First, you take a simple online test. If you pass, you get a scholarship and can study any basic course completely FREE. No hidden fees.</p>
+            <div class="cta-row">
+              <a class="btn btn-gold" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">📝 Take the Scholarship Test Now</a>
+              <a class="btn btn-outline-light" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nnP-DE5WEelw/viewform?usp=dialog">📋 Admission Form</a>
+            </div>
+            <small>After passing, fill the Admission Form to confirm your seat.</small>
+            <div class="joy">😄</div>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="courses">
+      <section id="courses" class="section">
         <div class="container">
-          <h3 class="section-title" data-aos="fade-up">📚 Our Courses</h3>
-          <div class="cards three">
-            <article class="card tilt" data-aos="fade-up" data-aos-delay="0">
-              <h4>💻 Basic Computer</h4>
-              <p class="price-badge">Rs. 700</p>
-              <ul>
-                <li>Computer Fundamentals</li>
-                <li>Windows Complete</li>
-                <li>File & Folder Management</li>
-                <li>Internet & Browsing</li>
-                <li>Gmail & Google Workspace</li>
-                <li>MS Word, MS Excel, MS PowerPoint</li>
-                <li>PDF Tools, Typing Skills</li>
-                <li>Printing & Scanning, Digital Safety</li>
+          <h2 class="title" data-aos="fade-up">📚 Our Courses</h2>
+          <div class="course-grid">
+            <article class="course-card" data-aos="fade-up" data-aos-delay="0">
+              <h3>💻 Basic Computer</h3>
+              <p class="fee">Fee: Rs. 700</p>
+              <button class="toggle" data-target="topics1">View Topics</button>
+              <ul id="topics1" class="topics">
+                <li>Computer Fundamentals</li><li>Windows</li><li>File/Folder Management</li><li>Internet & Browsing</li><li>Gmail & Google Workspace</li><li>MS Word</li><li>MS Excel</li><li>MS PowerPoint</li><li>PDF Tools</li><li>Typing Skills</li><li>Printing & Scanning</li><li>Digital Safety</li>
               </ul>
-              <p class="badge">🎓 Certificate Included</p>
-              <a class="btn btn-primary btn-block" href="#contact">Enroll Now</a>
+              <span class="badge">🎓 Certificate Included</span>
+              <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer* course (Fee: Rs. 700). Please guide me.">Enroll Now</button>
             </article>
 
-            <article class="card tilt" data-aos="fade-up" data-aos-delay="100">
-              <h4>🤖 Basic Computer + AI</h4>
-              <p class="price-badge">Rs. 1,000</p>
-              <ul>
-                <li>Everything in Basic Computer</li>
-                <li>ChatGPT, Google Gemini, Microsoft Copilot</li>
-                <li>AI Prompt Engineering</li>
-                <li>AI for Students & Office Work</li>
-                <li>AI Content Creation & Image Generation</li>
-                <li>AI Presentations & Resume Builder</li>
-                <li>AI Productivity Tools</li>
+            <article class="course-card" data-aos="fade-up" data-aos-delay="100">
+              <h3>🤖 Basic Computer + AI</h3>
+              <p class="fee">Fee: Rs. 1,000</p>
+              <button class="toggle" data-target="topics2">View Topics</button>
+              <ul id="topics2" class="topics">
+                <li>Everything in Basic Computer</li><li>ChatGPT</li><li>Google Gemini</li><li>Microsoft Copilot</li><li>AI Prompt Engineering</li><li>AI for Students</li><li>AI for Office Work</li><li>AI Content Creation</li><li>AI Image Generation</li><li>AI Presentations</li><li>AI Resume Builder</li><li>AI Productivity Tools</li>
               </ul>
-              <p class="badge">🎓 Certificate Included</p>
-              <a class="btn btn-primary btn-block" href="#contact">Enroll Now</a>
+              <span class="badge">🎓 Certificate Included</span>
+              <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI* course (Fee: Rs. 1,000). Please guide me.">Enroll Now</button>
             </article>
 
-            <article class="card tilt featured" data-aos="fade-up" data-aos-delay="200">
-              <h4>🚀 Basic + AI + AI Automation</h4>
-              <p class="price-badge">Standard: Rs. 1,500</p>
-              <p class="price-badge gold">Premium: Rs. 3,000</p>
-              <ul>
-                <li>Basic Computer, AI Tools, AI Automation</li>
-                <li>Workflow Automation, Smart Productivity</li>
-                <li>Complete Training (Premium)</li>
+            <article class="course-card popular" data-aos="fade-up" data-aos-delay="200">
+              <span class="ribbon">Most Popular</span>
+              <h3>🚀 Basic Computer + AI + AI Automation</h3>
+              <p class="fee">Standard: Rs. 1,500</p>
+              <p class="fee premium">Premium: Rs. 3,000</p>
+              <button class="toggle" data-target="topics3">View Topics</button>
+              <ul id="topics3" class="topics">
+                <li>Basic Computer</li><li>AI Tools</li><li>AI Automation</li><li>Workflow Automation</li><li>Smart Productivity Tools</li><li>Complete Training (Premium)</li>
               </ul>
-              <div class="split-badges">
-                <span>🎓 1 Certificate (Standard)</span>
-                <span>🎓 3 Certificates (Premium)</span>
+              <div class="badges-row"><span class="badge">🎓 1 Certificate (Standard)</span><span class="badge">🎓 3 Certificates (Premium)</span></div>
+              <div class="dual-enroll">
+                <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI + AI Automation (Standard)* course (Fee: Rs. 1,500). Please guide me.">Enroll Standard</button>
+                <button class="btn btn-gold enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI + AI Automation (Premium)* course (Fee: Rs. 3,000). Please guide me.">Enroll Premium</button>
               </div>
-              <a class="btn btn-primary btn-block" href="#contact">Enroll Now</a>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section alt" id="upcoming">
-        <div class="container">
-          <h3 class="section-title" data-aos="fade-up">🎯 Upcoming Courses</h3>
-          <div class="tag-grid">
-            <span>🎨 Graphic Design</span>
-            <span>🖌 Canva Masterclass</span>
-            <span>🧰 Adobe Photoshop</span>
-            <span>🎬 Video Editing</span>
-            <span>📝 Content Creation</span>
-            <span>📱 Social Media Marketing</span>
-            <span>📊 Digital Marketing</span>
-            <span>💼 Freelancing (Fiverr & Upwork)</span>
-            <span>🌐 Web Development</span>
-            <span>🐍 Python Programming</span>
-            <span>💻 C++ Programming</span>
-            <span>🛡 Cyber Security Fundamentals</span>
-            <span>🕵️ Ethical Hacking Basics</span>
-            <span>🔌 Networking Basics</span>
-            <span>📘 Microsoft Office Advanced</span>
-            <span>☁️ Google Workspace</span>
-            <span>📄 Resume & CV Building</span>
-            <span>🎤 Interview Preparation</span>
-            <span>🌟 Personal Branding</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="why">
-        <div class="container">
-          <h3 class="section-title" data-aos="fade-up">💼 Why Choose Us?</h3>
-          <div class="feature-grid">
-            <article class="feature" data-aos="zoom-in">✅ Beginner Friendly Learning</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="50">✅ Practical Classes</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="100">✅ Weekly Assignments</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="150">✅ Live Support</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="200">✅ Career Guidance</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="250">✅ Affordable Fee Structure</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="300">✅ Real Projects</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="350">✅ Recorded Resources</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="400">✅ Friendly Learning Environment</article>
-            <article class="feature" data-aos="zoom-in" data-aos-delay="450">✅ Certificates</article>
           </div>
         </div>
       </section>
 
       <section class="section alt">
         <div class="container">
-          <h3 class="section-title" data-aos="fade-up">👨‍🎓 Who Can Join?</h3>
-          <div class="audience-grid">
-            <div>🧒 School Students</div>
-            <div>🧑‍🎓 College Students</div>
-            <div>🎓 University Students</div>
-            <div>👩‍🏫 Teachers</div>
-            <div>💼 Job Seekers</div>
-            <div>🧑‍💻 Freelancers</div>
-            <div>🏢 Business Owners</div>
-            <div>🏠 Housewives</div>
-            <div>🌍 Anyone wanting digital skills</div>
+          <h2 class="title" data-aos="fade-up">🎯 Upcoming Courses</h2>
+          <div class="tags" data-aos="zoom-in">
+            <span>🎨 Graphic Design</span><span>🖌 Canva Masterclass</span><span>🧰 Adobe Photoshop</span><span>🎬 Video Editing</span><span>✍️ Content Creation</span><span>📱 Social Media Marketing</span><span>📊 Digital Marketing</span><span>💼 Freelancing (Fiverr & Upwork)</span><span>🌐 Web Development</span><span>🐍 Python Programming</span><span>💻 C++ Programming</span><span>🛡 Cyber Security Fundamentals</span><span>🕵️ Ethical Hacking Basics</span><span>🔌 Networking Basics</span><span>📘 Microsoft Office Advanced</span><span>☁️ Google Workspace</span><span>📄 Resume & CV Building</span><span>🎤 Interview Preparation</span><span>🌟 Personal Branding</span>
           </div>
         </div>
       </section>
 
-      <section class="section" id="contact">
-        <div class="container contact-card" data-aos="fade-up">
-          <h3 class="section-title">📞 Contact Us</h3>
-          <p><strong>Founder & CEO:</strong> Abid Hussain</p>
-          <div class="contact-actions">
-            <a class="btn btn-whatsapp" target="_blank" rel="noreferrer" href="https://wa.me/923061565858">📱 WhatsApp (Main): +92 306 1565858</a>
-            <a class="btn btn-whatsapp-outline" target="_blank" rel="noreferrer" href="https://wa.me/923155344783">📱 Support: +92 315 5344783</a>
+      <section id="why-us" class="section">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">💼 Why Choose Us?</h2>
+          <div class="feature-grid">
+            <div class="feature">✅ Beginner Friendly Learning</div><div class="feature">✅ Practical Classes</div><div class="feature">✅ Weekly Assignments</div><div class="feature">✅ Live Support</div><div class="feature">✅ Career Guidance</div><div class="feature">✅ Affordable Fee Structure</div><div class="feature">✅ Real Projects</div><div class="feature">✅ Recorded Resources</div><div class="feature">✅ Friendly Learning Environment</div><div class="feature">✅ Certificates</div>
           </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">👨‍🎓 Who Can Join?</h2>
+          <div class="audience-grid">
+            <div>🧒 School Students</div><div>🧑‍🎓 College Students</div><div>🎓 University Students</div><div>👩‍🏫 Teachers</div><div>💼 Job Seekers</div><div>🧑‍💻 Freelancers</div><div>🏢 Business Owners</div><div>🏠 Housewives</div><div>🌍 Anyone who wants to learn digital skills</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container contact-card" data-aos="fade-up">
+          <h2 class="title">📞 Contact Us</h2>
+          <p>👤 <strong>Founder & CEO:</strong> Abid Hussain</p>
+          <div class="contact-grid">
+            <a class="btn btn-whatsapp" target="_blank" rel="noreferrer" href="https://wa.me/923061565858?text=Hello">📱 WhatsApp (Main): +92 306 1565858</a>
+            <a class="btn btn-outline" target="_blank" rel="noreferrer" href="https://wa.me/923155344783?text=Hello">📱 Support: +92 315 5344783</a>
+            <a class="btn btn-facebook" target="_blank" rel="noreferrer" href="https://www.facebook.com/share/1Bb9JsgW3G/">📘 Visit Our Facebook Page</a>
+          </div>
+          <p class="email">info@zerotopro.com</p>
+          <div id="chatBubble" class="chat-bubble">💬 Chat with us</div>
         </div>
       </section>
     </main>
 
-    <a class="floating-whatsapp" target="_blank" rel="noreferrer" href="https://wa.me/923061565858" aria-label="Chat on WhatsApp">💬 Chat on WhatsApp</a>
+    <a class="floating-wa" target="_blank" rel="noreferrer" href="https://wa.me/923061565858?text=Hello">💬 WhatsApp</a>
 
     <footer class="site-footer">
-      <div class="container">
-        <p class="join">🚀 Join Us Today! Don't just learn—build skills, gain confidence, and create your future.</p>
+      <div class="container footer-inner">
+        <img src="https://drive.google.com/uc?export=view&id=1pRF8xYBjclOcjXXEMGKeWazNtItwoDXG" alt="Zero to Pro Logo" class="footer-logo" />
+        <p class="footer-tag">🚀 Join Us Today! Don't just learn—build skills, gain confidence, and create your future.</p>
         <p>Start Your Journey Today! 💙</p>
-        <small>Zero to Pro Computer & AI Academy – Committed to your digital success.</small>
+        <p class="policy">© 2025 Zero to Pro Computer & AI Academy. All rights reserved.<br/>Terms of Service | Privacy Policy | Refund Policy<br/>The content, courses, and materials provided by Zero to Pro Computer & AI Academy are for educational purposes only. Unauthorized reproduction or distribution is prohibited. By using this website, you agree to our terms and conditions.</p>
       </div>
     </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
   </body>
 </html>
