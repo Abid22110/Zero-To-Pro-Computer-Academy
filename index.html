@@ -17,7 +17,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- AOS only (no Swiper) -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
   <style>
@@ -40,6 +39,7 @@
       --border: #e2e8f0;
       --shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Poppins', sans-serif;
@@ -48,6 +48,7 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
       line-height: 1.6;
+      touch-action: pan-y;
     }
     .container { max-width:1100px; margin:0 auto; padding:0 20px; }
     a { text-decoration:none; color:inherit; }
@@ -123,19 +124,17 @@
       gap:10px; margin:20px 0;
     }
     .path-step {
-      background:var(--card-bg); padding:16px 24px; border-radius:16px;
-      font-weight:600; font-size:1.1rem; text-align:center;
-      box-shadow:var(--shadow); min-width:120px;
+      background:var(--card-bg); padding:16px 20px; border-radius:16px;
+      font-weight:600; font-size:1rem; text-align:center;
+      box-shadow:var(--shadow); min-width:110px;
       border:2px solid transparent; transition:0.3s;
     }
     .path-step:hover { border-color:var(--cyan); transform:scale(1.03); }
-    .path-arrow { font-size:1.8rem; color:var(--gold); }
+    .path-arrow { font-size:1.8rem; color:var(--gold); margin:0 5px; }
 
-    /* Custom Courses Carousel */
-    .courses-carousel { position:relative; margin:20px 0; }
-    .courses-track {
-      display:flex; transition:transform 0.5s ease; gap:20px;
-    }
+    /* Courses Carousel */
+    .courses-carousel { position:relative; margin:20px 0; overflow:hidden; touch-action: pan-y; }
+    .courses-track { display:flex; transition:transform 0.5s ease; gap:20px; }
     .course-card {
       background:var(--card-bg); border-radius:20px; padding:25px;
       min-width:280px; flex-shrink:0; box-shadow:var(--shadow);
@@ -155,25 +154,17 @@
     }
     .carousel-btn:hover { background:var(--cyan); color:#000; }
     .carousel-dots { display:flex; gap:8px; }
-    .dot {
-      width:12px; height:12px; border-radius:50%; background:var(--border);
-      cursor:pointer; transition:0.3s;
-    }
+    .dot { width:12px; height:12px; border-radius:50%; background:var(--border); cursor:pointer; transition:0.3s; }
     .dot.active { background:var(--cyan); }
 
-    /* Reviews & Comments (simple fade slider) */
-    .review-slider, .comment-slider {
-      position:relative; overflow:hidden; margin:20px 0;
-    }
-    .review-track, .comment-track {
-      display:flex; transition:transform 0.5s ease;
-    }
-    .review-card, .comment-card {
+    /* Reviews Slider & Combined list */
+    .review-slider { position:relative; overflow:hidden; margin:20px 0; touch-action: pan-y; }
+    .review-track { display:flex; transition:transform 0.5s ease; }
+    .review-card {
       min-width:100%; padding:20px; background:var(--card-bg); border-radius:16px;
       box-shadow:var(--shadow); margin-right:20px; border:1px solid var(--border);
     }
-    .comment-card { min-width:calc(50% - 10px); }
-    @media (max-width:600px) { .comment-card { min-width:100%; } }
+    .all-reviews { margin-top:30px; display:flex; flex-direction:column; gap:15px; }
 
     /* Certificate */
     .certificate-design {
@@ -201,7 +192,7 @@
     .faq-answer { padding:0 20px 16px; display:none; opacity:0.9; }
     .faq-answer.open { display:block; }
 
-    /* Modal */
+    /* Modals */
     .modal-overlay {
       position:fixed; top:0; left:0; width:100%; height:100%;
       background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
@@ -211,8 +202,8 @@
     .modal-overlay.active { opacity:1; visibility:visible; }
     .modal-content {
       background:var(--card-bg); color:var(--text); border-radius:24px;
-      padding:30px; max-width:400px; width:90%; position:relative;
-      box-shadow:0 20px 40px rgba(0,0,0,0.6);
+      padding:30px; max-width:500px; width:90%; max-height:80vh; overflow-y:auto;
+      position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.6);
     }
     .modal-close { position:absolute; top:12px; right:18px; font-size:28px; cursor:pointer; color:#999; }
     .modal-close:hover { color:var(--gold); }
@@ -227,14 +218,32 @@
     .review-textarea { resize:vertical; min-height:100px; }
     .submit-review { background:var(--cyan); color:#000; border:none; padding:12px 30px; border-radius:30px; font-weight:600; cursor:pointer; width:100%; }
 
-    /* Floating review button (green, like WhatsApp) */
+    /* Course Detail Modal */
+    .topic-list { list-style:none; padding:10px 0; }
+    .topic-list li { padding:6px 0; border-bottom:1px solid var(--border); }
+
+    /* Floating Review Button */
     .floating-review {
       position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
       padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
-      z-index:1000; font-weight:bold; animation:pulse 2s infinite; cursor:pointer;
+      z-index:1000; font-weight:bold; animation: reviewPulse 2s infinite; cursor:pointer;
       border:none; display:flex; align-items:center; gap:8px;
     }
-    @keyframes pulse { 0% { transform:scale(1); } 50% { transform:scale(1.05); } 100% { transform:scale(1); } }
+    @keyframes reviewPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08) translateY(-2px); }
+      100% { transform: scale(1); }
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position:fixed; bottom:80px; right:20px; background:var(--cyan); color:#000;
+      width:45px; height:45px; border-radius:50%; display:none; align-items:center;
+      justify-content:center; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+      z-index:1000; font-size:1.2rem; transition:0.3s;
+    }
+    .back-to-top.show { display:flex; }
+    .back-to-top:hover { background:#0891b2; transform:translateY(-2px); }
 
     .live-notification {
       position:fixed; bottom:100px; left:20px; background:var(--cyan); color:#000;
@@ -244,9 +253,7 @@
     }
 
     /* Contact Cards */
-    .contact-cards {
-      display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin:30px 0;
-    }
+    .contact-cards { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin:30px 0; }
     .contact-card {
       background:var(--card-bg); border-radius:24px; padding:30px; text-align:center;
       box-shadow:var(--shadow); width:220px; transition:transform 0.3s;
@@ -259,7 +266,7 @@
       margin:0 auto 15px;
     }
     .contact-card h3 { margin-bottom:10px; }
-    .contact-card .wa-link { color:#25D366; font-size:1.5rem; }
+    .wa-link { color:#25D366; font-size:1.5rem; }
 
     /* Footer */
     .site-footer { background:var(--footer-bg); color:white; padding:40px 20px; text-align:center; margin-top:40px; }
@@ -282,10 +289,7 @@
     }
     body:not(.light) .popup { background:#1e293b; color:#e2e8f0; }
     @keyframes popIn { 0% { transform:scale(0.7); opacity:0; } 100% { transform:scale(1); opacity:1; } }
-    .popup .close-btn {
-      position:absolute; top:10px; right:15px; font-size:28px; cursor:pointer;
-      background:transparent; border:none; color:#999; z-index:10;
-    }
+    .popup .close-btn { position:absolute; top:10px; right:15px; font-size:28px; cursor:pointer; background:transparent; border:none; color:#999; z-index:10; }
     .popup .close-btn:hover { color:#333; }
     body:not(.light) .popup .close-btn { color:#aaa; }
     body:not(.light) .popup .close-btn:hover { color:#fff; }
@@ -303,6 +307,8 @@
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
       .course-card { min-width:250px; }
+      .floating-review { bottom:15px; right:15px; }
+      .back-to-top { bottom:75px; right:15px; }
     }
   </style>
 </head>
@@ -381,8 +387,8 @@
         </p>
       </div>
 
-      <!-- Countdown -->
-      <div class="container" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center;">
+      <!-- Countdown (disappears when expired) -->
+      <div class="container" id="countdownSection" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center;">
         <h3>⏰ 20% Discount Ends In</h3>
         <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
         <a href="https://wa.me/923061565858?text=I%20want%20to%20claim%20the%2020%25%20discount" target="_blank" class="btn btn-primary">Claim Discount</a>
@@ -416,7 +422,7 @@
         </div>
       </section>
 
-      <!-- Courses (Custom Carousel) -->
+      <!-- Courses Carousel -->
       <section id="courses" class="section">
         <div class="container">
           <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
@@ -441,30 +447,22 @@
         🛡️ 100% Satisfaction Guarantee – If first class doesn't satisfy, get your fee back.
       </div>
 
-      <!-- Reviews (custom slider) -->
+      <!-- Reviews (auto-sliding + combined list) -->
       <section id="reviews" class="section">
         <div class="container">
           <h2 class="title">⭐ Student Reviews</h2>
           <div class="review-slider">
             <div class="review-track" id="reviewTrack"></div>
           </div>
-          <div style="text-align:center; margin-top:15px;">
-            <button class="carousel-btn" id="prevReview"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-btn" id="nextReview"><i class="fas fa-chevron-right"></i></button>
-          </div>
-          <div id="userReviewsContainer" style="margin-top:30px;"></div>
+          <div class="all-reviews" id="allReviewsContainer"></div>
         </div>
       </section>
 
-      <!-- Comments -->
+      <!-- Shoutouts -->
       <div class="container" data-aos="fade-up" style="margin:40px auto;">
         <h2 class="title">💬 Shoutouts</h2>
         <div class="comment-slider">
           <div class="comment-track" id="commentTrack"></div>
-        </div>
-        <div style="text-align:center; margin-top:15px;">
-          <button class="carousel-btn" id="prevComment"><i class="fas fa-chevron-left"></i></button>
-          <button class="carousel-btn" id="nextComment"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
 
@@ -504,7 +502,7 @@
         </div>
       </section>
 
-      <!-- Contact (VIP Cards) -->
+      <!-- Contact -->
       <section id="contact" class="section">
         <div class="container" style="text-align:center;">
           <h2 class="title">📞 Contact Us</h2>
@@ -544,6 +542,8 @@
 
     <!-- Floating Review Button -->
     <button class="floating-review" id="openReviewModal"><i class="fas fa-pen"></i> Review</button>
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="live-notification" id="liveNotification"></div>
   </div>
 
@@ -565,9 +565,17 @@
     </div>
   </div>
 
+  <!-- Course Details Modal -->
+  <div class="modal-overlay" id="courseModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeCourseModal">&times;</span>
+      <div id="courseModalContent"></div>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const APP_VERSION = "1.3";
+    const APP_VERSION = "1.4";
 
     // Dark/Light
     const body = document.body;
@@ -594,96 +602,206 @@
       mainSite.style.display = 'block';
     }
 
-    closePopupBtn.addEventListener('click', () => { popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION); });
-    exploreBtn.addEventListener('click', (e) => { e.preventDefault(); popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION); });
-    popupOverlay.addEventListener('click', (e) => { if (e.target === popupOverlay) { popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION); } });
+    closePopupBtn.addEventListener('click', () => {
+      popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION);
+    });
+    exploreBtn.addEventListener('click', (e) => {
+      e.preventDefault(); popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION);
+    });
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) { popupOverlay.style.display='none'; mainSite.style.display='block'; localStorage.setItem('appVersion', APP_VERSION); }
+    });
     popupPoster.addEventListener('click', () => window.open('https://wa.me/923061565858', '_blank'));
 
     // Mobile menu
     document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
 
-    // Courses data
+    // Course data with detailed topics
     const courses = [
-      { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
-      { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
-      { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", cert: true },
-      { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", cert: true },
-      { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", cert: false },
-      { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", cert: false },
-      { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", cert: false },
-      { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", cert: false },
-      { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", cert: false },
-      { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", cert: false },
-      { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", cert: false },
-      { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", cert: false }
+      { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks" },
+      { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks" },
+      { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", topics: ["Basic Computer", "AI Tools", "AI Automation", "Workflow Automation", "Smart Productivity Tools"], cert: true, duration: "8 Weeks" },
+      { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", topics: ["Complete Basic Computer", "Advanced AI Tools", "Advanced Automation", "Real-World Projects", "3 Certificates"], cert: true, duration: "12 Weeks" },
+      { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", topics: ["Design Fundamentals", "Color Theory", "Typography", "Canva Mastery", "Adobe Photoshop Basics", "Logo Design", "Social Media Graphics"], cert: false, duration: "6 Weeks" },
+      { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", topics: ["Video Basics", "CapCut Pro", "Adobe Premiere Pro", "Transitions & Effects", "Color Grading", "Audio Editing", "Export & Delivery"], cert: false, duration: "6 Weeks" },
+      { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", topics: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git & GitHub", "Hosting & Deployment"], cert: false, duration: "12 Weeks" },
+      { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", topics: ["Python Syntax", "Data Types & Structures", "Functions & Modules", "File Handling", "Web Scraping", "Data Analysis (Pandas)"], cert: false, duration: "10 Weeks" },
+      { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", topics: ["SEO Fundamentals", "Google Ads", "Facebook Ads", "Email Marketing", "Social Media Strategy", "Analytics"], cert: false, duration: "8 Weeks" },
+      { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", topics: ["Profile Creation", "Gig Optimization", "Bidding Strategies", "Client Communication", "Payment Methods", "Portfolio Building"], cert: false, duration: "4 Weeks" },
+      { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", topics: ["Networking Basics", "Linux Fundamentals", "Footprinting & Recon", "Scanning Networks", "Vulnerability Analysis", "Exploitation Basics"], cert: false, duration: "10 Weeks" },
+      { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", topics: ["Resume Structure", "Action Verbs", "Formatting", "Cover Letter", "LinkedIn Optimization"], cert: false, duration: "1 Week" }
     ];
 
     const track = document.getElementById('coursesTrack');
     const dotsContainer = document.getElementById('courseDots');
     let courseIndex = 0;
-    courses.forEach((c, i) => {
-      const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
-      const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-      const card = document.createElement('div');
-      card.className = 'course-card';
-      card.innerHTML = `<h3>${c.name}</h3><p class="course-fee">Rs. ${c.fee}</p><p>${c.desc}</p>${c.cert ? '<span style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px; display:inline-block; margin:10px 0;">🎓 Certificate</span>' : ''}<a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:15px;">Enroll Now</a>`;
-      track.appendChild(card);
-      const dot = document.createElement('div');
-      dot.className = 'dot' + (i===0 ? ' active' : '');
-      dot.addEventListener('click', () => goToCourse(i));
-      dotsContainer.appendChild(dot);
-    });
+    let courseInterval;
+
+    function renderCourses() {
+      track.innerHTML = '';
+      dotsContainer.innerHTML = '';
+      courses.forEach((c, i) => {
+        const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
+        const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
+        const card = document.createElement('div');
+        card.className = 'course-card';
+        card.innerHTML = `
+          <h3>${c.name}</h3>
+          <p class="course-fee">Rs. ${c.fee}</p>
+          <p>${c.desc}</p>
+          ${c.cert ? '<span style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px; display:inline-block; margin:10px 0;">🎓 Certificate</span>' : ''}
+          <button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button>
+          <a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>
+        `;
+        track.appendChild(card);
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToCourse(i));
+        dotsContainer.appendChild(dot);
+      });
+      document.querySelectorAll('.view-details').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = e.target.dataset.index;
+          openCourseModal(courses[index]);
+        });
+      });
+    }
+    renderCourses();
 
     function goToCourse(index) {
       courseIndex = index;
-      const cardWidth = track.firstElementChild.offsetWidth + 20; // gap
+      const cardWidth = track.firstElementChild.offsetWidth + 20;
       track.style.transform = `translateX(-${index * cardWidth}px)`;
-      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i===index));
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+      resetCourseInterval();
     }
-    document.getElementById('prevCourse').addEventListener('click', () => { if (courseIndex > 0) goToCourse(courseIndex-1); });
-    document.getElementById('nextCourse').addEventListener('click', () => { if (courseIndex < courses.length-1) goToCourse(courseIndex+1); });
 
-    // Reviews slider
-    const reviewsData = [
-      { name:"Ahmed", text:"Best decision! Got a job." },
-      { name:"Sara", text:"I was afraid of computers, now I teach others." },
-      { name:"Usman", text:"Earned my first $100 online." },
-      { name:"Ayesha", text:"Canva course is amazing." }
+    function nextCourse() { courseIndex = (courseIndex + 1) % courses.length; goToCourse(courseIndex); }
+    function resetCourseInterval() { clearInterval(courseInterval); courseInterval = setInterval(nextCourse, 3000); }
+
+    document.getElementById('prevCourse').addEventListener('click', () => {
+      courseIndex = (courseIndex - 1 + courses.length) % courses.length;
+      goToCourse(courseIndex);
+    });
+    document.getElementById('nextCourse').addEventListener('click', () => nextCourse());
+    resetCourseInterval();
+
+    // Course Detail Modal
+    const courseModal = document.getElementById('courseModal');
+    const closeCourseModal = document.getElementById('closeCourseModal');
+    const courseModalContent = document.getElementById('courseModalContent');
+
+    function openCourseModal(course) {
+      const msg = `Hi, I want to enroll in *${course.name}* (Fee: Rs. ${course.fee}). Please guide me.`;
+      const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
+      courseModalContent.innerHTML = `
+        <h2>${course.name}</h2>
+        <p style="font-size:1.4rem; color:var(--gold); font-weight:700;">Fee: Rs. ${course.fee}</p>
+        <p><strong>Duration:</strong> ${course.duration}</p>
+        <p><strong>Certificate:</strong> ${course.cert ? 'Yes' : 'No'}</p>
+        <h4>Topics Covered:</h4>
+        <ul class="topic-list">${course.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul>
+        <a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block; margin-top:15px;">Enroll Now</a>
+      `;
+      courseModal.classList.add('active');
+    }
+
+    closeCourseModal.addEventListener('click', () => courseModal.classList.remove('active'));
+    window.addEventListener('click', (e) => { if (e.target === courseModal) courseModal.classList.remove('active'); });
+
+    // ========== REVIEWS (Static + User combined) ==========
+    // Static reviews array (50 entries, mostly female names)
+    const staticReviews = [
+      { name: "Ahmed", text: "Best decision! Got a job.", rating: 5 },
+      { name: "Sara", text: "I was afraid of computers, now I teach others.", rating: 5 },
+      { name: "Usman", text: "Earned my first $100 online.", rating: 5 },
+      { name: "Ayesha", text: "Canva course is amazing.", rating: 5 },
+      { name: "Fatima", text: "Python course helped me land an internship.", rating: 5 },
+      { name: "Zainab", text: "The teachers are incredibly supportive.", rating: 5 },
+      { name: "Bilal", text: "Web development course changed my career.", rating: 5 },
+      { name: "Hira", text: "Freelancing tips are gold! Already got two clients.", rating: 5 },
+      { name: "Ali", text: "Ethical hacking basics were mind-blowing.", rating: 5 },
+      { name: "Marium", text: "I built my first website thanks to this academy.", rating: 5 },
+      { name: "Owais", text: "The AI tools section saved me hours every day.", rating: 5 },
+      { name: "Anam", text: "Resume and CV course helped me get noticed by recruiters.", rating: 5 },
+      { name: "Hamza", text: "I love the practical assignments.", rating: 5 },
+      { name: "Kinza", text: "Canva masterclass made designing fun.", rating: 5 },
+      { name: "Talha", text: "Python is no longer scary.", rating: 5 },
+      { name: "Mehwish", text: "Best investment for my career.", rating: 5 },
+      { name: "Saad", text: "Video editing skills got me a YouTube partnership.", rating: 5 },
+      { name: "Alisha", text: "AI content creation course is a game changer.", rating: 5 },
+      { name: "Farhan", text: "The community is very encouraging.", rating: 5 },
+      { name: "Nimra", text: "Graphic design course gave me confidence.", rating: 5 },
+      { name: "Rohan", text: "I learned C++ from scratch, now I'm building apps.", rating: 5 },
+      { name: "Sania", text: "Freelancing income now pays my bills.", rating: 5 },
+      { name: "Adeel", text: "Cyber security fundamentals were top-notch.", rating: 5 },
+      { name: "Hafsa", text: "Microsoft Office advanced tips boosted my productivity.", rating: 5 },
+      { name: "Kamran", text: "The academy's live support is outstanding.", rating: 5 },
+      { name: "Iqra", text: "I never thought I could code, now I'm addicted.", rating: 5 },
+      { name: "Danish", text: "Digital marketing course helped me grow my business.", rating: 5 },
+      { name: "Saba", text: "This academy is truly zero to pro.", rating: 5 },
+      { name: "Shayan", text: "Network basics were explained so simply.", rating: 5 },
+      { name: "Rida", text: "Web development journey was amazing.", rating: 5 },
+      { name: "Anas", text: "The scholarship test opportunity is a blessing.", rating: 5 },
+      { name: "Fiza", text: "Every course is so well structured.", rating: 5 },
+      { name: "Yusuf", text: "I built my portfolio during the course.", rating: 5 },
+      { name: "Areeba", text: "Interview prep class helped me crack my dream job.", rating: 5 },
+      { name: "Haroon", text: "Excellent material and resources.", rating: 5 },
+      { name: "Sadaf", text: "I love the recorded sessions for review.", rating: 5 },
+      { name: "Imran", text: "Best place to learn digital skills.", rating: 5 },
+      { name: "Nouman", text: "I recommended this academy to all my friends.", rating: 5 },
+      { name: "Zoya", text: "AI automation course made my office tasks easy.", rating: 5 },
+      { name: "Abbas", text: "Real projects gave me confidence.", rating: 5 },
+      { name: "Khadija", text: "Very affordable and high-quality training.", rating: 5 },
+      { name: "Arslan", text: "The certificates helped my LinkedIn profile.", rating: 5 },
+      { name: "Aleeza", text: "I'm now a freelance graphic designer thanks to this academy.", rating: 5 },
+      { name: "Rashid", text: "Their teaching style is very engaging.", rating: 5 },
+      { name: "Madiha", text: "Best Python course for beginners.", rating: 5 },
+      { name: "Junaid", text: "Awesome experience, highly recommended.", rating: 5 },
+      { name: "Sana", text: "Social media marketing tips were practical.", rating: 5 },
+      { name: "Waqas", text: "I learned so much in just 4 weeks.", rating: 5 },
+      { name: "Laiba", text: "This academy changed my life.", rating: 5 },
+      { name: "Zahid", text: "I'm now earning through freelancing.", rating: 5 }
     ];
+
+    // Auto-slide static reviews
     const reviewTrack = document.getElementById('reviewTrack');
-    let reviewIndex = 0;
-    reviewsData.forEach(r => {
+    staticReviews.slice(0, 12).forEach(r => {  // show first 12 in slider
       const div = document.createElement('div');
       div.className = 'review-card';
-      div.innerHTML = `<p>⭐ 5.0</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
+      div.innerHTML = `<p>${'⭐'.repeat(r.rating)}</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
       reviewTrack.appendChild(div);
     });
+
+    let reviewIndex = 0;
     function goToReview(idx) {
       reviewIndex = idx;
       reviewTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
     }
-    document.getElementById('prevReview').addEventListener('click', () => { if (reviewIndex>0) goToReview(reviewIndex-1); });
-    document.getElementById('nextReview').addEventListener('click', () => { if (reviewIndex<reviewsData.length-1) goToReview(reviewIndex+1); });
+    setInterval(() => {
+      reviewIndex = (reviewIndex + 1) % 12;
+      goToReview(reviewIndex);
+    }, 4000);
 
-    // Comments slider
-    const comments = ["Hamza: Just enrolled! 🚀","Zainab: Mentor helped me instantly 💯","Owais: Academy feels like family ❤️"];
-    const commentTrack = document.getElementById('commentTrack');
-    let commentIndex = 0;
-    comments.forEach(c => {
-      const div = document.createElement('div');
-      div.className = 'comment-card';
-      div.textContent = c;
-      commentTrack.appendChild(div);
-    });
-    function goToComment(idx) {
-      commentIndex = idx;
-      commentTrack.style.transform = `translateX(-${commentIndex * (commentTrack.firstElementChild.offsetWidth + 20)}px)`;
+    // Combined list: all static reviews + user reviews
+    const allReviewsContainer = document.getElementById('allReviewsContainer');
+    function renderCombinedReviews() {
+      const userReviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+      const combined = [...staticReviews, ...userReviews.map(u => ({ name: u.name, text: u.text, rating: u.rating }))];
+      allReviewsContainer.innerHTML = combined.map(r => `
+        <div class="review-card" style="margin-bottom:15px;">
+          <div style="display:flex; justify-content:space-between;">
+            <strong>${r.name}</strong>
+            <span>${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+          </div>
+          <div style="margin-top:8px;">${r.text}</div>
+        </div>
+      `).join('');
     }
-    document.getElementById('prevComment').addEventListener('click', () => { if (commentIndex>0) goToComment(commentIndex-1); });
-    document.getElementById('nextComment').addEventListener('click', () => { if (commentIndex<comments.length-1) goToComment(commentIndex+1); });
+    renderCombinedReviews();
 
-    // Review modal
+    // User review submission
     const reviewModal = document.getElementById('reviewModal');
     const openReviewBtn = document.getElementById('openReviewModal');
     const closeReviewModal = document.getElementById('closeReviewModal');
@@ -691,21 +809,10 @@
     const reviewerNameInput = document.getElementById('reviewerName');
     const reviewMessageInput = document.getElementById('reviewMessage');
     const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
-    const userReviewsContainer = document.getElementById('userReviewsContainer');
 
     openReviewBtn.addEventListener('click', () => reviewModal.classList.add('active'));
     closeReviewModal.addEventListener('click', () => reviewModal.classList.remove('active'));
     window.addEventListener('click', (e) => { if (e.target === reviewModal) reviewModal.classList.remove('active'); });
-
-    function loadUserReviews() {
-      const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-      userReviewsContainer.innerHTML = reviews.map(r => `
-        <div class="review-card" style="margin-bottom:15px;">
-          <div style="display:flex; justify-content:space-between;"><strong>${r.name}</strong><span>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span></div>
-          <div>${r.text}</div>
-        </div>`).join('');
-    }
-    loadUserReviews();
 
     submitReviewBtn.addEventListener('click', () => {
       const name = reviewerNameInput.value.trim();
@@ -718,8 +825,28 @@
       localStorage.setItem('userReviews', JSON.stringify(reviews));
       reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
       reviewModal.classList.remove('active');
-      loadUserReviews();
+      renderCombinedReviews(); // refresh combined list
     });
+
+    // Comments auto-slide
+    const comments = ["Hamza: Just enrolled! 🚀","Zainab: Mentor helped me instantly 💯","Owais: Academy feels like family ❤️"];
+    const commentTrack = document.getElementById('commentTrack');
+    let commentIndex = 0;
+    comments.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'comment-card';
+      div.textContent = c;
+      commentTrack.appendChild(div);
+    });
+    function goToComment(idx) {
+      commentIndex = idx;
+      const cardWidth = commentTrack.firstElementChild.offsetWidth + 20;
+      commentTrack.style.transform = `translateX(-${commentIndex * cardWidth}px)`;
+    }
+    setInterval(() => {
+      commentIndex = (commentIndex + 1) % comments.length;
+      goToComment(commentIndex);
+    }, 3000);
 
     // FAQ
     const faqContainer = document.getElementById('faqContainer');
@@ -740,26 +867,49 @@
       });
     });
 
-    // Countdown (no refresh)
+    // Countdown timer
+    const countdownSection = document.getElementById('countdownSection');
     const countdownEl = document.getElementById('countdown');
     const endDate = new Date(); endDate.setDate(endDate.getDate()+3);
-    setInterval(() => {
+    const timerInterval = setInterval(() => {
       const diff = endDate - new Date();
-      if(diff <= 0) { countdownEl.textContent = "Expired"; return; }
+      if(diff <= 0) { countdownEl.textContent = "Expired"; countdownSection.style.display = 'none'; clearInterval(timerInterval); return; }
       const h=Math.floor(diff/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
       countdownEl.textContent = `${h}h ${m}m ${s}s`;
     }, 1000);
 
-    // Live notification
+    // Live notification (50 messages, diverse names)
     const notif = document.getElementById('liveNotification');
-    const msgs = ["Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀"];
+    const msgs = [
+      "Ahmed enrolled in Python 🎉", "Sara joined AI course 👏", "Usman booked demo 🚀", "Ayesha accepted invite ✅",
+      "Fatima started Graphic Design", "Zainab completed Web Dev", "Bilal joined Basic Computer", "Hira opened freelancing account",
+      "Ali received certificate 📜", "Marium enrolled in Canva", "Owais shared academy link", "Anam scheduled interview prep",
+      "Hamza downloaded resources", "Kinza rated 5 stars ⭐", "Talha invited 3 friends", "Mehwish joined Python class",
+      "Saad completed video project", "Alisha purchased AI course", "Farhan attended live session", "Nimra shared testimonial",
+      "Rohan registered for C++", "Sania deposited fee 💰", "Adeel started cyber security", "Hafsa joined MS Office class",
+      "Kamran received scholarship", "Iqra wrote a review", "Danish opened digital marketing", "Saba enrolled in web development",
+      "Shayan downloaded PDF guide", "Rida joined WhatsApp group", "Anas applied for discount", "Fiza shared success story",
+      "Yusuf logged in to portal", "Areeba got interview call", "Haroon enrolled in freelancing", "Sadaf watched demo video",
+      "Imran downloaded certificate", "Nouman recommended academy", "Zoya activated AI tools", "Abbas completed first task",
+      "Khadija sent referral link", "Arslan purchased premium", "Aleeza joined design class", "Rashid completed networking",
+      "Madiha viewed Python playlist", "Junaid enrolled in ethical hacking", "Sana started social media course",
+      "Waqas accepted invitation ✅", "Laiba wrote a thank‑you note", "Zahid got his first freelancing order"
+    ];
     let idx=0;
     setInterval(() => {
       notif.style.opacity='0';
-      setTimeout(() => { notif.textContent = msgs[idx%3]; notif.style.display='block'; notif.style.opacity='1'; }, 200);
+      setTimeout(() => { notif.textContent = msgs[idx%50]; notif.style.display='block'; notif.style.opacity='1'; }, 200);
       setTimeout(() => { notif.style.opacity='0'; setTimeout(() => notif.style.display='none',200); }, 4000);
       idx++;
     }, 8000);
+
+    // Back to Top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    });
+    backToTop.addEventListener('click', () => { window.scrollTo({ top:0, behavior:'smooth' }); });
 
     AOS.init({ duration:800, once:true });
   </script>
