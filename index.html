@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Zero to Pro Computer & AI Academy</title>
-  <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future. Beginner-friendly, practical, career-focused training." />
+  <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future" />
   <meta property="og:title" content="Zero to Pro Computer & AI Academy" />
-  <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills, and build your future." />
+  <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/IMG-20260713-WA0153.jpg" />
 
-  <!-- CHANGE POSTER: Replace "assets/123.png" with new poster filename in both popup and hero sections -->
   <link rel="icon" href="assets/IMG-20260713-WA0153.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,8 +47,10 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
       line-height: 1.6;
-      touch-action: pan-y; /* prevent horizontal swipe on body */
+      touch-action: pan-y;
     }
+    body.no-scroll { overflow: hidden; }  /* modal open */
+
     .container { max-width:1100px; margin:0 auto; padding:0 20px; }
     a { text-decoration:none; color:inherit; }
 
@@ -118,10 +119,10 @@
 
     .title { text-align:center; font-size:2.2rem; margin:50px 0 30px; font-weight:700; color:var(--gold); }
 
-    /* Learning Path */
+    /* Learning Path (vertical on mobile, horizontal on desktop) */
     .learning-path {
-      display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
-      gap:10px; margin:20px 0;
+      display:flex; justify-content:center; align-items:center; gap:15px;
+      flex-wrap: wrap;
     }
     .path-step {
       background:var(--card-bg); padding:16px 20px; border-radius:16px;
@@ -130,23 +131,25 @@
       border:2px solid transparent; transition:0.3s;
     }
     .path-step:hover { border-color:var(--cyan); transform:scale(1.03); }
-    .path-arrow { font-size:1.8rem; color:var(--gold); margin:0 5px; }
+    .path-arrow { font-size:1.8rem; color:var(--gold); }
+    @media (max-width:600px) {
+      .learning-path { flex-direction: column; }
+      .path-arrow { transform: rotate(90deg); }
+    }
 
-    /* Courses Carousel – one card at a time */
+    /* Courses Carousel */
     .courses-carousel {
-      position:relative; margin:20px auto; overflow:hidden;
+      position:relative; margin:20px 0; overflow:hidden;
       touch-action: pan-y;
     }
     .courses-track {
-      display:flex; transition:transform 0.5s ease; gap:0;
+      display:flex; transition:transform 0.5s ease; will-change: transform;
     }
     .course-card {
       flex:0 0 100%;
       background:var(--card-bg); border-radius:20px; padding:25px;
       box-shadow:var(--shadow); border:1px solid var(--border);
-      margin:0 10px;
       display:flex; flex-direction:column; justify-content:space-between;
-      transition:transform 0.3s;
     }
     .course-card:hover { transform:translateY(-5px); border-color:var(--cyan); }
     .course-fee { font-size:1.6rem; font-weight:800; color:var(--gold); }
@@ -164,9 +167,9 @@
     .dot { width:12px; height:12px; border-radius:50%; background:var(--border); cursor:pointer; transition:0.3s; }
     .dot.active { background:var(--cyan); }
 
-    /* Reviews Slider – one card at a time */
+    /* Reviews Slider */
     .review-slider {
-      position:relative; overflow:hidden; margin:20px 0; touch-action: pan-y;
+      position:relative; overflow:hidden; margin:20px 0;
     }
     .review-track { display:flex; transition:transform 0.5s ease; }
     .review-card {
@@ -177,7 +180,7 @@
     }
     .rating-stars { font-size:1.5rem; color:var(--gold); }
 
-    /* View All Reviews button */
+    /* View All Reviews */
     .view-all-reviews {
       display:inline-block; margin-top:15px; cursor:pointer;
       color:var(--cyan); font-weight:600; transition:0.3s;
@@ -249,35 +252,38 @@
     .topic-list { list-style:none; padding:10px 0; }
     .topic-list li { padding:6px 0; border-bottom:1px solid var(--border); }
 
-    /* Floating Review Button */
+    /* Floating Review Button (slow pulse) */
     .floating-review {
       position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
       padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
-      z-index:1000; font-weight:bold; animation: reviewPulse 2s infinite; cursor:pointer;
+      z-index:1000; font-weight:bold; animation: reviewPulse 10s infinite; cursor:pointer;
       border:none; display:flex; align-items:center; gap:8px;
     }
     @keyframes reviewPulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.08) translateY(-2px); }
+      50% { transform: scale(1.03); }
       100% { transform: scale(1); }
     }
 
-    /* Back to Top */
+    /* Back to Top (opacity instead of display) */
     .back-to-top {
       position:fixed; bottom:80px; right:20px; background:var(--cyan); color:#000;
-      width:45px; height:45px; border-radius:50%; display:none; align-items:center;
-      justify-content:center; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.3);
-      z-index:1000; font-size:1.2rem; transition:0.3s;
+      width:45px; height:45px; border-radius:50%; opacity:0; pointer-events:none;
+      display:flex; align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:1000; font-size:1.2rem;
+      transition: opacity 0.3s, transform 0.3s;
     }
-    .back-to-top.show { display:flex; }
+    .back-to-top.show { opacity:1; pointer-events:auto; }
     .back-to-top:hover { background:#0891b2; transform:translateY(-2px); }
 
     .live-notification {
       position:fixed; bottom:100px; left:20px; background:var(--cyan); color:#000;
       padding:12px 22px; border-radius:30px; font-size:0.9rem; z-index:999;
-      display:none; box-shadow:0 4px 12px rgba(0,0,0,0.4); font-weight:500;
+      opacity:0; pointer-events:none;
       transition: opacity 0.3s;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4); font-weight:500;
     }
+    .live-notification.visible { opacity:1; pointer-events:auto; }
 
     /* Contact Cards */
     .contact-cards { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; margin:30px 0; }
@@ -333,9 +339,7 @@
       .nav-links { display:none; flex-direction:column; width:100%; }
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
-      .course-card { flex:0 0 100%; margin:0; }
-      .floating-review { bottom:15px; right:15px; }
-      .back-to-top { bottom:75px; right:15px; }
+      .course-card { flex:0 0 100%; }
     }
   </style>
 </head>
@@ -344,7 +348,7 @@
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
       <button class="close-btn" id="closePopup">&times;</button>
-      <!-- CHANGE POSTER: replace "assets/123.png" with new poster filename -->
+      <!-- CHANGE POSTER: replace "assets/123.png" with new poster -->
       <img src="assets/123.png" alt="Academy Poster" class="popup-poster" id="popupPoster"
            onerror="this.src='assets/IMG-20260713-WA0153.jpg'" />
       <h3>Want to learn Basic Computer + AI from Zero to Pro?</h3>
@@ -383,12 +387,11 @@
     </header>
 
     <main>
-      <!-- Hero -->
       <section id="about" class="hero section">
         <div class="container">
           <h1 data-aos="fade-up">Zero to Pro Computer & AI Academy</h1>
           <p class="sub">Learn Today • Build Tomorrow • Lead the Future</p>
-          <p class="desc">Turn your curiosity into a career. Practical skills, real support. Join 1,200+ students already transforming their lives.</p>
+          <p class="desc">Turn your curiosity into a career. Practical skills, real support. Join 1,200+ students.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">🎓 Scholarship Test</a>
             <a class="btn btn-outline" href="#courses">🚀 Explore Courses</a>
@@ -396,7 +399,6 @@
           <div class="free-badge">🎉 1,200+ Students Enrolled</div>
           <div class="hero-visual">
             <div class="hero-card">
-              <!-- CHANGE POSTER: replace "assets/123.png" with new poster -->
               <img src="assets/123.png" alt="Poster" onerror="this.src='assets/IMG-20260713-WA0153.jpg'" />
             </div>
             <div class="floating i1">💻</div><div class="floating i2">🧠</div><div class="floating i3">🚀</div><div class="floating i4">🎓</div><div class="floating i5">🤖</div>
@@ -404,24 +406,19 @@
         </div>
       </section>
 
-      <!-- About Academy -->
       <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
         <h2 class="title">🌟 About Our Academy</h2>
         <p style="max-width:700px; margin:0 auto; font-size:1.1rem; opacity:0.9;">
-          Zero to Pro Computer & AI Academy is dedicated to providing affordable, practical, and career-focused training.
-          Our mission is to empower every student — whether a beginner or professional — with the digital and AI skills
-          needed to succeed in today's fast-changing world.
+          Zero to Pro Computer & AI Academy provides affordable, practical, career-focused training in digital and AI skills.
         </p>
       </div>
 
-      <!-- Countdown (disappears when expired) -->
       <div class="container" id="countdownSection" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center;">
         <h3>⏰ 20% Discount Ends In</h3>
         <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
         <a href="https://wa.me/923061565858?text=I%20want%20to%20claim%20the%2020%25%20discount" target="_blank" class="btn btn-primary">Claim Discount</a>
       </div>
 
-      <!-- Learning Path -->
       <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
         <h2 class="title">🛤️ Your Learning Path</h2>
         <div class="learning-path">
@@ -435,12 +432,11 @@
         </div>
       </div>
 
-      <!-- Scholarship -->
       <section class="section">
         <div class="container">
           <div class="scholar-card shine" data-aos="fade-up">
             <h2>🎓 Want FREE Learning?</h2>
-            <p>Take our simple scholarship test. Pass it, and study any basic course completely free!</p>
+            <p>Take our scholarship test. Pass it, and study any basic course completely free!</p>
             <div class="cta-row">
               <a class="btn btn-gold" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">📝 Take Test</a>
               <a class="btn btn-outline-light" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nnP-DE5WEelw/viewform?usp=dialog">📋 Admission</a>
@@ -449,7 +445,6 @@
         </div>
       </section>
 
-      <!-- Courses Carousel (one card at a time) -->
       <section id="courses" class="section">
         <div class="container">
           <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
@@ -464,17 +459,14 @@
         </div>
       </section>
 
-      <!-- Free Demo -->
       <div class="container" data-aos="zoom-in" style="text-align:center; margin:30px auto;">
         <a href="https://wa.me/923061565858?text=I%20want%20a%20FREE%20demo%20class" target="_blank" class="btn btn-gold" style="font-size:1.2rem;">🎁 Book FREE Demo Class</a>
       </div>
 
-      <!-- Guarantee -->
       <div class="container" data-aos="fade-up" style="background:var(--gold); color:black; padding:20px; border-radius:16px; text-align:center; margin:20px auto;">
         🛡️ 100% Satisfaction Guarantee – If first class doesn't satisfy, get your fee back.
       </div>
 
-      <!-- Reviews (auto-sliding one card + view all) -->
       <section id="reviews" class="section">
         <div class="container">
           <h2 class="title">⭐ Student Reviews <span style="font-size:1rem; color:var(--text);">(4.9 ★ – 50+ reviews)</span></h2>
@@ -487,7 +479,6 @@
         </div>
       </section>
 
-      <!-- Shoutouts -->
       <div class="container" data-aos="fade-up" style="margin:40px auto;">
         <h2 class="title">💬 Shoutouts</h2>
         <div class="comment-slider">
@@ -495,7 +486,6 @@
         </div>
       </div>
 
-      <!-- Certificate -->
       <div class="container" data-aos="zoom-in" style="margin:50px auto;">
         <h2 class="title">🎓 Sample Certificate</h2>
         <div class="certificate-design">
@@ -510,7 +500,6 @@
         </div>
       </div>
 
-      <!-- Founder -->
       <div class="container" data-aos="fade-up" style="margin:40px auto;">
         <h2 class="title">👨‍🏫 Meet Founder</h2>
         <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center; background:var(--card-bg); padding:25px; border-radius:20px;">
@@ -523,7 +512,6 @@
         </div>
       </div>
 
-      <!-- FAQ -->
       <section id="faq" class="section">
         <div class="container">
           <h2 class="title">❓ FAQ</h2>
@@ -531,7 +519,6 @@
         </div>
       </section>
 
-      <!-- Contact -->
       <section id="contact" class="section">
         <div class="container" style="text-align:center;">
           <h2 class="title">📞 Contact Us</h2>
@@ -576,7 +563,7 @@
     <div class="live-notification" id="liveNotification"></div>
   </div>
 
-  <!-- Review Modal (Leave a Review) -->
+  <!-- Review Modal -->
   <div class="modal-overlay" id="reviewModal">
     <div class="modal-content">
       <span class="modal-close" id="closeReviewModal">&times;</span>
@@ -595,7 +582,7 @@
     </div>
   </div>
 
-  <!-- View All Reviews Modal -->
+  <!-- All Reviews Modal -->
   <div class="modal-overlay" id="allReviewsModal">
     <div class="modal-content">
       <span class="modal-close" id="closeAllReviewsModal">&times;</span>
@@ -656,7 +643,7 @@
     document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
 
-    // Course data
+    // Courses data
     const courses = [
       { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks" },
       { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks" },
@@ -725,7 +712,7 @@
     document.getElementById('nextCourse').addEventListener('click', () => nextCourse());
     resetCourseInterval();
 
-    // Course Detail Modal
+    // Course Detail Modal (no animation except fade)
     const courseModal = document.getElementById('courseModal');
     const closeCourseModal = document.getElementById('closeCourseModal');
     const courseModalContent = document.getElementById('courseModalContent');
@@ -743,10 +730,11 @@
         <a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block; margin-top:15px;">Enroll Now</a>
       `;
       courseModal.classList.add('active');
+      body.classList.add('no-scroll'); // lock background scroll
     }
 
-    closeCourseModal.addEventListener('click', () => courseModal.classList.remove('active'));
-    window.addEventListener('click', (e) => { if (e.target === courseModal) courseModal.classList.remove('active'); });
+    closeCourseModal.addEventListener('click', () => { courseModal.classList.remove('active'); body.classList.remove('no-scroll'); });
+    window.addEventListener('click', (e) => { if (e.target === courseModal) { courseModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
 
     // ========== REVIEWS ==========
     const staticReviews = [
@@ -802,7 +790,6 @@
       { name: "Zahid", text: "I'm now earning through freelancing.", rating: 5 }
     ];
 
-    // Auto-slide (show first 15 in slider)
     const reviewTrack = document.getElementById('reviewTrack');
     staticReviews.slice(0, 15).forEach(r => {
       const div = document.createElement('div');
@@ -844,9 +831,10 @@
     viewAllBtn.addEventListener('click', () => {
       renderAllReviews();
       allReviewsModal.classList.add('active');
+      body.classList.add('no-scroll');
     });
-    closeAllReviewsModal.addEventListener('click', () => allReviewsModal.classList.remove('active'));
-    window.addEventListener('click', (e) => { if (e.target === allReviewsModal) allReviewsModal.classList.remove('active'); });
+    closeAllReviewsModal.addEventListener('click', () => { allReviewsModal.classList.remove('active'); body.classList.remove('no-scroll'); });
+    window.addEventListener('click', (e) => { if (e.target === allReviewsModal) { allReviewsModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
 
     // User review submission
     const reviewModal = document.getElementById('reviewModal');
@@ -857,9 +845,9 @@
     const reviewMessageInput = document.getElementById('reviewMessage');
     const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
 
-    openReviewBtn.addEventListener('click', () => reviewModal.classList.add('active'));
-    closeReviewModal.addEventListener('click', () => reviewModal.classList.remove('active'));
-    window.addEventListener('click', (e) => { if (e.target === reviewModal) reviewModal.classList.remove('active'); });
+    openReviewBtn.addEventListener('click', () => { reviewModal.classList.add('active'); body.classList.add('no-scroll'); });
+    closeReviewModal.addEventListener('click', () => { reviewModal.classList.remove('active'); body.classList.remove('no-scroll'); });
+    window.addEventListener('click', (e) => { if (e.target === reviewModal) { reviewModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
 
     submitReviewBtn.addEventListener('click', () => {
       const name = reviewerNameInput.value.trim();
@@ -872,7 +860,7 @@
       localStorage.setItem('userReviews', JSON.stringify(reviews));
       reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
       reviewModal.classList.remove('active');
-      // Optionally refresh all reviews if modal is open later
+      body.classList.remove('no-scroll');
     });
 
     // Comments auto-slide
@@ -925,7 +913,7 @@
       countdownEl.textContent = `${h}h ${m}m ${s}s`;
     }, 1000);
 
-    // Live notification (50 messages)
+    // Live notification (improved)
     const notif = document.getElementById('liveNotification');
     const msgs = [
       "Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀","Ayesha accepted invite ✅",
@@ -944,17 +932,16 @@
     ];
     let idx=0;
     setInterval(() => {
-      notif.style.opacity='0';
-      setTimeout(() => { notif.textContent = msgs[idx%50]; notif.style.display='block'; notif.style.opacity='1'; }, 200);
-      setTimeout(() => { notif.style.opacity='0'; setTimeout(() => notif.style.display='none',200); }, 4000);
+      notif.style.opacity = '0';
+      setTimeout(() => { notif.textContent = msgs[idx%50]; notif.classList.add('visible'); }, 200);
+      setTimeout(() => { notif.style.opacity = '0'; setTimeout(() => notif.classList.remove('visible'), 200); }, 4000);
       idx++;
     }, 8000);
 
     // Back to Top
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) backToTop.classList.add('show');
-      else backToTop.classList.remove('show');
+      backToTop.classList.toggle('show', window.scrollY > 300);
     });
     backToTop.addEventListener('click', () => { window.scrollTo({ top:0, behavior:'smooth' }); });
 
