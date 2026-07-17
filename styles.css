@@ -1,127 +1,193 @@
-:root {
-  --blue: #1e3a8a;
-  --cyan: #06b6d4;
-  --gold: #f59e0b;
-  --white: #ffffff;
-  --ink: #dbeafe;
-  --bg: #08122f;
-  --card: rgba(255, 255, 255, 0.08);
-  --line: rgba(255, 255, 255, 0.22);
-}
-* { box-sizing: border-box; }
-html, body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: var(--ink);
-  background: radial-gradient(circle at 15% 15%, #16347d, var(--bg));
-  scroll-behavior: smooth;
-}
-h1,h2,h3,strong { font-family: 'Nunito', sans-serif; }
-.container { width: min(1150px, 92%); margin: 0 auto; }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zero to Pro Computer & AI Academy</title>
+    <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future. Beginner-friendly, practical, career-focused training for everyone." />
+    <meta property="og:title" content="Zero to Pro Computer & AI Academy" />
+    <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills, and build your future." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/IMG-20260713-WA0153.jpg" />
 
-.stars::before,.stars::after{
-  content:'';position:fixed;inset:0;z-index:-1;
-  background-image:radial-gradient(circle,rgba(255,255,255,.25) 1px,transparent 1px);
-  background-size:24px 24px;animation:starMove 45s linear infinite;
-}
-.stars::after{opacity:.5;animation-duration:70s;}
-@keyframes starMove{from{transform:translateY(0)}to{transform:translateY(-80px)}}
+    <link rel="icon" href="assets/IMG-20260713-WA0153.jpg" />
 
-.site-header{position:sticky;top:0;z-index:999;background:rgba(5,11,31,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
-.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff;min-width:0}
-.logo{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#fff}
-.brand-text{display:flex;flex-direction:column;line-height:1.15}
-.brand-text span{font-size:.76rem;color:#bfdbfe}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-.nav-links{display:flex;align-items:center;gap:.9rem}
-.nav-link{text-decoration:none;color:#e2e8f0;position:relative}
-.nav-link.active::after{content:'';position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:var(--cyan)}
-.hamburger{display:none;background:transparent;color:#fff;border:1px solid var(--line);border-radius:10px;padding:.35rem .6rem}
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="styles.css" />
 
-.section{padding:4rem 0}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem;align-items:center}
-.hero h1{font-size:clamp(2rem,4vw,3.2rem);margin:0}
-.sub{color:#fde68a;font-weight:700}
-.desc{max-width:650px}
-.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
-.free-badge{display:inline-block;margin-top:1rem;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.5);padding:.45rem .8rem;border-radius:999px;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="stars" aria-hidden="true"></div>
 
-.hero-visual{position:relative;min-height:320px}
-.hero-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.2rem;height:100%;display:grid;place-items:center}
-.hero-card img{max-width:70%;border-radius:16px;box-shadow:0 12px 30px rgba(6,182,212,.3)}
-.floating{position:absolute;font-size:1.6rem;animation:float 5s ease-in-out infinite}
-.i1{left:-8px;top:8%}.i2{right:0;top:10%;animation-delay:.5s}.i3{left:8%;bottom:0;animation-delay:1s}.i4{right:12%;bottom:4%;animation-delay:1.5s}.i5{right:45%;top:50%;animation-delay:2s}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(6deg)}}
+    <header class="site-header" id="home">
+      <div class="container nav-wrap">
+        <a class="brand" href="#home" aria-label="Zero to Pro Home">
+          <img src="assets/IMG-20260713-WA0153.jpg" alt="Zero to Pro Academy Logo" class="logo" />
+          <div class="brand-text">
+            <strong>Zero to Pro Computer & AI Academy</strong>
+            <span>Learn Today • Build Tomorrow • Lead the Future</span>
+          </div>
+        </a>
 
-.btn{display:inline-block;border:none;border-radius:12px;padding:.75rem 1rem;text-decoration:none;font-weight:700;cursor:pointer;transition:.3s ease}
-.btn:hover{transform:translateY(-2px) scale(1.03)}
-.btn-primary{background:linear-gradient(135deg,#67e8f9,var(--cyan));color:#083344;box-shadow:0 10px 24px rgba(6,182,212,.35)}
-.btn-outline{background:transparent;color:#fff;border:1px solid var(--line)}
-.btn-outline-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
-.btn-gold{background:linear-gradient(135deg,#fcd34d,var(--gold));color:#3f2200}
-.btn-nav{background:var(--cyan);color:#083344}
-.btn-facebook{background:#1877f2;color:#fff}
-.btn-whatsapp{background:#22c55e;color:#052e16}
+        <button class="hamburger" id="hamburger" aria-label="Open Menu">☰</button>
 
-.scholarship{padding-top:1rem}
-.scholar-card{position:relative;background:linear-gradient(135deg,rgba(245,158,11,.3),rgba(250,204,21,.16));border:1px solid rgba(245,158,11,.55);border-radius:18px;padding:1.2rem;overflow:hidden}
-.shine::before{content:'';position:absolute;top:-140%;left:-60%;width:35%;height:380%;transform:rotate(25deg);background:linear-gradient(to right,transparent,rgba(255,255,255,.55),transparent);animation:shine 4s infinite}
-@keyframes shine{from{left:-70%}to{left:140%}}
-.cta-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.8rem 0}
-.joy{font-size:2rem;animation:bounce 1.2s infinite alternate;position:absolute;right:14px;bottom:8px}
-@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+        <nav class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#scholarship" class="nav-link">Scholarship Test</a>
+          <a href="#courses" class="nav-link">Courses</a>
+          <a href="#why-us" class="nav-link">Why Us</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#courses" class="btn btn-nav">Enroll Now</a>
+        </nav>
+      </div>
+    </header>
 
-.title{text-align:center;margin-bottom:1rem}
-.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:stretch}
-.course-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;display:flex;flex-direction:column;height:100%;transition:.3s ease}
-.course-card:hover{transform:translateY(-8px);box-shadow:0 16px 30px rgba(6,182,212,.25)}
-.fee{font-weight:700;color:#fef08a;margin:.2rem 0}
-.premium{color:#fcd34d}
-.toggle{margin:.5rem 0;background:transparent;color:#bfdbfe;border:1px dashed var(--line);border-radius:10px;padding:.45rem;cursor:pointer}
-.topics{max-height:0;overflow:hidden;transition:max-height .35s ease;padding-left:1rem;margin:0}
-.topics.open{max-height:360px;margin:.4rem 0}
-.badge{display:inline-block;margin-top:.5rem;background:rgba(6,182,212,.18);border:1px solid rgba(6,182,212,.5);border-radius:999px;padding:.3rem .65rem;font-size:.84rem}
-.badges-row{display:flex;gap:.4rem;flex-wrap:wrap}
-.dual-enroll{display:grid;grid-template-columns:1fr;gap:.5rem;margin-top:.65rem}
-.popular{border-color:rgba(245,158,11,.65)}
-.ribbon{position:absolute;top:10px;right:-30px;transform:rotate(35deg);background:var(--gold);color:#3f2200;padding:.2rem 2rem;font-weight:800;font-size:.78rem}
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div data-aos="fade-right" data-aos-duration="900">
+            <h1>Zero to Pro Computer & AI Academy</h1>
+            <p class="sub">Learn Today • Build Tomorrow • Lead the Future</p>
+            <p class="desc">Beginner-friendly, practical, career-focused training for everyone.</p>
 
-.alt{background:rgba(2,6,23,.42)}
-.tags{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
-.tags span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45rem .75rem;transition:.3s ease}
-.tags span:hover{transform:scale(1.07) rotate(-1deg)}
+            <div class="hero-actions">
+              <a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">🎓 Take Scholarship Test</a>
+              <a class="btn btn-outline" href="#courses">🚀 Explore Courses</a>
+            </div>
 
-.feature-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem}
-.feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem;text-align:center;transition:.3s}
-.feature:hover{transform:translateY(-4px)}
+            <div class="free-badge">FREE learning for test passers!</div>
+          </div>
 
-.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
-.audience-grid div{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.75rem;text-align:center;animation:softBounce 4s infinite}
-.audience-grid div:nth-child(2n){animation-delay:.6s}
-.audience-grid div:nth-child(3n){animation-delay:1.1s}
-@keyframes softBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+          <div class="hero-visual" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="floating i1">💻</div>
+            <div class="floating i2">🧠</div>
+            <div class="floating i3">🚀</div>
+            <div class="floating i4">🎓</div>
+            <div class="floating i5">🤖</div>
+            <div class="hero-card">
+              <img src="assets/123.png" alt="Academy Poster" onerror="this.src='assets/IMG-20260713-WA0153.jpg'" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-.contact-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem}
-.contact-grid{display:grid;gap:.6rem}
-.email{opacity:.85}
-.chat-bubble{position:absolute;right:12px;bottom:12px;background:#22c55e;color:#052e16;padding:.45rem .7rem;border-radius:999px;font-weight:700;pointer-events:none;transition:transform .15s linear}
+      <section id="scholarship" class="section scholarship">
+        <div class="container">
+          <div class="scholar-card shine" data-aos="fade-up" data-aos-duration="900">
+            <h2>🎓 Want to Learn for FREE?</h2>
+            <p>First, you take a simple online test. If you pass, you get a scholarship and can study any basic course completely FREE. No hidden fees.</p>
+            <div class="cta-row">
+              <a class="btn btn-gold" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">📝 Take the Scholarship Test Now</a>
+              <a class="btn btn-outline-light" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nnP-DE5WEelw/viewform?usp=dialog">📋 Admission Form</a>
+            </div>
+            <small>After passing, fill the Admission Form to confirm your seat.</small>
+            <div class="joy">😄</div>
+          </div>
+        </div>
+      </section>
 
-.floating-wa{position:fixed;right:14px;bottom:14px;z-index:1000;background:#22c55e;color:#052e16;text-decoration:none;font-weight:800;border-radius:999px;padding:.7rem 1rem;box-shadow:0 12px 26px rgba(34,197,94,.35)}
+      <section id="courses" class="section">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">📚 Our Courses</h2>
+          <div class="course-grid">
+            <article class="course-card" data-aos="fade-up" data-aos-delay="0">
+              <h3>💻 Basic Computer</h3>
+              <p class="fee">Fee: Rs. 700</p>
+              <button class="toggle" data-target="topics1">View Topics</button>
+              <ul id="topics1" class="topics">
+                <li>Computer Fundamentals</li><li>Windows</li><li>File/Folder Management</li><li>Internet & Browsing</li><li>Gmail & Google Workspace</li><li>MS Word</li><li>MS Excel</li><li>MS PowerPoint</li><li>PDF Tools</li><li>Typing Skills</li><li>Printing & Scanning</li><li>Digital Safety</li>
+              </ul>
+              <span class="badge">🎓 Certificate Included</span>
+              <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer* course (Fee: Rs. 700). Please guide me.">Enroll Now</button>
+            </article>
 
-.site-footer{text-align:center;padding:2rem 0 2.5rem}
-.footer-logo{width:72px;height:72px;border-radius:16px;object-fit:cover;background:#fff}
-.footer-tag{color:#fde68a;font-weight:700}
-.policy{font-size:.85rem;line-height:1.5;opacity:.9}
+            <article class="course-card" data-aos="fade-up" data-aos-delay="100">
+              <h3>🤖 Basic Computer + AI</h3>
+              <p class="fee">Fee: Rs. 1,000</p>
+              <button class="toggle" data-target="topics2">View Topics</button>
+              <ul id="topics2" class="topics">
+                <li>Everything in Basic Computer</li><li>ChatGPT</li><li>Google Gemini</li><li>Microsoft Copilot</li><li>AI Prompt Engineering</li><li>AI for Students</li><li>AI for Office Work</li><li>AI Content Creation</li><li>AI Image Generation</li><li>AI Presentations</li><li>AI Resume Builder</li><li>AI Productivity Tools</li>
+              </ul>
+              <span class="badge">🎓 Certificate Included</span>
+              <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI* course (Fee: Rs. 1,000). Please guide me.">Enroll Now</button>
+            </article>
 
-@media (max-width:1024px){
-  .course-grid{grid-template-columns:1fr 1fr}
-  .feature-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:840px){
-  .hero-grid,.course-grid,.feature-grid,.audience-grid{grid-template-columns:1fr}
-  .hamburger{display:block}
-  .nav-links{position:absolute;top:72px;right:4%;width:min(280px,92vw);display:flex;flex-direction:column;align-items:flex-start;background:rgba(9,15,39,.98);border:1px solid var(--line);border-radius:14px;padding:.8rem;transform:translateY(-16px);opacity:0;pointer-events:none;transition:.25s}
-  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
-}
+            <article class="course-card popular" data-aos="fade-up" data-aos-delay="200">
+              <span class="ribbon">Most Popular</span>
+              <h3>🚀 Basic Computer + AI + AI Automation</h3>
+              <p class="fee">Standard: Rs. 1,500</p>
+              <p class="fee premium">Premium: Rs. 3,000</p>
+              <button class="toggle" data-target="topics3">View Topics</button>
+              <ul id="topics3" class="topics">
+                <li>Basic Computer</li><li>AI Tools</li><li>AI Automation</li><li>Workflow Automation</li><li>Smart Productivity Tools</li><li>Complete Training (Premium)</li>
+              </ul>
+              <div class="badges-row"><span class="badge">🎓 1 Certificate (Standard)</span><span class="badge">🎓 3 Certificates (Premium)</span></div>
+              <div class="dual-enroll">
+                <button class="btn btn-primary enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI + AI Automation (Standard)* course (Fee: Rs. 1,500). Please guide me.">Enroll Standard</button>
+                <button class="btn btn-gold enroll" data-msg="Hi, I want to enroll in *Basic Computer + AI + AI Automation (Premium)* course (Fee: Rs. 3,000). Please guide me.">Enroll Premium</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">🎯 Upcoming Courses</h2>
+          <div class="tags" data-aos="zoom-in">
+            <span>🎨 Graphic Design</span><span>🖌 Canva Masterclass</span><span>🧰 Adobe Photoshop</span><span>🎬 Video Editing</span><span>✍️ Content Creation</span><span>📱 Social Media Marketing</span><span>📊 Digital Marketing</span><span>💼 Freelancing (Fiverr & Upwork)</span><span>🌐 Web Development</span><span>🐍 Python Programming</span><span>💻 C++ Programming</span><span>🛡 Cyber Security Fundamentals</span><span>🕵️ Ethical Hacking Basics</span><span>🔌 Networking Basics</span><span>📘 Microsoft Office Advanced</span><span>☁️ Google Workspace</span><span>📄 Resume & CV Building</span><span>🎤 Interview Preparation</span><span>🌟 Personal Branding</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-us" class="section">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">💼 Why Choose Us?</h2>
+          <div class="feature-grid">
+            <div class="feature">✅ Beginner Friendly Learning</div><div class="feature">✅ Practical Classes</div><div class="feature">✅ Weekly Assignments</div><div class="feature">✅ Live Support</div><div class="feature">✅ Career Guidance</div><div class="feature">✅ Affordable Fee Structure</div><div class="feature">✅ Real Projects</div><div class="feature">✅ Recorded Resources</div><div class="feature">✅ Friendly Learning Environment</div><div class="feature">✅ Certificates</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <h2 class="title" data-aos="fade-up">👨‍🎓 Who Can Join?</h2>
+          <div class="audience-grid">
+            <div>🧒 School Students</div><div>🧑‍🎓 College Students</div><div>🎓 University Students</div><div>👩‍🏫 Teachers</div><div>💼 Job Seekers</div><div>🧑‍💻 Freelancers</div><div>🏢 Business Owners</div><div>🏠 Housewives</div><div>🌍 Anyone who wants to learn digital skills</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container contact-card" data-aos="fade-up">
+          <h2 class="title">📞 Contact Us</h2>
+          <p>👤 <strong>Founder & CEO:</strong> Abid Hussain</p>
+          <div class="contact-grid">
+            <a class="btn btn-whatsapp" target="_blank" rel="noreferrer" href="https://wa.me/923061565858?text=Hello">📱 WhatsApp (Main): +92 306 1565858</a>
+            <a class="btn btn-outline" target="_blank" rel="noreferrer" href="https://wa.me/923155344783?text=Hello">📱 Support: +92 315 5344783</a>
+            <a class="btn btn-facebook" target="_blank" rel="noreferrer" href="https://www.facebook.com/share/1Bb9JsgW3G/">📘 Visit Our Facebook Page</a>
+          </div>
+          <p class="email">zerotoproaccedmy@gmail.com</p>
+          <div id="chatBubble" class="chat-bubble">💬 Chat with us</div>
+        </div>
+      </section>
+    </main>
+
+    <a class="floating-wa" target="_blank" rel="noreferrer" href="https://wa.me/923061565858?text=Hello">💬 WhatsApp</a>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <img src="assets/IMG-20260713-WA0153.jpg" alt="Zero to Pro Logo" class="footer-logo" />
+        <p class="footer-tag">🚀 Join Us Today! Don't just learn—build skills, gain confidence, and create your future.</p>
+        <p>Start Your Journey Today! 💙</p>
+        <p class="policy">© 2025 Zero to Pro Computer & AI Academy. All rights reserved.<br/>Terms of Service | Privacy Policy | Refund Policy<br/>The content, courses, and materials provided by Zero to Pro Computer & AI Academy are for educational purposes only. Unauthorized reproduction or distribution is prohibited. By using this website, you agree to our terms and conditions.</p>
+      </div>
+    </footer>
+  </body>
+</html>
