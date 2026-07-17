@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
+    <!-- AOS & Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
@@ -50,6 +51,7 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         a { text-decoration: none; }
 
+        /* Header */
         .site-header {
             position: sticky; top: 0;
             background: rgba(10, 15, 31, 0.9);
@@ -81,6 +83,7 @@
         .btn-outline { border: 2px solid var(--cyan); color: var(--cyan); background: transparent; }
         .btn-outline-light { border: 2px solid white; color: white; background: transparent; }
 
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, #0a0f1f 0%, #1E3A8A 100%);
             color: white; padding: 80px 20px; border-radius: 0 0 30px 30px;
@@ -103,6 +106,7 @@
         .i1 { top: -30px; left: 10%; } .i2 { top: 30px; right: 5%; } .i3 { bottom: 20px; left: 15%; } .i4 { bottom: -20px; right: 10%; } .i5 { top: 40%; left: -5%; }
         @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
 
+        /* Scholarship */
         .scholar-card { background: linear-gradient(135deg, var(--gold), #f59e0b); padding: 35px; border-radius: 24px; text-align: center; margin: 40px 0; position: relative; box-shadow: 0 15px 35px rgba(245,158,11,0.3); color: #000; }
         .shine::after { content: ''; position: absolute; top: 0; left: -50%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shine 3s infinite; }
         @keyframes shine { 0% { left: -50%; } 100% { left: 150%; } }
@@ -129,7 +133,7 @@
 
         .live-notification { position: fixed; bottom: 100px; left: 20px; background: var(--cyan); color: black; padding: 12px 22px; border-radius: 30px; font-size: 0.9rem; z-index: 999; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); font-weight: 500; }
 
-        /* Review Form Styles */
+        /* Review Form */
         .review-form-section { background: var(--card-bg); border-radius: 20px; padding: 30px; margin: 40px auto; max-width: 600px; border: 1px solid var(--border); }
         .star-rating { display: flex; justify-content: center; gap: 8px; font-size: 2rem; margin: 15px 0; direction: rtl; }
         .star-rating input { display: none; }
@@ -141,7 +145,6 @@
         .review-textarea { resize: vertical; min-height: 100px; }
         .submit-review { background: var(--cyan); color: black; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .submit-review:hover { background: #0891b2; }
-
         .user-reviews { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
         .user-review-card { background: var(--bg); padding: 15px 20px; border-radius: 16px; border: 1px solid var(--border); }
         .user-review-header { display: flex; justify-content: space-between; align-items: center; }
@@ -153,6 +156,58 @@
         .footer-logo { height: 55px; margin-bottom: 20px; }
         .policy { font-size: 0.8rem; margin-top: 20px; opacity: 0.7; }
 
+        /* Floating WhatsApp */
+        .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 12px 20px; border-radius: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 1000; font-weight: bold; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* ========== POPUP STYLES ========== */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 9999;
+        }
+        .popup {
+            background: #ffffff; max-width: 420px; width: 90%; border-radius: 24px;
+            padding: 30px 25px; text-align: center; position: relative;
+            animation: popIn 0.4s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            color: #1e293b;
+        }
+        body:not(.light) .popup {
+            background: #1e293b; color: #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .popup .close-btn {
+            position: absolute; top: 12px; right: 18px; font-size: 28px;
+            cursor: pointer; background: transparent; border: none; color: #999;
+            transition: color 0.2s;
+        }
+        .popup .close-btn:hover { color: #333; }
+        body:not(.light) .popup .close-btn { color: #aaa; }
+        body:not(.light) .popup .close-btn:hover { color: white; }
+        .popup-poster {
+            max-width: 200px; width: 100%; margin: 0 auto 20px; display: block;
+            border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .popup-poster:hover { transform: scale(1.03); }
+        .popup-buttons a {
+            display: block; margin: 10px 0; padding: 12px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; transition: all 0.3s; font-size: 1rem;
+        }
+        .btn-pop { background: var(--deep-blue, #1E3A8A); color: white; }
+        .btn-pop:hover { background: #152c6b; transform: translateY(-2px); }
+        .btn-pop-gold { background: var(--gold, #F59E0B); color: #000; }
+        .btn-pop-gold:hover { background: #d97706; transform: translateY(-2px); }
+        .btn-pop-outline {
+            border: 2px solid var(--deep-blue, #1E3A8A);
+            color: var(--deep-blue, #1E3A8A); background: transparent;
+        }
+        body:not(.light) .btn-pop-outline { border-color: #e2e8f0; color: #e2e8f0; }
+        .btn-pop-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .nav-links { display: none; flex-direction: column; width: 100%; }
@@ -162,24 +217,29 @@
     </style>
 </head>
 <body>
-    <!-- POPUP -->
+    <!-- ====== POPUP (Poster instead of sticker) ====== -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <button class="close-btn" id="closePopup">&times;</button>
-            <div class="emoji-placeholder" id="stickerPlaceholder">🖼️</div>
-            <p style="font-size:0.8rem; color:#888;">(اپنا اسٹیکر یہاں لگائیں)</p>
-            <h3>Want to learn Basic Computer + AI?</h3>
-            <p>3 FREE Demo Classes before enrollment.</p>
+
+            <!-- Academy poster (same as hero) -->
+            <img src="assets/123.png" alt="Academy Poster" class="popup-poster" id="popupPoster"
+                 onerror="this.src='assets/IMG-20260713-WA0153.jpg'">
+
+            <h3>Want to learn Basic Computer + AI from Zero to Pro?</h3>
+            <p>Join our beginner-friendly course with practical training and 3 FREE Demo Classes before enrollment.</p>
+
             <div class="popup-buttons">
                 <a href="#" id="exploreBtn" class="btn-pop">🌐 Explore Website</a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdU0iFyNkrXlqWZMAJmLO5EIbWPcurk_uE8x8nnP-DE5WEelw/viewform?usp=dialog" target="_blank" class="btn-pop">📝 Apply Now</a>
-                <a href="https://chat.whatsapp.com/Gz1xXGRzBZrItZGzkNChww" target="_blank" class="btn-pop-gold">👥 WhatsApp Community</a>
-                <a href="https://wa.me/923061565858" target="_blank" class="btn-pop-outline">👤 Abid Hussain</a>
-                <a href="https://wa.me/923155344783" target="_blank" class="btn-pop-outline">👤 Miss Anayea</a>
+                <a href="https://chat.whatsapp.com/Gz1xXGRzBZrItZGzkNChww" target="_blank" class="btn-pop-gold">👥 Join WhatsApp Community</a>
+                <a href="https://wa.me/923061565858" target="_blank" class="btn-pop-outline">👤 WhatsApp: Abid Hussain</a>
+                <a href="https://wa.me/923155344783" target="_blank" class="btn-pop-outline">👤 WhatsApp: Miss Anayea</a>
             </div>
         </div>
     </div>
 
+    <!-- ====== MAIN SITE (same as before) ====== -->
     <div id="mainSite" style="display:none;">
         <header class="site-header">
             <div class="container nav-wrap">
@@ -203,6 +263,7 @@
         </header>
 
         <main>
+            <!-- Hero -->
             <section id="about" class="hero section">
                 <div class="container">
                     <h1 data-aos="fade-up">Zero to Pro Computer & AI Academy</h1>
@@ -222,12 +283,14 @@
                 </div>
             </section>
 
+            <!-- Countdown -->
             <div class="container" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center;">
                 <h3>⏰ 20% Discount Ends In</h3>
                 <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
                 <a href="https://wa.me/923061565858?text=I%20want%20to%20claim%20the%2020%25%20discount" target="_blank" class="btn btn-primary">Claim Discount</a>
             </div>
 
+            <!-- Roadmap -->
             <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
                 <h2 class="title">🛤️ Your Learning Path</h2>
                 <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
@@ -238,6 +301,7 @@
                 </div>
             </div>
 
+            <!-- Scholarship -->
             <section class="section">
                 <div class="container">
                     <div class="scholar-card shine" data-aos="fade-up">
@@ -251,6 +315,7 @@
                 </div>
             </section>
 
+            <!-- Courses Coverflow -->
             <section id="courses" class="section">
                 <div class="container">
                     <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
@@ -266,7 +331,7 @@
             </div>
 
             <div class="container" data-aos="fade-up" style="background:var(--gold); color:black; padding:20px; border-radius:16px; text-align:center; margin:20px auto;">
-                🛡️ 100% Satisfaction Guarantee – If first class doesn't satisfy, get your fee back.
+                🛡️ 100% Satisfaction Guarantee – First class ke baad pasand na aaye to fee wapas.
             </div>
 
             <section id="reviews" class="section">
@@ -276,7 +341,7 @@
                         <div class="swiper-wrapper" id="reviewsWrapper"></div>
                     </div>
 
-                    <!-- User Review Submission Form -->
+                    <!-- Review Submission Form -->
                     <div class="review-form-section" data-aos="fade-up">
                         <h3 style="text-align:center; margin-bottom:10px;">📝 Leave Your Review</h3>
                         <div class="star-rating" id="starRating">
@@ -291,11 +356,12 @@
                         <div style="text-align:center;"><button id="submitReviewBtn" class="submit-review">Submit Review</button></div>
                     </div>
 
-                    <!-- User-Submitted Reviews Container -->
+                    <!-- User-Submitted Reviews -->
                     <div id="userReviewsContainer" class="user-reviews" style="margin-top:30px;"></div>
                 </div>
             </section>
 
+            <!-- Comments -->
             <div class="container" data-aos="fade-up" style="margin:40px auto;">
                 <h2 class="title">💬 Shoutouts</h2>
                 <div class="swiper commentSwiper">
@@ -303,6 +369,7 @@
                 </div>
             </div>
 
+            <!-- Certificate -->
             <div class="container" data-aos="zoom-in" style="margin:50px auto;">
                 <h2 class="title">🎓 Sample Certificate</h2>
                 <div class="certificate-design">
@@ -316,6 +383,7 @@
                 </div>
             </div>
 
+            <!-- Founder -->
             <div class="container" data-aos="fade-up" style="margin:40px auto;">
                 <h2 class="title">👨‍🏫 Meet Founder</h2>
                 <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center; background:var(--card-bg); padding:25px; border-radius:20px;">
@@ -364,6 +432,7 @@
         <div class="live-notification" id="liveNotification"></div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -383,7 +452,8 @@
         const mainSite = document.getElementById('mainSite');
         const closePopup = document.getElementById('closePopup');
         const exploreBtn = document.getElementById('exploreBtn');
-        const stickerPlaceholder = document.getElementById('stickerPlaceholder');
+        const popupPoster = document.getElementById('popupPoster');
+
         if (!sessionStorage.getItem('popupShown')) {
             popupOverlay.style.display = 'flex';
             mainSite.style.display = 'none';
@@ -391,6 +461,7 @@
             popupOverlay.style.display = 'none';
             mainSite.style.display = 'block';
         }
+
         closePopup.addEventListener('click', () => {
             popupOverlay.style.display = 'none';
             mainSite.style.display = 'block';
@@ -402,12 +473,15 @@
             mainSite.style.display = 'block';
             sessionStorage.setItem('popupShown', 'true');
         });
-        stickerPlaceholder.addEventListener('click', () => window.open('https://wa.me/923061565858', '_blank'));
+        // Poster click opens WhatsApp
+        popupPoster.addEventListener('click', () => {
+            window.open('https://wa.me/923061565858', '_blank');
+        });
 
         // Mobile nav
         document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
 
-        // Courses
+        // Courses data
         const courses = [
             { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
             { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
@@ -490,7 +564,7 @@
             const rating = parseInt(ratingElem.value);
             const newReview = { name, text, rating };
             const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-            reviews.unshift(newReview); // latest first
+            reviews.unshift(newReview);
             localStorage.setItem('userReviews', JSON.stringify(reviews));
             reviewerName.value = '';
             reviewMessage.value = '';
