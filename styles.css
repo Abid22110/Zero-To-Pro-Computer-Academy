@@ -44,6 +44,7 @@ body {
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 /* ---------- Header (Sticky) ---------- */
@@ -140,10 +141,6 @@ a {
   color: #000;
   box-shadow: 0 4px 15px rgba(245,158,11,0.3);
 }
-.btn-gold:hover {
-  background: #d97706;
-  transform: translateY(-2px);
-}
 .btn-outline {
   border: 2px solid var(--cyan);
   color: var(--cyan);
@@ -239,8 +236,8 @@ a {
   left: -50%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  animation: shine 3s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shine 4s infinite;
 }
 @keyframes shine {
   0% { left: -50%; }
@@ -263,23 +260,61 @@ a {
   color: var(--gold);
 }
 
-/* ---------- Courses Coverflow ---------- */
-.courseSwiper {
-  padding: 20px 0 60px;
+/* ---------- Learning Path ---------- */
+.learning-path {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
 }
-.course-swiper-card {
+.path-step {
+  background: var(--card-bg);
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  min-width: 120px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+.path-step:hover {
+  border-color: var(--cyan);
+  transform: scale(1.03);
+}
+.path-arrow {
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+
+/* ---------- Custom Courses Carousel ---------- */
+.courses-carousel {
+  position: relative;
+  margin: 20px 0;
+}
+.courses-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+}
+.course-card {
   background: var(--card-bg);
   border-radius: 20px;
   padding: 25px;
+  min-width: 280px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s;
-  border: 1px solid var(--border);
 }
-.course-swiper-card:hover {
-  transform: translateY(-8px);
+.course-card:hover {
+  transform: translateY(-5px);
   border-color: var(--cyan);
 }
 .course-fee {
@@ -287,12 +322,76 @@ a {
   font-weight: 800;
   color: var(--gold);
 }
-.courseSwiper .swiper-button-next,
-.courseSwiper .swiper-button-prev {
-  color: var(--gold);
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
 }
-.courseSwiper .swiper-pagination-bullet-active {
-  background: var(--gold);
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.carousel-btn:hover {
+  background: var(--cyan);
+  color: #000;
+}
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.dot.active {
+  background: var(--cyan);
+}
+
+/* ---------- Reviews & Comments Sliders ---------- */
+.review-slider,
+.comment-slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.review-track,
+.comment-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.review-card,
+.comment-card {
+  min-width: 100%;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-right: 20px;
+  border: 1px solid var(--border);
+}
+.comment-card {
+  min-width: calc(50% - 10px);
+}
+@media (max-width: 600px) {
+  .comment-card {
+    min-width: 100%;
+  }
 }
 
 /* ---------- Certificate Design ---------- */
@@ -323,7 +422,7 @@ a {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   color: #b8860b;
-  margin: 15px 0;
+  margin: 10px 0 5px;
 }
 .cert-title {
   font-size: 2rem;
@@ -334,15 +433,21 @@ a {
 .cert-body {
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
-  margin: 15px 0;
+  margin: 10px 0;
 }
-.cert-sign {
+.cert-signature {
   font-family: 'Great Vibes', cursive;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  color: #b8860b;
   margin-top: 20px;
   border-top: 1px solid #b8860b;
   display: inline-block;
   padding-top: 10px;
+}
+.cert-founder {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 /* ---------- FAQ Accordion ---------- */
@@ -411,7 +516,6 @@ a {
 .modal-close:hover {
   color: var(--gold);
 }
-
 .star-rating {
   display: flex;
   justify-content: center;
@@ -433,7 +537,8 @@ a {
 .star-rating label:hover ~ label {
   color: var(--gold);
 }
-.review-input, .review-textarea {
+.review-input,
+.review-textarea {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
@@ -457,39 +562,12 @@ a {
   cursor: pointer;
   width: 100%;
 }
-.user-reviews {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-}
-.user-review-card {
-  background: var(--bg);
-  padding: 15px 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-}
-.user-review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.user-review-name {
-  font-weight: 700;
-}
-.user-review-stars {
-  color: var(--gold);
-}
-.user-review-text {
-  margin-top: 8px;
-  opacity: 0.9;
-}
 
-/* ---------- Floating Buttons ---------- */
-.floating-wa {
+/* ---------- Floating Review Button ---------- */
+.floating-review {
   position: fixed;
   bottom: 20px;
-  right: 80px;
+  right: 20px;
   background: #25D366;
   color: white;
   padding: 12px 20px;
@@ -498,21 +576,11 @@ a {
   z-index: 1000;
   font-weight: bold;
   animation: pulse 2s infinite;
-}
-.floating-review-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--gold);
-  color: black;
-  padding: 12px 20px;
-  border-radius: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  z-index: 1000;
-  font-weight: bold;
-  border: none;
   cursor: pointer;
-  animation: pulse 2s infinite;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -534,6 +602,47 @@ a {
   display: none;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+/* ---------- Contact Cards ---------- */
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+.contact-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  width: 220px;
+  transition: transform 0.3s;
+  border: 1px solid var(--border);
+}
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+.avatar-large {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 15px;
+}
+.contact-card h3 {
+  margin-bottom: 10px;
+}
+.wa-link {
+  color: #25D366;
+  font-size: 1.5rem;
 }
 
 /* ---------- Footer ---------- */
@@ -548,20 +657,35 @@ a {
   height: 55px;
   margin-bottom: 20px;
 }
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.social-icons a {
+  color: white;
+  font-size: 1.8rem;
+  transition: color 0.3s;
+}
+.social-icons a:hover {
+  color: var(--gold);
+}
 .policy {
   font-size: 0.8rem;
   margin-top: 20px;
   opacity: 0.7;
 }
 
-/* ---------- Popup (UPDATED) ---------- */
+/* ---------- Popup (Blurred Background) ---------- */
 .popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(10,15,31,0.6);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -645,33 +769,6 @@ body:not(.light) .btn-pop-outline {
   color: #e2e8f0;
 }
 
-/* ---------- Contact Avatars ---------- */
-.avatar-circle {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: var(--cyan);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-.contact-card-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--text);
-  background: var(--bg);
-  padding: 20px;
-  border-radius: 16px;
-  width: 160px;
-  transition: transform 0.3s;
-}
-.contact-card-link:hover {
-  transform: translateY(-5px);
-}
-
 /* ---------- Responsive (Mobile) ---------- */
 @media (max-width: 768px) {
   .hamburger {
@@ -688,7 +785,7 @@ body:not(.light) .btn-pop-outline {
   .hero h1 {
     font-size: 2.2rem;
   }
-  .floating-wa {
-    right: 80px;
+  .course-card {
+    min-width: 250px;
   }
 }
