@@ -2,10 +2,11 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-// ---------- Dark / Light Mode Toggle ----------
+// ---------- DARK / LIGHT MODE ----------
 const body = document.body;
 const darkToggle = document.getElementById('darkToggle');
-// default dark mode
+
+// Default = dark mode
 body.classList.remove('light');
 darkToggle.textContent = '☀️ Light';
 
@@ -15,10 +16,10 @@ darkToggle.addEventListener('click', () => {
 });
 
 
-// ---------- Popup Logic ----------
+// ---------- POPUP ----------
 const popupOverlay = document.getElementById('popupOverlay');
 const mainSite = document.getElementById('mainSite');
-const closePopup = document.getElementById('closePopup');
+const closePopupBtn = document.getElementById('closePopup');
 const exploreBtn = document.getElementById('exploreBtn');
 const popupPoster = document.getElementById('popupPoster');
 
@@ -31,7 +32,7 @@ if (!sessionStorage.getItem('popupShown')) {
   mainSite.style.display = 'block';
 }
 
-closePopup.addEventListener('click', () => {
+closePopupBtn.addEventListener('click', () => {
   popupOverlay.style.display = 'none';
   mainSite.style.display = 'block';
   sessionStorage.setItem('popupShown', 'true');
@@ -44,24 +45,29 @@ exploreBtn.addEventListener('click', (e) => {
   sessionStorage.setItem('popupShown', 'true');
 });
 
-// Clicking the poster opens WhatsApp
+// Poster click → WhatsApp
 popupPoster.addEventListener('click', () => {
   window.open('https://wa.me/923061565858', '_blank');
 });
 
 
-// ---------- Mobile Navigation ----------
+// ---------- MOBILE NAVIGATION ----------
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
+
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
+
+// Close mobile menu on link click
 document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('active'));
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
 });
 
 
-// ---------- Courses Data & Coverflow Swiper ----------
+// ---------- COURSES (dynamic via Swiper) ----------
 const courses = [
   { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
   { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
@@ -81,6 +87,7 @@ const coursesWrapper = document.getElementById('coursesWrapper');
 courses.forEach(c => {
   const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
   const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
+
   const slide = document.createElement('div');
   slide.className = 'swiper-slide';
   slide.innerHTML = `
@@ -95,27 +102,33 @@ courses.forEach(c => {
 });
 
 
-// ---------- Static Reviews Swiper ----------
+// ---------- STATIC REVIEWS (carousel) ----------
 const reviewsData = [
   { name: "Ahmed", text: "Best decision! Got a job." },
   { name: "Sara", text: "I was afraid of computers, now I teach others." },
   { name: "Usman", text: "Earned my first $100 online." },
   { name: "Ayesha", text: "Canva course is amazing." }
 ];
+
 const revWrap = document.getElementById('reviewsWrapper');
 reviewsData.forEach(r => {
   const div = document.createElement('div');
   div.className = 'swiper-slide';
-  div.innerHTML = `<div style="background:var(--card-bg); padding:20px; border-radius:16px;"><p>⭐ 5.0</p><p>"${r.text}"</p><strong>${r.name}</strong></div>`;
+  div.innerHTML = `
+    <div style="background:var(--card-bg); padding:20px; border-radius:16px;">
+      <p>⭐ 5.0</p>
+      <p>"${r.text}"</p>
+      <strong>${r.name}</strong>
+    </div>`;
   revWrap.appendChild(div);
 });
 
 
-// ---------- User Review Submission (Local Storage) ----------
+// ---------- USER REVIEWS (Local Storage) ----------
 const userReviewsContainer = document.getElementById('userReviewsContainer');
 const submitBtn = document.getElementById('submitReviewBtn');
-const reviewerName = document.getElementById('reviewerName');
-const reviewMessage = document.getElementById('reviewMessage');
+const reviewerNameInput = document.getElementById('reviewerName');
+const reviewMessageInput = document.getElementById('reviewMessage');
 const starInputs = document.querySelectorAll('input[name="rating"]');
 
 function loadUserReviews() {
@@ -129,39 +142,44 @@ function loadUserReviews() {
         <span class="user-review-name">${r.name}</span>
         <span class="user-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
       </div>
-      <div class="user-review-text">${r.text}</div>
-    `;
+      <div class="user-review-text">${r.text}</div>`;
     userReviewsContainer.appendChild(card);
   });
 }
 loadUserReviews();
 
 submitBtn.addEventListener('click', () => {
-  const name = reviewerName.value.trim();
-  const text = reviewMessage.value.trim();
+  const name = reviewerNameInput.value.trim();
+  const text = reviewMessageInput.value.trim();
   const ratingElem = document.querySelector('input[name="rating"]:checked');
+
   if (!name || !text || !ratingElem) {
     alert('Please enter your name, select a rating, and write a review.');
     return;
   }
+
   const rating = parseInt(ratingElem.value);
   const newReview = { name, text, rating };
   const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-  reviews.unshift(newReview);
+  reviews.unshift(newReview);   // latest first
   localStorage.setItem('userReviews', JSON.stringify(reviews));
-  reviewerName.value = '';
-  reviewMessage.value = '';
+
+  // Reset form
+  reviewerNameInput.value = '';
+  reviewMessageInput.value = '';
   starInputs.forEach(i => i.checked = false);
+
   loadUserReviews();
 });
 
 
-// ---------- Comments Carousel ----------
+// ---------- COMMENTS CAROUSEL ----------
 const comments = [
   "Hamza: Just enrolled! 🚀",
   "Zainab: Mentor helped me instantly 💯",
   "Owais: Academy feels like family ❤️"
 ];
+
 const comWrap = document.getElementById('commentsWrapper');
 comments.forEach(c => {
   const div = document.createElement('div');
@@ -171,34 +189,39 @@ comments.forEach(c => {
 });
 
 
-// ---------- FAQ Accordion ----------
+// ---------- FAQ ACCORDION ----------
 const faqContainer = document.getElementById('faqContainer');
 const faqs = [
   { q: "Do I need prior knowledge?", a: "No, we start from absolute zero." },
   { q: "How to get certificate?", a: "Complete course and projects." },
   { q: "How to pay?", a: "JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." }
 ];
+
 faqs.forEach(f => {
   const div = document.createElement('div');
   div.className = 'faq-item';
-  div.innerHTML = `<div class="faq-question">${f.q} <span>➕</span></div><div class="faq-answer">${f.a}</div>`;
+  div.innerHTML = `
+    <div class="faq-question">${f.q} <span>➕</span></div>
+    <div class="faq-answer">${f.a}</div>`;
   faqContainer.appendChild(div);
+
   div.querySelector('.faq-question').addEventListener('click', function () {
-    const ans = this.nextElementSibling;
-    ans.classList.toggle('open');
-    this.querySelector('span').textContent = ans.classList.contains('open') ? '➖' : '➕';
+    const answer = this.nextElementSibling;
+    answer.classList.toggle('open');
+    this.querySelector('span').textContent = answer.classList.contains('open') ? '➖' : '➕';
   });
 });
 
 
-// ---------- Countdown Timer (3 days) ----------
+// ---------- COUNTDOWN TIMER (3 days from now) ----------
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 3);
+
 function updateCountdown() {
   const diff = endDate - new Date();
   if (diff <= 0) {
-    countdownEl.textContent = "Expired";
+    countdownEl.textContent = 'Expired';
     return;
   }
   const h = Math.floor(diff / 3600000);
@@ -210,7 +233,7 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 
-// ---------- Live Notification ----------
+// ---------- LIVE NOTIFICATION ----------
 const notif = document.getElementById('liveNotification');
 const msgs = [
   "Ahmed enrolled in Python 🎉",
@@ -226,7 +249,7 @@ setInterval(() => {
 }, 8000);
 
 
-// ---------- Initialize Swipers & AOS after DOM ready ----------
+// ---------- INITIALIZE SWIPERS & AOS (after DOM ready) ----------
 document.addEventListener('DOMContentLoaded', () => {
   // Courses Coverflow Swiper
   new Swiper('.courseSwiper', {
@@ -256,7 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesPerView: 1.2,
     spaceBetween: 15,
     loop: true,
-    autoplay: { delay: 3000 },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
     breakpoints: {
       768: { slidesPerView: 2 }
     }
@@ -267,12 +293,18 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesPerView: 2,
     spaceBetween: 10,
     loop: true,
-    autoplay: { delay: 2000 },
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false
+    },
     breakpoints: {
       480: { slidesPerView: 1 }
     }
   });
 
-  // AOS (Animate on Scroll) Init
-  AOS.init({ duration: 800, once: true });
+  // Animate on Scroll
+  AOS.init({
+    duration: 800,
+    once: true
+  });
 });
