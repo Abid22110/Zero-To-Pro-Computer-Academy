@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zero to Pro Computer & AI Academy</title>
-  <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future. Beginner-friendly, practical, career-focused training." />
-  <meta property="og:title" content="Zero to Pro Computer & AI Academy" />
-  <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills, and build your future." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/IMG-20260713-WA0153.jpg" />
+  <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future">
+  <meta property="og:title" content="Zero to Pro Computer & AI Academy">
+  <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/IMG-20260713-WA0153.jpg">
 
-  <link rel="icon" href="assets/IMG-20260713-WA0153.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/IMG-20260713-WA0153.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <!-- AOS & Swiper CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
   <style>
-    /* ========== ROOT VARIABLES ========== */
     :root {
       --deep-blue: #1E3A8A;
       --cyan: #06B6D4;
@@ -54,7 +53,7 @@
     .container { max-width:1100px; margin:0 auto; padding:0 20px; }
     a { text-decoration:none; }
 
-    /* ---------- HEADER ---------- */
+    /* Header */
     .site-header {
       position: sticky; top:0; z-index:1000;
       background: rgba(10,15,31,0.92);
@@ -76,7 +75,7 @@
       padding:6px 16px; border-radius:20px; cursor:pointer; margin-left:10px;
     }
 
-    /* ---------- BUTTONS ---------- */
+    /* Buttons */
     .btn {
       display:inline-block; padding:12px 24px; border-radius:30px;
       font-weight:600; text-align:center; cursor:pointer; transition:all 0.3s;
@@ -88,33 +87,36 @@
     .btn-outline { border:2px solid var(--cyan); color:var(--cyan); background:transparent; }
     .btn-outline-light { border:2px solid white; color:white; background:transparent; }
 
-    /* ---------- HERO ---------- */
+    /* Hero */
     .hero {
       background:linear-gradient(135deg, #0a0f1f 0%, #1E3A8A 100%);
       color:white; padding:80px 20px; border-radius:0 0 30px 30px;
       text-align:center; position:relative; overflow:hidden;
     }
-    .hero::before {
-      content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
-      background:radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
-      animation:rotate 20s linear infinite;
-    }
-    @keyframes rotate { 100% { transform:rotate(360deg); } }
-    .hero h1 { font-size:3rem; font-weight:800; position:relative; z-index:1; }
+    .hero h1 { font-size:3rem; font-weight:800; }
     .hero .sub { font-size:1.4rem; margin:15px 0; color:var(--gold); font-weight:700; }
-    .hero .desc { font-size:1.2rem; max-width:700px; margin:0 auto 30px; opacity:0.95; position:relative; z-index:1; }
-    .hero-actions { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:25px; position:relative; z-index:1; }
+    .hero .desc { font-size:1.2rem; max-width:700px; margin:0 auto 30px; opacity:0.95; }
+    .hero-actions { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:25px; }
     .free-badge { background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); padding:10px 24px; border-radius:30px; display:inline-block; font-weight:600; }
     .hero-visual { position:relative; margin-top:40px; }
-    .hero-card img { max-width:320px; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.5); position:relative; z-index:1; }
-    .floating { position:absolute; font-size:2.5rem; animation:float 3s infinite alternate; z-index:0; }
+    .hero-card img { max-width:320px; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+    .floating {
+      position:absolute;
+      font-size:2.5rem;
+      animation: float 3s ease-in-out infinite alternate;
+      will-change: transform;
+    }
     .i1 { top:-30px; left:10%; } .i2 { top:30px; right:5%; } .i3 { bottom:20px; left:15%; } .i4 { bottom:-20px; right:10%; } .i5 { top:40%; left:-5%; }
-    @keyframes float { 0% { transform:translateY(0); } 100% { transform:translateY(-20px); } }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-10px) scale(1.05); }
+    }
 
-    /* ---------- SCHOLARSHIP CARD ---------- */
+    /* Scholarship */
     .scholar-card {
       background:linear-gradient(135deg, var(--gold), #f59e0b); padding:35px; border-radius:24px;
-      text-align:center; margin:40px 0; position:relative; box-shadow:0 15px 35px rgba(245,158,11,0.3); color:#000;
+      text-align:center; margin:40px 0; position:relative;
+      box-shadow:0 15px 35px rgba(245,158,11,0.3); color:#000;
     }
     .shine::after {
       content:''; position:absolute; top:0; left:-50%; width:50%; height:100%;
@@ -124,10 +126,10 @@
     @keyframes shine { 0% { left:-50%; } 100% { left:150%; } }
     .cta-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:25px 0; }
 
-    /* ---------- SECTION TITLES ---------- */
+    /* Section Titles */
     .title { text-align:center; font-size:2.2rem; margin:50px 0 30px; font-weight:700; color:var(--gold); }
 
-    /* ---------- COURSES COVERFLOW ---------- */
+    /* Courses */
     .courseSwiper { padding:20px 0 60px; }
     .course-swiper-card {
       background:var(--card-bg); border-radius:20px; padding:25px;
@@ -136,8 +138,11 @@
     }
     .course-swiper-card:hover { transform:translateY(-8px); border-color:var(--cyan); }
     .course-fee { font-size:1.6rem; font-weight:800; color:var(--gold); }
+    .courseSwiper .swiper-button-next,
+    .courseSwiper .swiper-button-prev { color: var(--gold); }
+    .courseSwiper .swiper-pagination-bullet-active { background: var(--gold); }
 
-    /* ---------- CERTIFICATE ---------- */
+    /* Certificate */
     .certificate-design {
       background:#fdfae2; border:12px double #b8860b; border-radius:5px;
       padding:30px 20px; max-width:500px; margin:0 auto; text-align:center;
@@ -153,14 +158,28 @@
     .cert-body { font-family:'Poppins', sans-serif; font-size:0.95rem; margin:15px 0; }
     .cert-sign { font-family:'Great Vibes', cursive; font-size:2rem; margin-top:20px; border-top:1px solid #b8860b; display:inline-block; padding-top:10px; }
 
-    /* ---------- FAQ ---------- */
+    /* FAQ */
     .faq-item { border:1px solid var(--border); border-radius:12px; margin-bottom:12px; background:var(--card-bg); }
     .faq-question { padding:16px 20px; cursor:pointer; font-weight:600; display:flex; justify-content:space-between; align-items:center; }
     .faq-answer { padding:0 20px 16px; display:none; opacity:0.9; }
     .faq-answer.open { display:block; }
 
-    /* ---------- REVIEW FORM ---------- */
-    .review-form-section { background:var(--card-bg); border-radius:20px; padding:30px; margin:40px auto; max-width:600px; border:1px solid var(--border); }
+    /* Review Modal */
+    .modal-overlay {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
+      display:flex; align-items:center; justify-content:center; z-index:10000;
+      opacity:0; visibility:hidden; transition: opacity 0.3s;
+    }
+    .modal-overlay.active { opacity:1; visibility:visible; }
+    .modal-content {
+      background:var(--card-bg); color:var(--text);
+      border-radius:24px; padding:30px; max-width:400px; width:90%;
+      position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    }
+    .modal-close { position:absolute; top:12px; right:18px; font-size:28px; cursor:pointer; color:#999; }
+    .modal-close:hover { color:var(--gold); }
+
     .star-rating { display:flex; justify-content:center; gap:8px; font-size:2rem; margin:15px 0; direction:rtl; }
     .star-rating input { display:none; }
     .star-rating label { color:#ccc; cursor:pointer; transition:color 0.2s; }
@@ -172,8 +191,7 @@
       border:1px solid var(--border); background:var(--bg); color:var(--text); font-family:inherit;
     }
     .review-textarea { resize:vertical; min-height:100px; }
-    .submit-review { background:var(--cyan); color:#000; border:none; padding:12px 30px; border-radius:30px; font-weight:600; cursor:pointer; transition:0.3s; }
-    .submit-review:hover { background:#0891b2; }
+    .submit-review { background:var(--cyan); color:#000; border:none; padding:12px 30px; border-radius:30px; font-weight:600; cursor:pointer; width:100%; }
     .user-reviews { display:flex; flex-direction:column; gap:15px; margin-top:20px; }
     .user-review-card { background:var(--bg); padding:15px 20px; border-radius:16px; border:1px solid var(--border); }
     .user-review-header { display:flex; justify-content:space-between; align-items:center; }
@@ -181,81 +199,89 @@
     .user-review-stars { color:var(--gold); }
     .user-review-text { margin-top:8px; opacity:0.9; }
 
-    /* ---------- LIVE NOTIFICATION ---------- */
+    /* Floating buttons */
+    .floating-wa {
+      position:fixed; bottom:20px; right:80px; background:#25D366; color:white;
+      padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
+      z-index:1000; font-weight:bold; animation:pulse 2s infinite;
+    }
+    .floating-review-btn {
+      position:fixed; bottom:20px; right:20px; background:var(--gold); color:black;
+      padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
+      z-index:1000; font-weight:bold; border:none; cursor:pointer;
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { transform:scale(1); } 50% { transform:scale(1.05); } 100% { transform:scale(1); } }
+
+    /* Live notification */
     .live-notification {
       position:fixed; bottom:100px; left:20px; background:var(--cyan); color:#000;
       padding:12px 22px; border-radius:30px; font-size:0.9rem; z-index:999;
       display:none; box-shadow:0 4px 12px rgba(0,0,0,0.4); font-weight:500;
     }
 
-    /* ---------- FOOTER ---------- */
+    /* Footer */
     .site-footer { background:var(--footer-bg); color:white; padding:40px 20px; text-align:center; margin-top:40px; }
     .footer-logo { height:55px; margin-bottom:20px; }
     .policy { font-size:0.8rem; margin-top:20px; opacity:0.7; }
 
-    /* ---------- FLOATING WHATSAPP ---------- */
-    .floating-wa {
-      position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
-      padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
-      z-index:1000; font-weight:bold; animation:pulse 2s infinite;
-    }
-    @keyframes pulse { 0% { transform:scale(1); } 50% { transform:scale(1.05); } 100% { transform:scale(1); } }
-
-    /* ========== POPUP ========== */
+    /* POPUP */
     .popup-overlay {
       position:fixed; top:0; left:0; width:100%; height:100%;
-      background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:9999;
+      background:rgba(0,0,0,0.4); backdrop-filter:blur(8px);
+      display:flex; align-items:center; justify-content:center; z-index:9999;
     }
     .popup {
-      background:#fff; max-width:400px; width:90%; border-radius:24px;
+      background:#fff; max-width:380px; width:90%; border-radius:24px;
       padding:25px 20px; text-align:center; position:relative;
       animation:popIn 0.4s ease; box-shadow:0 20px 40px rgba(0,0,0,0.6); color:#1e293b;
     }
-    body:not(.light) .popup { background:#1e293b; color:#e2e8f0; box-shadow:0 20px 40px rgba(0,0,0,0.8); }
+    body:not(.light) .popup { background:#1e293b; color:#e2e8f0; }
     @keyframes popIn { 0% { transform:scale(0.7); opacity:0; } 100% { transform:scale(1); opacity:1; } }
     .popup .close-btn {
       position:absolute; top:10px; right:15px; font-size:28px; cursor:pointer;
-      background:transparent; border:none; color:#999; transition:color 0.2s; z-index:10;
+      background:transparent; border:none; color:#999; z-index:10;
     }
     .popup .close-btn:hover { color:#333; }
     body:not(.light) .popup .close-btn { color:#aaa; }
     body:not(.light) .popup .close-btn:hover { color:#fff; }
-    /* Smaller poster so close button is always visible */
-    .popup-poster {
-      max-width:130px; width:100%; margin:0 auto 15px; display:block;
-      border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.3); cursor:pointer; transition:transform 0.2s;
-    }
-    .popup-poster:hover { transform:scale(1.03); }
-    .popup-buttons a {
-      display:block; margin:8px 0; padding:12px; border-radius:30px;
-      text-decoration:none; font-weight:600; transition:all 0.3s; font-size:0.95rem;
-    }
-    .btn-pop { background:var(--deep-blue, #1E3A8A); color:#fff; }
+    .popup-poster { max-width:120px; margin:0 auto 15px; display:block; border-radius:12px; cursor:pointer; }
+    .popup-buttons a { display:block; margin:8px 0; padding:12px; border-radius:30px; font-weight:600; transition:all 0.3s; }
+    .btn-pop { background:var(--deep-blue); color:#fff; }
     .btn-pop:hover { background:#152c6b; transform:translateY(-2px); }
-    .btn-pop-gold { background:var(--gold, #F59E0B); color:#000; }
-    .btn-pop-gold:hover { background:#d97706; transform:translateY(-2px); }
-    .btn-pop-outline {
-      border:2px solid var(--deep-blue, #1E3A8A); color:var(--deep-blue, #1E3A8A); background:transparent;
-    }
+    .btn-pop-gold { background:var(--gold); color:#000; }
+    .btn-pop-outline { border:2px solid var(--deep-blue); color:var(--deep-blue); background:transparent; }
     body:not(.light) .btn-pop-outline { border-color:#e2e8f0; color:#e2e8f0; }
-    .btn-pop-outline:hover { background:rgba(255,255,255,0.1); }
 
-    /* ---------- RESPONSIVE ---------- */
+    /* Contact Avatars */
+    .avatar-circle {
+      width:70px; height:70px; border-radius:50%;
+      background:var(--cyan); display:flex; align-items:center;
+      justify-content:center; font-size:2.5rem; margin-bottom:10px;
+    }
+    .contact-card-link {
+      display:flex; flex-direction:column; align-items:center;
+      color:var(--text); background:var(--bg); padding:20px;
+      border-radius:16px; width:160px; transition:transform 0.3s;
+    }
+    .contact-card-link:hover { transform:translateY(-5px); }
+
     @media (max-width:768px) {
       .hamburger { display:block; }
       .nav-links { display:none; flex-direction:column; width:100%; }
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
+      .floating-wa { right:80px; }
     }
   </style>
 </head>
 <body>
-  <!-- ====== POPUP ====== -->
+  <!-- POPUP -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
       <button class="close-btn" id="closePopup">&times;</button>
       <img src="assets/123.png" alt="Academy Poster" class="popup-poster" id="popupPoster"
-           onerror="this.src='assets/IMG-20260713-WA0153.jpg'" />
+           onerror="this.src='assets/IMG-20260713-WA0153.jpg'">
       <h3>Want to learn Basic Computer + AI from Zero to Pro?</h3>
       <p>Join our beginner-friendly course with practical training and 3 FREE Demo Classes before enrollment.</p>
       <div class="popup-buttons">
@@ -268,12 +294,12 @@
     </div>
   </div>
 
-  <!-- ====== MAIN SITE ====== -->
+  <!-- MAIN SITE -->
   <div id="mainSite" style="display:none;">
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="#home">
-          <img src="assets/IMG-20260713-WA0153.jpg" alt="Logo" class="logo" />
+          <img src="assets/IMG-20260713-WA0153.jpg" alt="Logo" class="logo">
           <div class="brand-text">
             <strong>Zero to Pro Academy</strong>
             <span>Learn Today • Build Tomorrow</span>
@@ -305,9 +331,13 @@
           <div class="free-badge">🎉 1,200+ Students Enrolled</div>
           <div class="hero-visual">
             <div class="hero-card">
-              <img src="assets/123.png" alt="Poster" onerror="this.src='assets/IMG-20260713-WA0153.jpg'" />
+              <img src="assets/123.png" alt="Poster" onerror="this.src='assets/IMG-20260713-WA0153.jpg'">
             </div>
-            <div class="floating i1">💻</div><div class="floating i2">🧠</div><div class="floating i3">🚀</div><div class="floating i4">🎓</div><div class="floating i5">🤖</div>
+            <div class="floating i1">💻</div>
+            <div class="floating i2">🧠</div>
+            <div class="floating i3">🚀</div>
+            <div class="floating i4">🎓</div>
+            <div class="floating i5">🤖</div>
           </div>
         </div>
       </section>
@@ -323,9 +353,12 @@
       <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
         <h2 class="title">🛤️ Your Learning Path</h2>
         <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">🔰 Zero</span><span>→</span>
-          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">💻 Basic</span><span>→</span>
-          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">🤖 AI</span><span>→</span>
+          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">🔰 Zero</span>
+          <span>→</span>
+          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">💻 Basic</span>
+          <span>→</span>
+          <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">🤖 AI</span>
+          <span>→</span>
           <span style="background:var(--card-bg); padding:12px 20px; border-radius:30px;">🚀 Pro/Job</span>
         </div>
       </div>
@@ -344,12 +377,14 @@
         </div>
       </section>
 
-      <!-- Courses Coverflow -->
+      <!-- Courses -->
       <section id="courses" class="section">
         <div class="container">
           <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
           <div class="swiper courseSwiper">
             <div class="swiper-wrapper" id="coursesWrapper"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
@@ -365,25 +400,12 @@
         🛡️ 100% Satisfaction Guarantee – If first class doesn't satisfy, get your fee back.
       </div>
 
-      <!-- Reviews + Form -->
+      <!-- Reviews -->
       <section id="reviews" class="section">
         <div class="container">
           <h2 class="title">⭐ Student Reviews</h2>
           <div class="swiper reviewSwiper">
             <div class="swiper-wrapper" id="reviewsWrapper"></div>
-          </div>
-          <div class="review-form-section" data-aos="fade-up">
-            <h3 style="text-align:center; margin-bottom:10px;">📝 Leave Your Review</h3>
-            <div class="star-rating" id="starRating">
-              <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
-              <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
-              <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
-              <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
-              <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
-            </div>
-            <input type="text" id="reviewerName" placeholder="Your Name" class="review-input" />
-            <textarea id="reviewMessage" placeholder="Write your review..." class="review-textarea"></textarea>
-            <div style="text-align:center;"><button id="submitReviewBtn" class="submit-review">Submit Review</button></div>
           </div>
           <div id="userReviewsContainer" class="user-reviews" style="margin-top:30px;"></div>
         </div>
@@ -415,7 +437,7 @@
       <div class="container" data-aos="fade-up" style="margin:40px auto;">
         <h2 class="title">👨‍🏫 Meet Founder</h2>
         <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center; background:var(--card-bg); padding:25px; border-radius:20px;">
-          <div style="width:100px; height:100px; background:var(--cyan); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3rem;">👨‍🏫</div>
+          <div class="avatar-circle">👨‍💼</div>
           <div>
             <h3>Abid Hussain</h3>
             <p><em>Founder & CEO</em></p>
@@ -436,12 +458,16 @@
       <section id="contact" class="section">
         <div class="container" style="background:var(--card-bg); border-radius:20px; padding:30px; text-align:center;">
           <h2 class="title">📞 Contact</h2>
-          <div style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap;">
-            <a href="https://wa.me/923061565858" target="_blank" style="padding:20px; border-radius:16px; background:var(--bg); width:160px; color:var(--text);">
-              <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i><br><strong>Abid Hussain</strong>
+          <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+            <a href="https://wa.me/923061565858" target="_blank" class="contact-card-link">
+              <div class="avatar-circle">👨‍💼</div>
+              <strong>Abid Hussain</strong>
+              <i class="fab fa-whatsapp" style="color:#25D366; margin-left:5px;"></i>
             </a>
-            <a href="https://wa.me/923155344783" target="_blank" style="padding:20px; border-radius:16px; background:var(--bg); width:160px; color:var(--text);">
-              <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i><br><strong>Miss Anayea</strong>
+            <a href="https://wa.me/923155344783" target="_blank" class="contact-card-link">
+              <div class="avatar-circle">👩‍💼</div>
+              <strong>Miss Anayea</strong>
+              <i class="fab fa-whatsapp" style="color:#25D366; margin-left:5px;"></i>
             </a>
           </div>
           <p style="margin-top:20px;">📱 JazzCash/EasyPaisa: 0304 6491358 | Account: Abid Hussain</p>
@@ -452,232 +478,259 @@
 
     <footer class="site-footer">
       <div class="container">
-        <img src="assets/IMG-20260713-WA0153.jpg" alt="Logo" class="footer-logo" />
+        <img src="assets/IMG-20260713-WA0153.jpg" alt="Logo" class="footer-logo">
         <p>🚀 Join Today – Build Your Future!</p>
         <p class="policy">© 2025 Zero to Pro Computer & AI Academy. All rights reserved.<br>Terms of Service | Privacy Policy | Refund Policy</p>
       </div>
     </footer>
 
     <a class="floating-wa" target="_blank" href="https://wa.me/923061565858">💬 Chat</a>
+    <button class="floating-review-btn" id="openReviewModal">✍️ Review</button>
     <div class="live-notification" id="liveNotification"></div>
   </div>
 
-  <!-- ====== SCRIPTS ====== -->
+  <!-- Review Modal -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeReviewModal">&times;</span>
+      <h3>Leave a Review</h3>
+      <div class="star-rating" id="starRating">
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+      </div>
+      <input type="text" id="reviewerName" placeholder="Your Name" class="review-input">
+      <textarea id="reviewMessage" placeholder="Write your review..." class="review-textarea"></textarea>
+      <button class="submit-review" id="submitReviewBtn">Submit Review</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    (function() {
-      // ---------- DARK / LIGHT MODE ----------
-      const body = document.body;
-      const darkToggle = document.getElementById('darkToggle');
-      body.classList.remove('light');   // default dark
-      darkToggle.textContent = '☀️ Light';
-      darkToggle.addEventListener('click', () => {
-        body.classList.toggle('light');
-        darkToggle.textContent = body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
+    const APP_VERSION = "1.1"; // Update this when you want popup to reappear
+
+    // Dark / Light
+    const body = document.body;
+    const darkToggle = document.getElementById('darkToggle');
+    body.classList.remove('light');
+    darkToggle.textContent = '☀️ Light';
+    darkToggle.addEventListener('click', () => {
+      body.classList.toggle('light');
+      darkToggle.textContent = body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
+    });
+
+    // Popup
+    const popupOverlay = document.getElementById('popupOverlay');
+    const mainSite = document.getElementById('mainSite');
+    const closePopupBtn = document.getElementById('closePopup');
+    const exploreBtn = document.getElementById('exploreBtn');
+    const popupPoster = document.getElementById('popupPoster');
+
+    if (localStorage.getItem('appVersion') !== APP_VERSION) {
+      popupOverlay.style.display = 'flex';
+      mainSite.style.display = 'none';
+    } else {
+      popupOverlay.style.display = 'none';
+      mainSite.style.display = 'block';
+    }
+
+    closePopupBtn.addEventListener('click', () => {
+      popupOverlay.style.display = 'none';
+      mainSite.style.display = 'block';
+      localStorage.setItem('appVersion', APP_VERSION);
+    });
+    exploreBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popupOverlay.style.display = 'none';
+      mainSite.style.display = 'block';
+      localStorage.setItem('appVersion', APP_VERSION);
+    });
+    popupPoster.addEventListener('click', () => window.open('https://wa.me/923061565858', '_blank'));
+
+    // Mobile menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+    });
+
+    // Courses data
+    const courses = [
+      { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
+      { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
+      { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", cert: true },
+      { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", cert: true },
+      { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", cert: false },
+      { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", cert: false },
+      { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", cert: false },
+      { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", cert: false },
+      { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", cert: false },
+      { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", cert: false },
+      { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", cert: false },
+      { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", cert: false }
+    ];
+    const coursesWrapper = document.getElementById('coursesWrapper');
+    courses.forEach(c => {
+      const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
+      const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `
+        <div class="course-swiper-card">
+          <h3>${c.name}</h3>
+          <p class="course-fee">Rs. ${c.fee}</p>
+          <p>${c.desc}</p>
+          ${c.cert ? '<span class="badge" style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px;">🎓 Certificate</span>' : ''}
+          <a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:15px;">Enroll Now</a>
+        </div>`;
+      coursesWrapper.appendChild(slide);
+    });
+
+    // Static reviews
+    const reviewsData = [
+      { name:"Ahmed", text:"Best decision! Got a job." },
+      { name:"Sara", text:"I was afraid of computers, now I teach others." },
+      { name:"Usman", text:"Earned my first $100 online." },
+      { name:"Ayesha", text:"Canva course is amazing." }
+    ];
+    const revWrap = document.getElementById('reviewsWrapper');
+    reviewsData.forEach(r => {
+      const div = document.createElement('div');
+      div.className = 'swiper-slide';
+      div.innerHTML = `<div style="background:var(--card-bg); padding:20px; border-radius:16px;"><p>⭐ 5.0</p><p>"${r.text}"</p><strong>${r.name}</strong></div>`;
+      revWrap.appendChild(div);
+    });
+
+    // User reviews (modal)
+    const reviewModal = document.getElementById('reviewModal');
+    const openReviewBtn = document.getElementById('openReviewModal');
+    const closeReviewModal = document.getElementById('closeReviewModal');
+    const submitReviewBtn = document.getElementById('submitReviewBtn');
+    const reviewerNameInput = document.getElementById('reviewerName');
+    const reviewMessageInput = document.getElementById('reviewMessage');
+    const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
+    const userReviewsContainer = document.getElementById('userReviewsContainer');
+
+    openReviewBtn.addEventListener('click', () => reviewModal.classList.add('active'));
+    closeReviewModal.addEventListener('click', () => reviewModal.classList.remove('active'));
+    window.addEventListener('click', (e) => { if (e.target === reviewModal) reviewModal.classList.remove('active'); });
+
+    function loadUserReviews() {
+      const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+      userReviewsContainer.innerHTML = '';
+      reviews.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'user-review-card';
+        card.innerHTML = `
+          <div class="user-review-header">
+            <span class="user-review-name">${r.name}</span>
+            <span class="user-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+          </div>
+          <div class="user-review-text">${r.text}</div>`;
+        userReviewsContainer.appendChild(card);
       });
+    }
+    loadUserReviews();
 
-      // ---------- POPUP ----------
-      const popupOverlay = document.getElementById('popupOverlay');
-      const mainSite = document.getElementById('mainSite');
-      const closePopup = document.getElementById('closePopup');
-      const exploreBtn = document.getElementById('exploreBtn');
-      const popupPoster = document.getElementById('popupPoster');
-
-      if (!sessionStorage.getItem('popupShown')) {
-        popupOverlay.style.display = 'flex';
-        mainSite.style.display = 'none';
-      } else {
-        popupOverlay.style.display = 'none';
-        mainSite.style.display = 'block';
+    submitReviewBtn.addEventListener('click', () => {
+      const name = reviewerNameInput.value.trim();
+      const text = reviewMessageInput.value.trim();
+      const ratingElem = document.querySelector('#starRating input[name="rating"]:checked');
+      if (!name || !text || !ratingElem) {
+        alert('Please fill all fields and select a rating.');
+        return;
       }
-
-      closePopup.addEventListener('click', () => {
-        popupOverlay.style.display = 'none';
-        mainSite.style.display = 'block';
-        sessionStorage.setItem('popupShown', 'true');
-      });
-      exploreBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        popupOverlay.style.display = 'none';
-        mainSite.style.display = 'block';
-        sessionStorage.setItem('popupShown', 'true');
-      });
-      popupPoster.addEventListener('click', () => window.open('https://wa.me/923061565858', '_blank'));
-
-      // ---------- MOBILE NAV ----------
-      document.getElementById('hamburger').addEventListener('click', () => {
-        document.getElementById('navLinks').classList.toggle('active');
-      });
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
-      });
-
-      // ---------- COURSES ----------
-      const courses = [
-        { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
-        { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
-        { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", cert: true },
-        { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", cert: true },
-        { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", cert: false },
-        { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", cert: false },
-        { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", cert: false },
-        { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", cert: false },
-        { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", cert: false },
-        { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", cert: false },
-        { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", cert: false },
-        { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", cert: false }
-      ];
-      const coursesWrapper = document.getElementById('coursesWrapper');
-      courses.forEach(c => {
-        const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
-        const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML = `
-          <div class="course-swiper-card">
-            <h3>${c.name}</h3>
-            <p class="course-fee">Rs. ${c.fee}</p>
-            <p>${c.desc}</p>
-            ${c.cert ? '<span class="badge" style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px;">🎓 Certificate</span>' : ''}
-            <a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:15px;">Enroll Now</a>
-          </div>`;
-        coursesWrapper.appendChild(slide);
-      });
-
-      // ---------- REVIEWS (STATIC) ----------
-      const reviewsData = [
-        { name:"Ahmed", text:"Best decision! Got a job." },
-        { name:"Sara", text:"I was afraid of computers, now I teach others." },
-        { name:"Usman", text:"Earned my first $100 online." },
-        { name:"Ayesha", text:"Canva course is amazing." }
-      ];
-      const revWrap = document.getElementById('reviewsWrapper');
-      reviewsData.forEach(r => {
-        const div = document.createElement('div');
-        div.className = 'swiper-slide';
-        div.innerHTML = `<div style="background:var(--card-bg); padding:20px; border-radius:16px;"><p>⭐ 5.0</p><p>"${r.text}"</p><strong>${r.name}</strong></div>`;
-        revWrap.appendChild(div);
-      });
-
-      // ---------- USER REVIEWS (LOCAL STORAGE) ----------
-      const userReviewsContainer = document.getElementById('userReviewsContainer');
-      const submitBtn = document.getElementById('submitReviewBtn');
-      const reviewerName = document.getElementById('reviewerName');
-      const reviewMessage = document.getElementById('reviewMessage');
-      const starInputs = document.querySelectorAll('input[name="rating"]');
-
-      function loadUserReviews() {
-        const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-        userReviewsContainer.innerHTML = '';
-        reviews.forEach(r => {
-          const card = document.createElement('div');
-          card.className = 'user-review-card';
-          card.innerHTML = `
-            <div class="user-review-header">
-              <span class="user-review-name">${r.name}</span>
-              <span class="user-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
-            </div>
-            <div class="user-review-text">${r.text}</div>`;
-          userReviewsContainer.appendChild(card);
-        });
-      }
+      const rating = parseInt(ratingElem.value);
+      const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+      reviews.unshift({ name, text, rating });
+      localStorage.setItem('userReviews', JSON.stringify(reviews));
+      reviewerNameInput.value = '';
+      reviewMessageInput.value = '';
+      starInputs.forEach(i => i.checked = false);
+      reviewModal.classList.remove('active');
       loadUserReviews();
+    });
 
-      submitBtn.addEventListener('click', () => {
-        const name = reviewerName.value.trim();
-        const text = reviewMessage.value.trim();
-        const ratingElem = document.querySelector('input[name="rating"]:checked');
-        if (!name || !text || !ratingElem) {
-          alert('Please enter your name, select a rating, and write a review.');
-          return;
-        }
-        const rating = parseInt(ratingElem.value);
-        const newReview = { name, text, rating };
-        const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-        reviews.unshift(newReview);
-        localStorage.setItem('userReviews', JSON.stringify(reviews));
-        reviewerName.value = '';
-        reviewMessage.value = '';
-        starInputs.forEach(i => i.checked = false);
-        loadUserReviews();
+    // Comments
+    const comments = ["Hamza: Just enrolled! 🚀","Zainab: Mentor helped me instantly 💯","Owais: Academy feels like family ❤️"];
+    const comWrap = document.getElementById('commentsWrapper');
+    comments.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'swiper-slide';
+      div.innerHTML = `<div style="background:var(--card-bg); padding:15px; border-radius:12px;">${c}</div>`;
+      comWrap.appendChild(div);
+    });
+
+    // FAQ
+    const faqContainer = document.getElementById('faqContainer');
+    const faqs = [
+      { q:"Do I need prior knowledge?", a:"No, we start from absolute zero." },
+      { q:"How to get certificate?", a:"Complete course and projects." },
+      { q:"How to pay?", a:"JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." }
+    ];
+    faqs.forEach(f => {
+      const div = document.createElement('div');
+      div.className = 'faq-item';
+      div.innerHTML = `<div class="faq-question">${f.q} <span>➕</span></div><div class="faq-answer">${f.a}</div>`;
+      faqContainer.appendChild(div);
+      div.querySelector('.faq-question').addEventListener('click', function() {
+        const ans = this.nextElementSibling;
+        ans.classList.toggle('open');
+        this.querySelector('span').textContent = ans.classList.contains('open') ? '➖' : '➕';
       });
+    });
 
-      // ---------- COMMENTS ----------
-      const comments = ["Hamza: Just enrolled! 🚀","Zainab: Mentor helped me instantly 💯","Owais: Academy feels like family ❤️"];
-      const comWrap = document.getElementById('commentsWrapper');
-      comments.forEach(c => {
-        const div = document.createElement('div');
-        div.className = 'swiper-slide';
-        div.innerHTML = `<div style="background:var(--card-bg); padding:15px; border-radius:12px;">${c}</div>`;
-        comWrap.appendChild(div);
+    // Countdown
+    const countdownEl = document.getElementById('countdown');
+    const endDate = new Date(); endDate.setDate(endDate.getDate()+3);
+    setInterval(() => {
+      const diff = endDate - new Date();
+      if(diff <= 0) { countdownEl.textContent = "Expired"; return; }
+      const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+      countdownEl.textContent = `${h}h ${m}m ${s}s`;
+    }, 1000);
+
+    // Live notification
+    const notif = document.getElementById('liveNotification');
+    const msgs = ["Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀"];
+    let idx = 0;
+    setInterval(() => {
+      notif.textContent = msgs[idx%3];
+      notif.style.display = 'block';
+      setTimeout(() => { notif.style.display = 'none'; }, 4000);
+      idx++;
+    }, 8000);
+
+    // Swipers & AOS
+    document.addEventListener('DOMContentLoaded', () => {
+      new Swiper('.courseSwiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: { rotate:30, stretch:0, depth:150, modifier:1, slideShadows:true },
+        pagination: { el:'.swiper-pagination', clickable:true },
+        navigation: { nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
+        autoplay: { delay:3000, disableOnInteraction:true, pauseOnMouseEnter:true }
       });
-
-      // ---------- FAQ ----------
-      const faqContainer = document.getElementById('faqContainer');
-      const faqs = [
-        { q:"Do I need prior knowledge?", a:"No, we start from absolute zero." },
-        { q:"How to get certificate?", a:"Complete course and projects." },
-        { q:"How to pay?", a:"JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." }
-      ];
-      faqs.forEach(f => {
-        const div = document.createElement('div');
-        div.className = 'faq-item';
-        div.innerHTML = `<div class="faq-question">${f.q} <span>➕</span></div><div class="faq-answer">${f.a}</div>`;
-        faqContainer.appendChild(div);
-        div.querySelector('.faq-question').addEventListener('click', function() {
-          const ans = this.nextElementSibling;
-          ans.classList.toggle('open');
-          this.querySelector('span').textContent = ans.classList.contains('open') ? '➖' : '➕';
-        });
+      new Swiper('.reviewSwiper', {
+        slidesPerView:1.2, spaceBetween:15, loop:true,
+        autoplay: { delay:3000, disableOnInteraction:false },
+        breakpoints:{768:{slidesPerView:2}}
       });
-
-      // ---------- COUNTDOWN ----------
-      const countdownEl = document.getElementById('countdown');
-      const endDate = new Date(); endDate.setDate(endDate.getDate()+3);
-      function updateCountdown() {
-        const diff = endDate - new Date();
-        if(diff <= 0) { countdownEl.textContent = "Expired"; return; }
-        const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-        countdownEl.textContent = `${h}h ${m}m ${s}s`;
-      }
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
-
-      // ---------- LIVE NOTIFICATION ----------
-      const notif = document.getElementById('liveNotification');
-      const msgs = ["Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀"];
-      let idx = 0;
-      setInterval(() => {
-        notif.textContent = msgs[idx%3];
-        notif.style.display = 'block';
-        setTimeout(() => { notif.style.display = 'none'; }, 4000);
-        idx++;
-      }, 8000);
-
-      // ---------- INIT SWIPERS & AOS ----------
-      document.addEventListener('DOMContentLoaded', () => {
-        new Swiper('.courseSwiper', {
-          effect: 'coverflow',
-          grabCursor: true,
-          centeredSlides: true,
-          slidesPerView: 'auto',
-          coverflowEffect: { rotate:30, stretch:0, depth:150, modifier:1, slideShadows:true },
-          pagination: { el:'.swiper-pagination', clickable:true },
-          autoplay: { delay:2500, disableOnInteraction:false }
-        });
-        new Swiper('.reviewSwiper', {
-          slidesPerView:1.2, spaceBetween:15, loop:true, autoplay:{delay:3000},
-          breakpoints:{768:{slidesPerView:2}}
-        });
-        new Swiper('.commentSwiper', {
-          slidesPerView:2, spaceBetween:10, loop:true, autoplay:{delay:2000},
-          breakpoints:{480:{slidesPerView:1}}
-        });
-        AOS.init({ duration:800, once:true });
+      new Swiper('.commentSwiper', {
+        slidesPerView:2, spaceBetween:10, loop:true,
+        autoplay: { delay:2000 },
+        breakpoints:{480:{slidesPerView:1}}
       });
-    })();
+      AOS.init({ duration:800, once:true });
+    });
   </script>
 </body>
 </html>
