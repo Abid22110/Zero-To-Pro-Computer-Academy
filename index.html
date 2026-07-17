@@ -40,6 +40,9 @@
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
+    html {
+      scrollbar-width: thin; /* reduce scrollbar visibility changes */
+    }
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
@@ -48,8 +51,12 @@
       overflow-x: hidden;
       line-height: 1.6;
       touch-action: pan-y;
+      padding-right: 0; /* will be adjusted dynamically */
     }
-    body.no-scroll { overflow: hidden; }  /* modal open */
+    body.no-scroll {
+      overflow: hidden;
+      padding-right: var(--scrollbar-width, 0px);
+    }
 
     .container { max-width:1100px; margin:0 auto; padding:0 20px; }
     a { text-decoration:none; color:inherit; }
@@ -119,7 +126,7 @@
 
     .title { text-align:center; font-size:2.2rem; margin:50px 0 30px; font-weight:700; color:var(--gold); }
 
-    /* Learning Path (vertical on mobile, horizontal on desktop) */
+    /* Learning Path */
     .learning-path {
       display:flex; justify-content:center; align-items:center; gap:15px;
       flex-wrap: wrap;
@@ -150,6 +157,7 @@
       background:var(--card-bg); border-radius:20px; padding:25px;
       box-shadow:var(--shadow); border:1px solid var(--border);
       display:flex; flex-direction:column; justify-content:space-between;
+      min-height: 380px; /* consistent height */
     }
     .course-card:hover { transform:translateY(-5px); border-color:var(--cyan); }
     .course-fee { font-size:1.6rem; font-weight:800; color:var(--gold); }
@@ -177,6 +185,7 @@
       padding:20px; background:var(--card-bg); border-radius:16px;
       box-shadow:var(--shadow); border:1px solid var(--border);
       text-align:center;
+      min-height: 160px; /* consistent height */
     }
     .rating-stars { font-size:1.5rem; color:var(--gold); }
 
@@ -215,6 +224,12 @@
       margin-top:20px; border-top:1px solid #b8860b; display:inline-block; padding-top:10px;
     }
     .cert-founder { font-size:0.9rem; font-weight:600; margin-top:5px; }
+    @media (max-width:600px) {
+      .certificate-design { padding:20px 10px; border-width:8px; }
+      .cert-title { font-size:1.5rem; }
+      .cert-body { font-size:0.8rem; }
+      .cert-signature { font-size:1.8rem; }
+    }
 
     /* FAQ */
     .faq-item { border:1px solid var(--border); border-radius:12px; margin-bottom:12px; background:var(--card-bg); }
@@ -252,25 +267,20 @@
     .topic-list { list-style:none; padding:10px 0; }
     .topic-list li { padding:6px 0; border-bottom:1px solid var(--border); }
 
-    /* Floating Review Button (slow pulse) */
+    /* Floating Review Button – static, no pulse */
     .floating-review {
       position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
       padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
-      z-index:1000; font-weight:bold; animation: reviewPulse 10s infinite; cursor:pointer;
+      z-index:1000; font-weight:bold; cursor:pointer;
       border:none; display:flex; align-items:center; gap:8px;
     }
-    @keyframes reviewPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
 
-    /* Back to Top (opacity instead of display) */
+    /* Back to Top – simple, no pulse, appears only after scroll */
     .back-to-top {
       position:fixed; bottom:80px; right:20px; background:var(--cyan); color:#000;
-      width:45px; height:45px; border-radius:50%; opacity:0; pointer-events:none;
+      width:40px; height:40px; border-radius:50%; opacity:0; pointer-events:none;
       display:flex; align-items:center; justify-content:center; cursor:pointer;
-      box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:1000; font-size:1.2rem;
+      box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:1000; font-size:1rem;
       transition: opacity 0.3s, transform 0.3s;
     }
     .back-to-top.show { opacity:1; pointer-events:auto; }
@@ -339,7 +349,7 @@
       .nav-links { display:none; flex-direction:column; width:100%; }
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
-      .course-card { flex:0 0 100%; }
+      .course-card { min-height: 420px; }
     }
   </style>
 </head>
@@ -413,7 +423,8 @@
         </p>
       </div>
 
-      <div class="container" id="countdownSection" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center;">
+      <!-- Countdown (smooth collapse) -->
+      <div id="countdownSection" class="container" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease; max-height: 200px; opacity: 1;">
         <h3>⏰ 20% Discount Ends In</h3>
         <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
         <a href="https://wa.me/923061565858?text=I%20want%20to%20claim%20the%2020%25%20discount" target="_blank" class="btn btn-primary">Claim Discount</a>
@@ -556,9 +567,9 @@
       </div>
     </footer>
 
-    <!-- Floating Review Button -->
+    <!-- Floating Review Button – static, no pulse -->
     <button class="floating-review" id="openReviewModal"><i class="fas fa-pen"></i> Review</button>
-    <!-- Back to Top -->
+    <!-- Back to Top – simple, no pulse -->
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="live-notification" id="liveNotification"></div>
   </div>
@@ -712,7 +723,7 @@
     document.getElementById('nextCourse').addEventListener('click', () => nextCourse());
     resetCourseInterval();
 
-    // Course Detail Modal (no animation except fade)
+    // Course Detail Modal (lock body scroll with padding compensation)
     const courseModal = document.getElementById('courseModal');
     const closeCourseModal = document.getElementById('closeCourseModal');
     const courseModalContent = document.getElementById('courseModalContent');
@@ -730,11 +741,11 @@
         <a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block; margin-top:15px;">Enroll Now</a>
       `;
       courseModal.classList.add('active');
-      body.classList.add('no-scroll'); // lock background scroll
+      disableBodyScroll();
     }
 
-    closeCourseModal.addEventListener('click', () => { courseModal.classList.remove('active'); body.classList.remove('no-scroll'); });
-    window.addEventListener('click', (e) => { if (e.target === courseModal) { courseModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
+    closeCourseModal.addEventListener('click', () => { courseModal.classList.remove('active'); enableBodyScroll(); });
+    window.addEventListener('click', (e) => { if (e.target === courseModal) { courseModal.classList.remove('active'); enableBodyScroll(); } });
 
     // ========== REVIEWS ==========
     const staticReviews = [
@@ -752,46 +763,11 @@
       { name: "Anam", text: "Resume and CV course helped me get noticed by recruiters.", rating: 4 },
       { name: "Hamza", text: "I love the practical assignments.", rating: 5 },
       { name: "Kinza", text: "Canva masterclass made designing fun.", rating: 5 },
-      { name: "Talha", text: "Python is no longer scary.", rating: 5 },
-      { name: "Mehwish", text: "Best investment for my career.", rating: 5 },
-      { name: "Saad", text: "Video editing skills got me a YouTube partnership.", rating: 5 },
-      { name: "Alisha", text: "AI content creation course is a game changer.", rating: 4 },
-      { name: "Farhan", text: "The community is very encouraging.", rating: 5 },
-      { name: "Nimra", text: "Graphic design course gave me confidence.", rating: 5 },
-      { name: "Rohan", text: "I learned C++ from scratch, now I'm building apps.", rating: 5 },
-      { name: "Sania", text: "Freelancing income now pays my bills.", rating: 5 },
-      { name: "Adeel", text: "Cyber security fundamentals were top-notch.", rating: 4 },
-      { name: "Hafsa", text: "Microsoft Office advanced tips boosted my productivity.", rating: 5 },
-      { name: "Kamran", text: "The academy's live support is outstanding.", rating: 5 },
-      { name: "Iqra", text: "I never thought I could code, now I'm addicted.", rating: 5 },
-      { name: "Danish", text: "Digital marketing course helped me grow my business.", rating: 5 },
-      { name: "Saba", text: "This academy is truly zero to pro.", rating: 5 },
-      { name: "Shayan", text: "Network basics were explained so simply.", rating: 4 },
-      { name: "Rida", text: "Web development journey was amazing.", rating: 5 },
-      { name: "Anas", text: "The scholarship test opportunity is a blessing.", rating: 5 },
-      { name: "Fiza", text: "Every course is so well structured.", rating: 5 },
-      { name: "Yusuf", text: "I built my portfolio during the course.", rating: 4 },
-      { name: "Areeba", text: "Interview prep class helped me crack my dream job.", rating: 5 },
-      { name: "Haroon", text: "Excellent material and resources.", rating: 5 },
-      { name: "Sadaf", text: "I love the recorded sessions for review.", rating: 5 },
-      { name: "Imran", text: "Best place to learn digital skills.", rating: 5 },
-      { name: "Nouman", text: "I recommended this academy to all my friends.", rating: 4 },
-      { name: "Zoya", text: "AI automation course made my office tasks easy.", rating: 5 },
-      { name: "Abbas", text: "Real projects gave me confidence.", rating: 5 },
-      { name: "Khadija", text: "Very affordable and high-quality training.", rating: 5 },
-      { name: "Arslan", text: "The certificates helped my LinkedIn profile.", rating: 4 },
-      { name: "Aleeza", text: "I'm now a freelance graphic designer thanks to this academy.", rating: 5 },
-      { name: "Rashid", text: "Their teaching style is very engaging.", rating: 5 },
-      { name: "Madiha", text: "Best Python course for beginners.", rating: 5 },
-      { name: "Junaid", text: "Awesome experience, highly recommended.", rating: 5 },
-      { name: "Sana", text: "Social media marketing tips were practical.", rating: 5 },
-      { name: "Waqas", text: "I learned so much in just 4 weeks.", rating: 4 },
-      { name: "Laiba", text: "This academy changed my life.", rating: 5 },
-      { name: "Zahid", text: "I'm now earning through freelancing.", rating: 5 }
+      { name: "Talha", text: "Python is no longer scary.", rating: 5 }
     ];
 
     const reviewTrack = document.getElementById('reviewTrack');
-    staticReviews.slice(0, 15).forEach(r => {
+    staticReviews.forEach(r => {
       const div = document.createElement('div');
       div.className = 'review-card';
       div.innerHTML = `<p class="rating-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
@@ -804,7 +780,7 @@
       reviewTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
     }
     setInterval(() => {
-      reviewIndex = (reviewIndex + 1) % 15;
+      reviewIndex = (reviewIndex + 1) % staticReviews.length;
       goToReview(reviewIndex);
     }, 4000);
 
@@ -831,10 +807,10 @@
     viewAllBtn.addEventListener('click', () => {
       renderAllReviews();
       allReviewsModal.classList.add('active');
-      body.classList.add('no-scroll');
+      disableBodyScroll();
     });
-    closeAllReviewsModal.addEventListener('click', () => { allReviewsModal.classList.remove('active'); body.classList.remove('no-scroll'); });
-    window.addEventListener('click', (e) => { if (e.target === allReviewsModal) { allReviewsModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
+    closeAllReviewsModal.addEventListener('click', () => { allReviewsModal.classList.remove('active'); enableBodyScroll(); });
+    window.addEventListener('click', (e) => { if (e.target === allReviewsModal) { allReviewsModal.classList.remove('active'); enableBodyScroll(); } });
 
     // User review submission
     const reviewModal = document.getElementById('reviewModal');
@@ -845,9 +821,9 @@
     const reviewMessageInput = document.getElementById('reviewMessage');
     const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
 
-    openReviewBtn.addEventListener('click', () => { reviewModal.classList.add('active'); body.classList.add('no-scroll'); });
-    closeReviewModal.addEventListener('click', () => { reviewModal.classList.remove('active'); body.classList.remove('no-scroll'); });
-    window.addEventListener('click', (e) => { if (e.target === reviewModal) { reviewModal.classList.remove('active'); body.classList.remove('no-scroll'); } });
+    openReviewBtn.addEventListener('click', () => { reviewModal.classList.add('active'); disableBodyScroll(); });
+    closeReviewModal.addEventListener('click', () => { reviewModal.classList.remove('active'); enableBodyScroll(); });
+    window.addEventListener('click', (e) => { if (e.target === reviewModal) { reviewModal.classList.remove('active'); enableBodyScroll(); } });
 
     submitReviewBtn.addEventListener('click', () => {
       const name = reviewerNameInput.value.trim();
@@ -860,7 +836,7 @@
       localStorage.setItem('userReviews', JSON.stringify(reviews));
       reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
       reviewModal.classList.remove('active');
-      body.classList.remove('no-scroll');
+      enableBodyScroll();
     });
 
     // Comments auto-slide
@@ -902,38 +878,33 @@
       });
     });
 
-    // Countdown timer
+    // Countdown timer (smooth collapse)
     const countdownSection = document.getElementById('countdownSection');
     const countdownEl = document.getElementById('countdown');
     const endDate = new Date(); endDate.setDate(endDate.getDate()+3);
     const timerInterval = setInterval(() => {
       const diff = endDate - new Date();
-      if(diff <= 0) { countdownEl.textContent = "Expired"; countdownSection.style.display = 'none'; clearInterval(timerInterval); return; }
-      const h=Math.floor(diff/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-      countdownEl.textContent = `${h}h ${m}m ${s}s`;
+      if(diff <= 0) {
+        countdownEl.textContent = "Expired";
+        clearInterval(timerInterval);
+        countdownSection.style.maxHeight = '0px';
+        countdownSection.style.opacity = '0';
+        countdownSection.style.margin = '0 auto';
+        countdownSection.style.padding = '0';
+        countdownSection.style.border = 'none';
+      } else {
+        const h=Math.floor(diff/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+        countdownEl.textContent = `${h}h ${m}m ${s}s`;
+      }
     }, 1000);
 
     // Live notification (improved)
     const notif = document.getElementById('liveNotification');
-    const msgs = [
-      "Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀","Ayesha accepted invite ✅",
-      "Fatima started Graphic Design","Zainab completed Web Dev","Bilal joined Basic Computer","Hira opened freelancing account",
-      "Ali received certificate 📜","Marium enrolled in Canva","Owais shared academy link","Anam scheduled interview prep",
-      "Hamza downloaded resources","Kinza rated 5 stars ⭐","Talha invited 3 friends","Mehwish joined Python class",
-      "Saad completed video project","Alisha purchased AI course","Farhan attended live session","Nimra shared testimonial",
-      "Rohan registered for C++","Sania deposited fee 💰","Adeel started cyber security","Hafsa joined MS Office class",
-      "Kamran received scholarship","Iqra wrote a review","Danish opened digital marketing","Saba enrolled in web development",
-      "Shayan downloaded PDF guide","Rida joined WhatsApp group","Anas applied for discount","Fiza shared success story",
-      "Yusuf logged in to portal","Areeba got interview call","Haroon enrolled in freelancing","Sadaf watched demo video",
-      "Imran downloaded certificate","Nouman recommended academy","Zoya activated AI tools","Abbas completed first task",
-      "Khadija sent referral link","Arslan purchased premium","Aleeza joined design class","Rashid completed networking",
-      "Madiha viewed Python playlist","Junaid enrolled in ethical hacking","Sana started social media course",
-      "Waqas accepted invitation ✅","Laiba wrote a thank‑you note","Zahid got his first freelancing order"
-    ];
+    const msgs = ["Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀","Ayesha accepted invite ✅"];
     let idx=0;
     setInterval(() => {
       notif.style.opacity = '0';
-      setTimeout(() => { notif.textContent = msgs[idx%50]; notif.classList.add('visible'); }, 200);
+      setTimeout(() => { notif.textContent = msgs[idx%4]; notif.classList.add('visible'); }, 200);
       setTimeout(() => { notif.style.opacity = '0'; setTimeout(() => notif.classList.remove('visible'), 200); }, 4000);
       idx++;
     }, 8000);
@@ -944,6 +915,19 @@
       backToTop.classList.toggle('show', window.scrollY > 300);
     });
     backToTop.addEventListener('click', () => { window.scrollTo({ top:0, behavior:'smooth' }); });
+
+    // Scrollbar width compensation
+    function getScrollbarWidth() {
+      return window.innerWidth - document.documentElement.clientWidth;
+    }
+    function disableBodyScroll() {
+      const scrollbarWidth = getScrollbarWidth();
+      document.documentElement.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
+      body.classList.add('no-scroll');
+    }
+    function enableBodyScroll() {
+      body.classList.remove('no-scroll');
+    }
 
     AOS.init({ duration:800, once:true });
   </script>
