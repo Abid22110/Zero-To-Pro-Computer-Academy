@@ -2,11 +2,15 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
+// Set this version whenever you update the site.
+// When changed, the popup will be shown again.
+const APP_VERSION = "1.1";
+
 // ---------- DARK / LIGHT MODE ----------
 const body = document.body;
 const darkToggle = document.getElementById('darkToggle');
 
-// Default = dark mode
+// Default dark mode (no 'light' class)
 body.classList.remove('light');
 darkToggle.textContent = '☀️ Light';
 
@@ -16,15 +20,16 @@ darkToggle.addEventListener('click', () => {
 });
 
 
-// ---------- POPUP ----------
+// ---------- POPUP (version‑based reappearance) ----------
 const popupOverlay = document.getElementById('popupOverlay');
 const mainSite = document.getElementById('mainSite');
 const closePopupBtn = document.getElementById('closePopup');
 const exploreBtn = document.getElementById('exploreBtn');
 const popupPoster = document.getElementById('popupPoster');
 
-// Show popup only once per session
-if (!sessionStorage.getItem('popupShown')) {
+const storedVersion = localStorage.getItem('appVersion');
+if (storedVersion !== APP_VERSION) {
+  // Show popup for new version or first visit
   popupOverlay.style.display = 'flex';
   mainSite.style.display = 'none';
 } else {
@@ -35,17 +40,17 @@ if (!sessionStorage.getItem('popupShown')) {
 closePopupBtn.addEventListener('click', () => {
   popupOverlay.style.display = 'none';
   mainSite.style.display = 'block';
-  sessionStorage.setItem('popupShown', 'true');
+  localStorage.setItem('appVersion', APP_VERSION);
 });
 
 exploreBtn.addEventListener('click', (e) => {
   e.preventDefault();
   popupOverlay.style.display = 'none';
   mainSite.style.display = 'block';
-  sessionStorage.setItem('popupShown', 'true');
+  localStorage.setItem('appVersion', APP_VERSION);
 });
 
-// Poster click → WhatsApp
+// Clicking the poster opens WhatsApp
 popupPoster.addEventListener('click', () => {
   window.open('https://wa.me/923061565858', '_blank');
 });
@@ -59,7 +64,7 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Close mobile menu on link click
+// Close mobile menu when any link is clicked
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('active');
@@ -67,7 +72,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 
-// ---------- COURSES (dynamic via Swiper) ----------
+// ---------- COURSES DATA (DYNAMIC SWIPER) ----------
 const courses = [
   { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", cert: true },
   { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", cert: true },
@@ -102,7 +107,7 @@ courses.forEach(c => {
 });
 
 
-// ---------- STATIC REVIEWS (carousel) ----------
+// ---------- STATIC REVIEWS (CAROUSEL) ----------
 const reviewsData = [
   { name: "Ahmed", text: "Best decision! Got a job." },
   { name: "Sara", text: "I was afraid of computers, now I teach others." },
@@ -124,13 +129,28 @@ reviewsData.forEach(r => {
 });
 
 
-// ---------- USER REVIEWS (Local Storage) ----------
-const userReviewsContainer = document.getElementById('userReviewsContainer');
-const submitBtn = document.getElementById('submitReviewBtn');
+// ---------- USER REVIEWS (MODAL + LOCAL STORAGE) ----------
+const reviewModal = document.getElementById('reviewModal');
+const openReviewBtn = document.getElementById('openReviewModal');
+const closeReviewModal = document.getElementById('closeReviewModal');
+const submitReviewBtn = document.getElementById('submitReviewBtn');
 const reviewerNameInput = document.getElementById('reviewerName');
 const reviewMessageInput = document.getElementById('reviewMessage');
-const starInputs = document.querySelectorAll('input[name="rating"]');
+const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
+const userReviewsContainer = document.getElementById('userReviewsContainer');
 
+// Open/close modal
+openReviewBtn.addEventListener('click', () => {
+  reviewModal.classList.add('active');
+});
+closeReviewModal.addEventListener('click', () => {
+  reviewModal.classList.remove('active');
+});
+window.addEventListener('click', (e) => {
+  if (e.target === reviewModal) reviewModal.classList.remove('active');
+});
+
+// Load reviews from localStorage
 function loadUserReviews() {
   const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
   userReviewsContainer.innerHTML = '';
@@ -148,13 +168,14 @@ function loadUserReviews() {
 }
 loadUserReviews();
 
-submitBtn.addEventListener('click', () => {
+// Submit review
+submitReviewBtn.addEventListener('click', () => {
   const name = reviewerNameInput.value.trim();
   const text = reviewMessageInput.value.trim();
-  const ratingElem = document.querySelector('input[name="rating"]:checked');
+  const ratingElem = document.querySelector('#starRating input[name="rating"]:checked');
 
   if (!name || !text || !ratingElem) {
-    alert('Please enter your name, select a rating, and write a review.');
+    alert('Please fill all fields and select a rating.');
     return;
   }
 
@@ -164,11 +185,11 @@ submitBtn.addEventListener('click', () => {
   reviews.unshift(newReview);   // latest first
   localStorage.setItem('userReviews', JSON.stringify(reviews));
 
-  // Reset form
+  // Reset form and close modal
   reviewerNameInput.value = '';
   reviewMessageInput.value = '';
   starInputs.forEach(i => i.checked = false);
-
+  reviewModal.classList.remove('active');
   loadUserReviews();
 });
 
@@ -213,7 +234,7 @@ faqs.forEach(f => {
 });
 
 
-// ---------- COUNTDOWN TIMER (3 days from now) ----------
+// ---------- COUNTDOWN TIMER (3 days) ----------
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 3);
@@ -249,9 +270,9 @@ setInterval(() => {
 }, 8000);
 
 
-// ---------- INITIALIZE SWIPERS & AOS (after DOM ready) ----------
+// ---------- INITIALIZE SWIPERS & AOS (AFTER DOM READY) ----------
 document.addEventListener('DOMContentLoaded', () => {
-  // Courses Coverflow Swiper
+  // Courses Coverflow Swiper (pauses on interaction, shows arrows)
   new Swiper('.courseSwiper', {
     effect: 'coverflow',
     grabCursor: true,
@@ -268,9 +289,14 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '.swiper-pagination',
       clickable: true
     },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
     autoplay: {
-      delay: 2500,
-      disableOnInteraction: false
+      delay: 3000,
+      disableOnInteraction: true,  // stops after user swipes or clicks
+      pauseOnMouseEnter: true
     }
   });
 
