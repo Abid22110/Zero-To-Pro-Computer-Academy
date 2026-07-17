@@ -48,7 +48,7 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
       line-height: 1.6;
-      touch-action: pan-y;
+      touch-action: pan-y; /* prevent horizontal swipe on body */
     }
     .container { max-width:1100px; margin:0 auto; padding:0 20px; }
     a { text-decoration:none; color:inherit; }
@@ -132,14 +132,21 @@
     .path-step:hover { border-color:var(--cyan); transform:scale(1.03); }
     .path-arrow { font-size:1.8rem; color:var(--gold); margin:0 5px; }
 
-    /* Courses Carousel */
-    .courses-carousel { position:relative; margin:20px 0; overflow:hidden; touch-action: pan-y; }
-    .courses-track { display:flex; transition:transform 0.5s ease; gap:20px; }
+    /* Courses Carousel – one card at a time */
+    .courses-carousel {
+      position:relative; margin:20px auto; overflow:hidden;
+      touch-action: pan-y;
+    }
+    .courses-track {
+      display:flex; transition:transform 0.5s ease; gap:0;
+    }
     .course-card {
+      flex:0 0 100%;
       background:var(--card-bg); border-radius:20px; padding:25px;
-      min-width:280px; flex-shrink:0; box-shadow:var(--shadow);
-      border:1px solid var(--border); transition:transform 0.3s;
+      box-shadow:var(--shadow); border:1px solid var(--border);
+      margin:0 10px;
       display:flex; flex-direction:column; justify-content:space-between;
+      transition:transform 0.3s;
     }
     .course-card:hover { transform:translateY(-5px); border-color:var(--cyan); }
     .course-fee { font-size:1.6rem; font-weight:800; color:var(--gold); }
@@ -157,14 +164,34 @@
     .dot { width:12px; height:12px; border-radius:50%; background:var(--border); cursor:pointer; transition:0.3s; }
     .dot.active { background:var(--cyan); }
 
-    /* Reviews Slider & Combined list */
-    .review-slider { position:relative; overflow:hidden; margin:20px 0; touch-action: pan-y; }
+    /* Reviews Slider – one card at a time */
+    .review-slider {
+      position:relative; overflow:hidden; margin:20px 0; touch-action: pan-y;
+    }
     .review-track { display:flex; transition:transform 0.5s ease; }
     .review-card {
-      min-width:100%; padding:20px; background:var(--card-bg); border-radius:16px;
-      box-shadow:var(--shadow); margin-right:20px; border:1px solid var(--border);
+      flex:0 0 100%;
+      padding:20px; background:var(--card-bg); border-radius:16px;
+      box-shadow:var(--shadow); border:1px solid var(--border);
+      text-align:center;
     }
-    .all-reviews { margin-top:30px; display:flex; flex-direction:column; gap:15px; }
+    .rating-stars { font-size:1.5rem; color:var(--gold); }
+
+    /* View All Reviews button */
+    .view-all-reviews {
+      display:inline-block; margin-top:15px; cursor:pointer;
+      color:var(--cyan); font-weight:600; transition:0.3s;
+    }
+    .view-all-reviews:hover { text-decoration:underline; }
+
+    /* All Reviews Modal */
+    .all-reviews-list {
+      max-height:60vh; overflow-y:auto; padding-right:10px;
+    }
+    .all-reviews-list .review-item {
+      border-bottom:1px solid var(--border); padding:15px 0;
+    }
+    .all-reviews-list .review-item:last-child { border-bottom:none; }
 
     /* Certificate */
     .certificate-design {
@@ -306,7 +333,7 @@
       .nav-links { display:none; flex-direction:column; width:100%; }
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
-      .course-card { min-width:250px; }
+      .course-card { flex:0 0 100%; margin:0; }
       .floating-review { bottom:15px; right:15px; }
       .back-to-top { bottom:75px; right:15px; }
     }
@@ -422,7 +449,7 @@
         </div>
       </section>
 
-      <!-- Courses Carousel -->
+      <!-- Courses Carousel (one card at a time) -->
       <section id="courses" class="section">
         <div class="container">
           <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
@@ -447,14 +474,16 @@
         🛡️ 100% Satisfaction Guarantee – If first class doesn't satisfy, get your fee back.
       </div>
 
-      <!-- Reviews (auto-sliding + combined list) -->
+      <!-- Reviews (auto-sliding one card + view all) -->
       <section id="reviews" class="section">
         <div class="container">
-          <h2 class="title">⭐ Student Reviews</h2>
+          <h2 class="title">⭐ Student Reviews <span style="font-size:1rem; color:var(--text);">(4.9 ★ – 50+ reviews)</span></h2>
           <div class="review-slider">
             <div class="review-track" id="reviewTrack"></div>
           </div>
-          <div class="all-reviews" id="allReviewsContainer"></div>
+          <div style="text-align:center;">
+            <span class="view-all-reviews" id="viewAllReviews">📋 View all reviews</span>
+          </div>
         </div>
       </section>
 
@@ -547,11 +576,12 @@
     <div class="live-notification" id="liveNotification"></div>
   </div>
 
-  <!-- Review Modal -->
+  <!-- Review Modal (Leave a Review) -->
   <div class="modal-overlay" id="reviewModal">
     <div class="modal-content">
       <span class="modal-close" id="closeReviewModal">&times;</span>
       <h3>Leave a Review</h3>
+      <p style="font-size:0.9rem; opacity:0.8;">Your review is very valuable to us 🌟</p>
       <div class="star-rating" id="starRating">
         <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
         <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
@@ -565,6 +595,15 @@
     </div>
   </div>
 
+  <!-- View All Reviews Modal -->
+  <div class="modal-overlay" id="allReviewsModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeAllReviewsModal">&times;</span>
+      <h3>All Reviews</h3>
+      <div class="all-reviews-list" id="allReviewsList"></div>
+    </div>
+  </div>
+
   <!-- Course Details Modal -->
   <div class="modal-overlay" id="courseModal">
     <div class="modal-content">
@@ -575,7 +614,7 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const APP_VERSION = "1.4";
+    const APP_VERSION = "1.5";
 
     // Dark/Light
     const body = document.body;
@@ -617,7 +656,7 @@
     document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
 
-    // Course data with detailed topics
+    // Course data
     const courses = [
       { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks" },
       { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks" },
@@ -671,8 +710,7 @@
 
     function goToCourse(index) {
       courseIndex = index;
-      const cardWidth = track.firstElementChild.offsetWidth + 20;
-      track.style.transform = `translateX(-${index * cardWidth}px)`;
+      track.style.transform = `translateX(-${index * 100}%)`;
       document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
       resetCourseInterval();
     }
@@ -710,8 +748,7 @@
     closeCourseModal.addEventListener('click', () => courseModal.classList.remove('active'));
     window.addEventListener('click', (e) => { if (e.target === courseModal) courseModal.classList.remove('active'); });
 
-    // ========== REVIEWS (Static + User combined) ==========
-    // Static reviews array (50 entries, mostly female names)
+    // ========== REVIEWS ==========
     const staticReviews = [
       { name: "Ahmed", text: "Best decision! Got a job.", rating: 5 },
       { name: "Sara", text: "I was afraid of computers, now I teach others.", rating: 5 },
@@ -721,56 +758,56 @@
       { name: "Zainab", text: "The teachers are incredibly supportive.", rating: 5 },
       { name: "Bilal", text: "Web development course changed my career.", rating: 5 },
       { name: "Hira", text: "Freelancing tips are gold! Already got two clients.", rating: 5 },
-      { name: "Ali", text: "Ethical hacking basics were mind-blowing.", rating: 5 },
+      { name: "Ali", text: "Ethical hacking basics were mind-blowing.", rating: 4 },
       { name: "Marium", text: "I built my first website thanks to this academy.", rating: 5 },
       { name: "Owais", text: "The AI tools section saved me hours every day.", rating: 5 },
-      { name: "Anam", text: "Resume and CV course helped me get noticed by recruiters.", rating: 5 },
+      { name: "Anam", text: "Resume and CV course helped me get noticed by recruiters.", rating: 4 },
       { name: "Hamza", text: "I love the practical assignments.", rating: 5 },
       { name: "Kinza", text: "Canva masterclass made designing fun.", rating: 5 },
       { name: "Talha", text: "Python is no longer scary.", rating: 5 },
       { name: "Mehwish", text: "Best investment for my career.", rating: 5 },
       { name: "Saad", text: "Video editing skills got me a YouTube partnership.", rating: 5 },
-      { name: "Alisha", text: "AI content creation course is a game changer.", rating: 5 },
+      { name: "Alisha", text: "AI content creation course is a game changer.", rating: 4 },
       { name: "Farhan", text: "The community is very encouraging.", rating: 5 },
       { name: "Nimra", text: "Graphic design course gave me confidence.", rating: 5 },
       { name: "Rohan", text: "I learned C++ from scratch, now I'm building apps.", rating: 5 },
       { name: "Sania", text: "Freelancing income now pays my bills.", rating: 5 },
-      { name: "Adeel", text: "Cyber security fundamentals were top-notch.", rating: 5 },
+      { name: "Adeel", text: "Cyber security fundamentals were top-notch.", rating: 4 },
       { name: "Hafsa", text: "Microsoft Office advanced tips boosted my productivity.", rating: 5 },
       { name: "Kamran", text: "The academy's live support is outstanding.", rating: 5 },
       { name: "Iqra", text: "I never thought I could code, now I'm addicted.", rating: 5 },
       { name: "Danish", text: "Digital marketing course helped me grow my business.", rating: 5 },
       { name: "Saba", text: "This academy is truly zero to pro.", rating: 5 },
-      { name: "Shayan", text: "Network basics were explained so simply.", rating: 5 },
+      { name: "Shayan", text: "Network basics were explained so simply.", rating: 4 },
       { name: "Rida", text: "Web development journey was amazing.", rating: 5 },
       { name: "Anas", text: "The scholarship test opportunity is a blessing.", rating: 5 },
       { name: "Fiza", text: "Every course is so well structured.", rating: 5 },
-      { name: "Yusuf", text: "I built my portfolio during the course.", rating: 5 },
+      { name: "Yusuf", text: "I built my portfolio during the course.", rating: 4 },
       { name: "Areeba", text: "Interview prep class helped me crack my dream job.", rating: 5 },
       { name: "Haroon", text: "Excellent material and resources.", rating: 5 },
       { name: "Sadaf", text: "I love the recorded sessions for review.", rating: 5 },
       { name: "Imran", text: "Best place to learn digital skills.", rating: 5 },
-      { name: "Nouman", text: "I recommended this academy to all my friends.", rating: 5 },
+      { name: "Nouman", text: "I recommended this academy to all my friends.", rating: 4 },
       { name: "Zoya", text: "AI automation course made my office tasks easy.", rating: 5 },
       { name: "Abbas", text: "Real projects gave me confidence.", rating: 5 },
       { name: "Khadija", text: "Very affordable and high-quality training.", rating: 5 },
-      { name: "Arslan", text: "The certificates helped my LinkedIn profile.", rating: 5 },
+      { name: "Arslan", text: "The certificates helped my LinkedIn profile.", rating: 4 },
       { name: "Aleeza", text: "I'm now a freelance graphic designer thanks to this academy.", rating: 5 },
       { name: "Rashid", text: "Their teaching style is very engaging.", rating: 5 },
       { name: "Madiha", text: "Best Python course for beginners.", rating: 5 },
       { name: "Junaid", text: "Awesome experience, highly recommended.", rating: 5 },
       { name: "Sana", text: "Social media marketing tips were practical.", rating: 5 },
-      { name: "Waqas", text: "I learned so much in just 4 weeks.", rating: 5 },
+      { name: "Waqas", text: "I learned so much in just 4 weeks.", rating: 4 },
       { name: "Laiba", text: "This academy changed my life.", rating: 5 },
       { name: "Zahid", text: "I'm now earning through freelancing.", rating: 5 }
     ];
 
-    // Auto-slide static reviews
+    // Auto-slide (show first 15 in slider)
     const reviewTrack = document.getElementById('reviewTrack');
-    staticReviews.slice(0, 12).forEach(r => {  // show first 12 in slider
+    staticReviews.slice(0, 15).forEach(r => {
       const div = document.createElement('div');
       div.className = 'review-card';
-      div.innerHTML = `<p>${'⭐'.repeat(r.rating)}</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
+      div.innerHTML = `<p class="rating-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
       reviewTrack.appendChild(div);
     });
 
@@ -780,26 +817,36 @@
       reviewTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
     }
     setInterval(() => {
-      reviewIndex = (reviewIndex + 1) % 12;
+      reviewIndex = (reviewIndex + 1) % 15;
       goToReview(reviewIndex);
     }, 4000);
 
-    // Combined list: all static reviews + user reviews
-    const allReviewsContainer = document.getElementById('allReviewsContainer');
-    function renderCombinedReviews() {
+    // View All Reviews Modal
+    const allReviewsModal = document.getElementById('allReviewsModal');
+    const viewAllBtn = document.getElementById('viewAllReviews');
+    const closeAllReviewsModal = document.getElementById('closeAllReviewsModal');
+    const allReviewsList = document.getElementById('allReviewsList');
+
+    function renderAllReviews() {
       const userReviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
-      const combined = [...staticReviews, ...userReviews.map(u => ({ name: u.name, text: u.text, rating: u.rating }))];
-      allReviewsContainer.innerHTML = combined.map(r => `
-        <div class="review-card" style="margin-bottom:15px;">
+      const all = [...staticReviews, ...userReviews.map(u => ({ name: u.name, text: u.text, rating: u.rating }))];
+      allReviewsList.innerHTML = all.map(r => `
+        <div class="review-item">
           <div style="display:flex; justify-content:space-between;">
             <strong>${r.name}</strong>
-            <span>${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+            <span>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
           </div>
-          <div style="margin-top:8px;">${r.text}</div>
+          <div style="margin-top:5px;">${r.text}</div>
         </div>
       `).join('');
     }
-    renderCombinedReviews();
+
+    viewAllBtn.addEventListener('click', () => {
+      renderAllReviews();
+      allReviewsModal.classList.add('active');
+    });
+    closeAllReviewsModal.addEventListener('click', () => allReviewsModal.classList.remove('active'));
+    window.addEventListener('click', (e) => { if (e.target === allReviewsModal) allReviewsModal.classList.remove('active'); });
 
     // User review submission
     const reviewModal = document.getElementById('reviewModal');
@@ -825,7 +872,7 @@
       localStorage.setItem('userReviews', JSON.stringify(reviews));
       reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
       reviewModal.classList.remove('active');
-      renderCombinedReviews(); // refresh combined list
+      // Optionally refresh all reviews if modal is open later
     });
 
     // Comments auto-slide
@@ -878,22 +925,22 @@
       countdownEl.textContent = `${h}h ${m}m ${s}s`;
     }, 1000);
 
-    // Live notification (50 messages, diverse names)
+    // Live notification (50 messages)
     const notif = document.getElementById('liveNotification');
     const msgs = [
-      "Ahmed enrolled in Python 🎉", "Sara joined AI course 👏", "Usman booked demo 🚀", "Ayesha accepted invite ✅",
-      "Fatima started Graphic Design", "Zainab completed Web Dev", "Bilal joined Basic Computer", "Hira opened freelancing account",
-      "Ali received certificate 📜", "Marium enrolled in Canva", "Owais shared academy link", "Anam scheduled interview prep",
-      "Hamza downloaded resources", "Kinza rated 5 stars ⭐", "Talha invited 3 friends", "Mehwish joined Python class",
-      "Saad completed video project", "Alisha purchased AI course", "Farhan attended live session", "Nimra shared testimonial",
-      "Rohan registered for C++", "Sania deposited fee 💰", "Adeel started cyber security", "Hafsa joined MS Office class",
-      "Kamran received scholarship", "Iqra wrote a review", "Danish opened digital marketing", "Saba enrolled in web development",
-      "Shayan downloaded PDF guide", "Rida joined WhatsApp group", "Anas applied for discount", "Fiza shared success story",
-      "Yusuf logged in to portal", "Areeba got interview call", "Haroon enrolled in freelancing", "Sadaf watched demo video",
-      "Imran downloaded certificate", "Nouman recommended academy", "Zoya activated AI tools", "Abbas completed first task",
-      "Khadija sent referral link", "Arslan purchased premium", "Aleeza joined design class", "Rashid completed networking",
-      "Madiha viewed Python playlist", "Junaid enrolled in ethical hacking", "Sana started social media course",
-      "Waqas accepted invitation ✅", "Laiba wrote a thank‑you note", "Zahid got his first freelancing order"
+      "Ahmed enrolled in Python 🎉","Sara joined AI course 👏","Usman booked demo 🚀","Ayesha accepted invite ✅",
+      "Fatima started Graphic Design","Zainab completed Web Dev","Bilal joined Basic Computer","Hira opened freelancing account",
+      "Ali received certificate 📜","Marium enrolled in Canva","Owais shared academy link","Anam scheduled interview prep",
+      "Hamza downloaded resources","Kinza rated 5 stars ⭐","Talha invited 3 friends","Mehwish joined Python class",
+      "Saad completed video project","Alisha purchased AI course","Farhan attended live session","Nimra shared testimonial",
+      "Rohan registered for C++","Sania deposited fee 💰","Adeel started cyber security","Hafsa joined MS Office class",
+      "Kamran received scholarship","Iqra wrote a review","Danish opened digital marketing","Saba enrolled in web development",
+      "Shayan downloaded PDF guide","Rida joined WhatsApp group","Anas applied for discount","Fiza shared success story",
+      "Yusuf logged in to portal","Areeba got interview call","Haroon enrolled in freelancing","Sadaf watched demo video",
+      "Imran downloaded certificate","Nouman recommended academy","Zoya activated AI tools","Abbas completed first task",
+      "Khadija sent referral link","Arslan purchased premium","Aleeza joined design class","Rashid completed networking",
+      "Madiha viewed Python playlist","Junaid enrolled in ethical hacking","Sana started social media course",
+      "Waqas accepted invitation ✅","Laiba wrote a thank‑you note","Zahid got his first freelancing order"
     ];
     let idx=0;
     setInterval(() => {
