@@ -107,7 +107,7 @@
     .i1 { top:-30px; left:10%; } .i2 { top:30px; right:5%; } .i3 { bottom:20px; left:15%; } .i4 { bottom:-20px; right:10%; } .i5 { top:40%; left:-5%; }
     @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-10px) scale(1.05); } }
 
-    /* Poster slideshow in hero */
+    /* Poster slideshow */
     .poster-slideshow {
       position:relative; display:inline-block;
     }
@@ -165,7 +165,7 @@
       background:var(--card-bg); border-radius:20px; padding:25px;
       box-shadow:var(--shadow); border:1px solid var(--border);
       display:flex; flex-direction:column; justify-content:space-between;
-      min-height: 380px;
+      /* height will be set by JS */ 
     }
     .course-card:hover { transform:translateY(-5px); border-color:var(--cyan); }
     .course-fee { font-size:1.6rem; font-weight:800; color:var(--gold); }
@@ -275,7 +275,7 @@
     .topic-list { list-style:none; padding:10px 0; }
     .topic-list li { padding:6px 0; border-bottom:1px solid var(--border); }
 
-    /* Floating Review Button – static */
+    /* Floating Review Button */
     .floating-review {
       position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
       padding:12px 20px; border-radius:30px; box-shadow:0 8px 20px rgba(0,0,0,0.3);
@@ -357,7 +357,6 @@
       .nav-links { display:none; flex-direction:column; width:100%; }
       .nav-links.active { display:flex; }
       .hero h1 { font-size:2.2rem; }
-      .course-card { min-height: 420px; }
     }
   </style>
 </head>
@@ -366,7 +365,7 @@
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
       <button class="close-btn" id="closePopup">&times;</button>
-      <img src="assets/Poster 1.jpeg" alt="Academy Poster" class="popup-poster" id="popupPoster"
+      <img src="assets/poster-1.jpeg" alt="Academy Poster" class="popup-poster" id="popupPoster"
            onerror="this.src='assets/logo.jpg'" />
       <h3>Want to learn Basic Computer + AI from Zero to Pro?</h3>
       <p>Join our beginner-friendly course with practical training and 3 FREE Demo Classes before enrollment.</p>
@@ -415,11 +414,10 @@
           </div>
           <div class="free-badge">🎉 1,200+ Students Enrolled</div>
           <div class="hero-visual">
-            <!-- Poster slideshow: three images flipping -->
             <div class="poster-slideshow" id="heroPosterSlideshow">
-              <img src="assets/Poster 1.jpeg" alt="Poster 1" class="active" onerror="this.src='assets/logo.jpg'" />
-              <img src="assets/Poster 2.jpeg" alt="Poster 2" onerror="this.src='assets/logo.jpg'" />
-              <img src="assets/Poster 3.jpeg" alt="Poster 3" onerror="this.src='assets/logo.jpg'" />
+              <img src="assets/poster-1.jpeg" alt="Poster 1" class="active" onerror="this.src='assets/logo.jpg'" />
+              <img src="assets/poster-2.png" alt="Poster 2" onerror="this.src='assets/logo.jpg'" />
+              <img src="assets/poster-3.jpeg" alt="Poster 3" onerror="this.src='assets/logo.jpg'" />
             </div>
             <div class="floating i1">💻</div><div class="floating i2">🧠</div><div class="floating i3">🚀</div><div class="floating i4">🎓</div><div class="floating i5">🤖</div>
           </div>
@@ -433,7 +431,6 @@
         </p>
       </div>
 
-      <!-- Countdown (smooth collapse) -->
       <div id="countdownSection" class="container" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease; max-height: 200px; opacity: 1;">
         <h3>⏰ 20% Discount Ends In</h3>
         <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
@@ -577,9 +574,7 @@
       </div>
     </footer>
 
-    <!-- Floating Review Button – static -->
     <button class="floating-review" id="openReviewModal"><i class="fas fa-pen"></i> Review</button>
-    <!-- Back to Top – simple -->
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="live-notification" id="liveNotification"></div>
   </div>
@@ -622,7 +617,7 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const APP_VERSION = "1.6";
+    const APP_VERSION = "1.7";
 
     // Dark/Light
     const body = document.body;
@@ -716,6 +711,14 @@
         dot.addEventListener('click', () => goToCourse(i));
         dotsContainer.appendChild(dot);
       });
+
+      // Equalize card heights
+      const cards = track.querySelectorAll('.course-card');
+      let maxHeight = 0;
+      cards.forEach(c => { c.style.height = 'auto'; });
+      cards.forEach(c => { const h = c.offsetHeight; if (h > maxHeight) maxHeight = h; });
+      cards.forEach(c => { c.style.height = maxHeight + 'px'; });
+
       document.querySelectorAll('.view-details').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const index = e.target.dataset.index;
