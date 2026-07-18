@@ -121,12 +121,7 @@ function renderCourses() {
     dotsContainer.appendChild(dot);
   });
 
-  // Equalize card heights
-  const cards = track.querySelectorAll('.course-card');
-  let maxHeight = 0;
-  cards.forEach(c => { c.style.height = 'auto'; });
-  cards.forEach(c => { const h = c.offsetHeight; if (h > maxHeight) maxHeight = h; });
-  cards.forEach(c => { c.style.height = maxHeight + 'px'; });
+  equalizeCourseCards();
 
   document.querySelectorAll('.view-details').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -137,13 +132,20 @@ function renderCourses() {
 }
 renderCourses();
 
-// Re-equalize on window resize
-window.addEventListener('resize', () => {
+function equalizeCourseCards() {
   const cards = track.querySelectorAll('.course-card');
   cards.forEach(c => { c.style.height = 'auto'; });
   let maxHeight = 0;
   cards.forEach(c => { const h = c.offsetHeight; if (h > maxHeight) maxHeight = h; });
   cards.forEach(c => { c.style.height = maxHeight + 'px'; });
+}
+
+// Recalculate heights after all assets load and on resize
+window.addEventListener('load', () => {
+  equalizeCourseCards();
+});
+window.addEventListener('resize', () => {
+  equalizeCourseCards();
 });
 
 function goToCourse(index) {
@@ -318,7 +320,7 @@ faqs.forEach(f => {
   });
 });
 
-// ---------- COUNTDOWN TIMER (smooth collapse) ----------
+// ---------- COUNTDOWN TIMER (SMOOTH – KEEPS SPACE) ----------
 const countdownSection = document.getElementById('countdownSection');
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date();
@@ -329,10 +331,10 @@ const timerInterval = setInterval(() => {
   if (diff <= 0) {
     countdownEl.textContent = "Expired";
     clearInterval(timerInterval);
-    countdownSection.style.maxHeight = '0px';
+    // Instead of collapsing height, just hide the content while keeping the section space
     countdownSection.style.opacity = '0';
-    countdownSection.style.margin = '0 auto';
-    countdownSection.style.padding = '0';
+    countdownSection.style.visibility = 'hidden';
+    countdownSection.style.pointerEvents = 'none';
   } else {
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
