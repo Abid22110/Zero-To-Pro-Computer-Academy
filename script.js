@@ -2,7 +2,7 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-const APP_VERSION = "1.6"; // Change to force popup reappearance
+const APP_VERSION = "1.7";
 
 // ---------- DARK / LIGHT MODE ----------
 const body = document.body;
@@ -69,11 +69,13 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // ---------- HERO POSTER SLIDESHOW ----------
 const posterImages = document.querySelectorAll('#heroPosterSlideshow img');
 let currentPoster = 0;
-setInterval(() => {
-  posterImages[currentPoster].classList.remove('active');
-  currentPoster = (currentPoster + 1) % posterImages.length;
-  posterImages[currentPoster].classList.add('active');
-}, 4000);
+if (posterImages.length > 0) {
+  setInterval(() => {
+    posterImages[currentPoster].classList.remove('active');
+    currentPoster = (currentPoster + 1) % posterImages.length;
+    posterImages[currentPoster].classList.add('active');
+  }, 4000);
+}
 
 // ---------- COURSES DATA & CUSTOM CAROUSEL ----------
 const courses = [
@@ -118,6 +120,14 @@ function renderCourses() {
     dot.addEventListener('click', () => goToCourse(i));
     dotsContainer.appendChild(dot);
   });
+
+  // Equalize card heights
+  const cards = track.querySelectorAll('.course-card');
+  let maxHeight = 0;
+  cards.forEach(c => { c.style.height = 'auto'; });
+  cards.forEach(c => { const h = c.offsetHeight; if (h > maxHeight) maxHeight = h; });
+  cards.forEach(c => { c.style.height = maxHeight + 'px'; });
+
   document.querySelectorAll('.view-details').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = e.target.dataset.index;
@@ -127,6 +137,15 @@ function renderCourses() {
 }
 renderCourses();
 
+// Re-equalize on window resize
+window.addEventListener('resize', () => {
+  const cards = track.querySelectorAll('.course-card');
+  cards.forEach(c => { c.style.height = 'auto'; });
+  let maxHeight = 0;
+  cards.forEach(c => { const h = c.offsetHeight; if (h > maxHeight) maxHeight = h; });
+  cards.forEach(c => { c.style.height = maxHeight + 'px'; });
+});
+
 function goToCourse(index) {
   courseIndex = index;
   track.style.transform = `translateX(-${index * 100}%)`;
@@ -134,15 +153,8 @@ function goToCourse(index) {
   resetCourseInterval();
 }
 
-function nextCourse() {
-  courseIndex = (courseIndex + 1) % courses.length;
-  goToCourse(courseIndex);
-}
-
-function resetCourseInterval() {
-  clearInterval(courseInterval);
-  courseInterval = setInterval(nextCourse, 3000);
-}
+function nextCourse() { courseIndex = (courseIndex + 1) % courses.length; goToCourse(courseIndex); }
+function resetCourseInterval() { clearInterval(courseInterval); courseInterval = setInterval(nextCourse, 3000); }
 
 document.getElementById('prevCourse').addEventListener('click', () => {
   courseIndex = (courseIndex - 1 + courses.length) % courses.length;
@@ -172,16 +184,8 @@ function openCourseModal(course) {
   disableBodyScroll();
 }
 
-closeCourseModal.addEventListener('click', () => {
-  courseModal.classList.remove('active');
-  enableBodyScroll();
-});
-window.addEventListener('click', (e) => {
-  if (e.target === courseModal) {
-    courseModal.classList.remove('active');
-    enableBodyScroll();
-  }
-});
+closeCourseModal.addEventListener('click', () => { courseModal.classList.remove('active'); enableBodyScroll(); });
+window.addEventListener('click', (e) => { if (e.target === courseModal) { courseModal.classList.remove('active'); enableBodyScroll(); } });
 
 // ---------- REVIEWS ----------
 const staticReviews = [
@@ -245,16 +249,8 @@ viewAllBtn.addEventListener('click', () => {
   allReviewsModal.classList.add('active');
   disableBodyScroll();
 });
-closeAllReviewsModal.addEventListener('click', () => {
-  allReviewsModal.classList.remove('active');
-  enableBodyScroll();
-});
-window.addEventListener('click', (e) => {
-  if (e.target === allReviewsModal) {
-    allReviewsModal.classList.remove('active');
-    enableBodyScroll();
-  }
-});
+closeAllReviewsModal.addEventListener('click', () => { allReviewsModal.classList.remove('active'); enableBodyScroll(); });
+window.addEventListener('click', (e) => { if (e.target === allReviewsModal) { allReviewsModal.classList.remove('active'); enableBodyScroll(); } });
 
 // ---------- USER REVIEW SUBMISSION ----------
 const reviewModal = document.getElementById('reviewModal');
@@ -265,36 +261,20 @@ const reviewerNameInput = document.getElementById('reviewerName');
 const reviewMessageInput = document.getElementById('reviewMessage');
 const starInputs = document.querySelectorAll('#starRating input[name="rating"]');
 
-openReviewBtn.addEventListener('click', () => {
-  reviewModal.classList.add('active');
-  disableBodyScroll();
-});
-closeReviewModal.addEventListener('click', () => {
-  reviewModal.classList.remove('active');
-  enableBodyScroll();
-});
-window.addEventListener('click', (e) => {
-  if (e.target === reviewModal) {
-    reviewModal.classList.remove('active');
-    enableBodyScroll();
-  }
-});
+openReviewBtn.addEventListener('click', () => { reviewModal.classList.add('active'); disableBodyScroll(); });
+closeReviewModal.addEventListener('click', () => { reviewModal.classList.remove('active'); enableBodyScroll(); });
+window.addEventListener('click', (e) => { if (e.target === reviewModal) { reviewModal.classList.remove('active'); enableBodyScroll(); } });
 
 submitReviewBtn.addEventListener('click', () => {
   const name = reviewerNameInput.value.trim();
   const text = reviewMessageInput.value.trim();
   const ratingElem = document.querySelector('#starRating input[name="rating"]:checked');
-  if (!name || !text || !ratingElem) {
-    alert('Please fill all fields and select a rating.');
-    return;
-  }
+  if (!name || !text || !ratingElem) { alert('Please fill all fields and select a rating.'); return; }
   const rating = parseInt(ratingElem.value);
   const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
   reviews.unshift({ name, text, rating });
   localStorage.setItem('userReviews', JSON.stringify(reviews));
-  reviewerNameInput.value = '';
-  reviewMessageInput.value = '';
-  starInputs.forEach(i => (i.checked = false));
+  reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
   reviewModal.classList.remove('active');
   enableBodyScroll();
 });
@@ -353,7 +333,6 @@ const timerInterval = setInterval(() => {
     countdownSection.style.opacity = '0';
     countdownSection.style.margin = '0 auto';
     countdownSection.style.padding = '0';
-    countdownSection.style.border = 'none';
   } else {
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
