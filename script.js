@@ -2,22 +2,19 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-const APP_VERSION = "1.4"; // Change to force popup again
+const APP_VERSION = "1.6"; // Change to force popup reappearance
 
-// ========== DARK / LIGHT MODE ==========
+// ---------- DARK / LIGHT MODE ----------
 const body = document.body;
 const darkToggle = document.getElementById('darkToggle');
-
-// Default dark mode
 body.classList.remove('light');
 darkToggle.textContent = '☀️ Light';
-
 darkToggle.addEventListener('click', () => {
   body.classList.toggle('light');
   darkToggle.textContent = body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
 });
 
-// ========== POPUP (Version-based Reappearance) ==========
+// ---------- POPUP ----------
 const popupOverlay = document.getElementById('popupOverlay');
 const mainSite = document.getElementById('mainSite');
 const closePopupBtn = document.getElementById('closePopup');
@@ -45,7 +42,6 @@ exploreBtn.addEventListener('click', (e) => {
   localStorage.setItem('appVersion', APP_VERSION);
 });
 
-// Close popup when clicking on overlay background
 popupOverlay.addEventListener('click', (e) => {
   if (e.target === popupOverlay) {
     popupOverlay.style.display = 'none';
@@ -54,199 +50,32 @@ popupOverlay.addEventListener('click', (e) => {
   }
 });
 
-// Clicking poster opens WhatsApp
 popupPoster.addEventListener('click', () => {
   window.open('https://wa.me/923061565858', '_blank');
 });
 
-// ========== MOBILE NAVIGATION ==========
+// ---------- MOBILE NAVIGATION ----------
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
-
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
-
-// Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('active');
   });
 });
 
-// ========== FLIP POSTER SYSTEM ==========
-const flipCardInner = document.getElementById('flipCardInner');
-const flipDots = document.querySelectorAll('.flip-dot');
-const frontPosterImg = document.getElementById('frontPosterImg');
-const backPosterImg = document.getElementById('backPosterImg');
-const frontPosterLabel = document.getElementById('frontPosterLabel');
-const backPosterLabel = document.getElementById('backPosterLabel');
+// ---------- HERO POSTER SLIDESHOW ----------
+const posterImages = document.querySelectorAll('#heroPosterSlideshow img');
+let currentPoster = 0;
+setInterval(() => {
+  posterImages[currentPoster].classList.remove('active');
+  currentPoster = (currentPoster + 1) % posterImages.length;
+  posterImages[currentPoster].classList.add('active');
+}, 4000);
 
-const flipPosters = [
-  {
-    frontImg: 'assets/poster1.jpeg',
-    backImg: 'assets/poster2.jpeg',
-    frontLabel: '🔥 New Course Launch',
-    backLabel: '🎓 Scholarship Test',
-    link: 'https://wa.me/923061565858'
-  },
-  {
-    frontImg: 'assets/poster2.jpeg',
-    backImg: 'assets/poster3.jpeg',
-    frontLabel: '🎓 Scholarship Test',
-    backLabel: '💻 AI Course Starting Soon',
-    link: 'https://wa.me/923061565858'
-  },
-  {
-    frontImg: 'assets/poster3.jpeg',
-    backImg: 'assets/poster1.jpeg',
-    frontLabel: '💻 AI Course Starting Soon',
-    backLabel: '🔥 New Course Launch',
-    link: 'https://wa.me/923061565858'
-  }
-];
-
-let currentPosterIndex = 0;
-let isFlipped = false;
-let flipInterval;
-
-// Update poster content (front side)
-function updatePosterContent(index) {
-  const poster = flipPosters[index];
-  
-  frontPosterImg.style.opacity = '0';
-  backPosterImg.style.opacity = '0';
-  
-  setTimeout(() => {
-    frontPosterImg.src = poster.frontImg;
-    frontPosterLabel.textContent = poster.frontLabel;
-    frontPosterImg.style.opacity = '1';
-    
-    // Preload next poster on back side
-    const nextIndex = (index + 1) % flipPosters.length;
-    backPosterImg.src = flipPosters[nextIndex].frontImg;
-    backPosterLabel.textContent = flipPosters[nextIndex].frontLabel;
-    backPosterImg.style.opacity = '1';
-  }, 200);
-}
-
-// Flip animation trigger
-function flipPoster() {
-  flipCardInner.classList.toggle('flipped');
-  isFlipped = !isFlipped;
-}
-
-// Next poster with flip effect
-function nextPoster() {
-  // Add flip class
-  flipCardInner.classList.add('flipped');
-  isFlipped = true;
-  
-  // After flip animation completes
-  setTimeout(() => {
-    // Update to next poster
-    currentPosterIndex = (currentPosterIndex + 1) % flipPosters.length;
-    
-    // Update front side with new poster
-    const poster = flipPosters[currentPosterIndex];
-    frontPosterImg.src = poster.frontImg;
-    frontPosterLabel.textContent = poster.frontLabel;
-    
-    // Update back side with upcoming poster
-    const upcomingIndex = (currentPosterIndex + 1) % flipPosters.length;
-    backPosterImg.src = flipPosters[upcomingIndex].frontImg;
-    backPosterLabel.textContent = flipPosters[upcomingIndex].frontLabel;
-    
-    // Reset flip without animation
-    flipCardInner.style.transition = 'none';
-    flipCardInner.classList.remove('flipped');
-    isFlipped = false;
-    
-    // Restore transition
-    setTimeout(() => {
-      flipCardInner.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-    }, 50);
-    
-    // Update dots
-    flipDots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentPosterIndex);
-    });
-  }, 800);
-}
-
-// Auto flip every 4 seconds
-function startFlipInterval() {
-  flipInterval = setInterval(nextPoster, 4000);
-}
-
-function resetFlipInterval() {
-  clearInterval(flipInterval);
-  startFlipInterval();
-}
-
-// Click on flip card to manually flip
-flipCardInner.addEventListener('click', () => {
-  nextPoster();
-  resetFlipInterval();
-});
-
-// Dot click to jump to specific poster
-flipDots.forEach(dot => {
-  dot.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const targetIndex = parseInt(e.target.dataset.index);
-    
-    if (targetIndex === currentPosterIndex && !isFlipped) return;
-    
-    clearInterval(flipInterval);
-    
-    // If different poster, animate flip
-    if (targetIndex !== currentPosterIndex) {
-      flipCardInner.classList.add('flipped');
-      isFlipped = true;
-      
-      setTimeout(() => {
-        currentPosterIndex = targetIndex;
-        
-        const poster = flipPosters[currentPosterIndex];
-        frontPosterImg.src = poster.frontImg;
-        frontPosterLabel.textContent = poster.frontLabel;
-        
-        const upcomingIndex = (currentPosterIndex + 1) % flipPosters.length;
-        backPosterImg.src = flipPosters[upcomingIndex].frontImg;
-        backPosterLabel.textContent = flipPosters[upcomingIndex].frontLabel;
-        
-        flipCardInner.style.transition = 'none';
-        flipCardInner.classList.remove('flipped');
-        isFlipped = false;
-        
-        setTimeout(() => {
-          flipCardInner.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        }, 50);
-        
-        flipDots.forEach((d, i) => d.classList.toggle('active', i === currentPosterIndex));
-        startFlipInterval();
-      }, 800);
-    }
-  });
-});
-
-// Poster image click → WhatsApp
-frontPosterImg.addEventListener('click', (e) => {
-  e.stopPropagation();
-  window.open(flipPosters[currentPosterIndex].link, '_blank');
-});
-
-backPosterImg.addEventListener('click', (e) => {
-  e.stopPropagation();
-  window.open(flipPosters[currentPosterIndex].link, '_blank');
-});
-
-// Initialize flip poster
-updatePosterContent(0);
-startFlipInterval();
-
-// ========== COURSES DATA & CAROUSEL ==========
+// ---------- COURSES DATA & CUSTOM CAROUSEL ----------
 const courses = [
   { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks" },
   { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks" },
@@ -267,43 +96,35 @@ const dotsContainer = document.getElementById('courseDots');
 let courseIndex = 0;
 let courseInterval;
 
-// Render courses
 function renderCourses() {
   track.innerHTML = '';
   dotsContainer.innerHTML = '';
-  
   courses.forEach((c, i) => {
     const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
     const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-    
     const card = document.createElement('div');
     card.className = 'course-card';
     card.innerHTML = `
       <h3>${c.name}</h3>
       <p class="course-fee">Rs. ${c.fee}</p>
       <p>${c.desc}</p>
-      <p style="font-size:0.85rem; opacity:0.7;">⏱️ Duration: ${c.duration}</p>
       ${c.cert ? '<span style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px; display:inline-block; margin:10px 0;">🎓 Certificate</span>' : ''}
       <button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button>
       <a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>
     `;
     track.appendChild(card);
-    
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
     dot.addEventListener('click', () => goToCourse(i));
     dotsContainer.appendChild(dot);
   });
-  
-  // Add click listeners for "View Details" buttons
   document.querySelectorAll('.view-details').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const index = parseInt(e.target.dataset.index);
+      const index = e.target.dataset.index;
       openCourseModal(courses[index]);
     });
   });
 }
-
 renderCourses();
 
 function goToCourse(index) {
@@ -323,122 +144,98 @@ function resetCourseInterval() {
   courseInterval = setInterval(nextCourse, 3000);
 }
 
-// Course navigation buttons
 document.getElementById('prevCourse').addEventListener('click', () => {
   courseIndex = (courseIndex - 1 + courses.length) % courses.length;
   goToCourse(courseIndex);
 });
-
-document.getElementById('nextCourse').addEventListener('click', () => {
-  nextCourse();
-});
-
-// Start auto-slide
+document.getElementById('nextCourse').addEventListener('click', () => nextCourse());
 resetCourseInterval();
 
-// ========== COURSE DETAILS MODAL ==========
+// ---------- COURSE DETAIL MODAL ----------
 const courseModal = document.getElementById('courseModal');
-const closeCourseModalBtn = document.getElementById('closeCourseModal');
+const closeCourseModal = document.getElementById('closeCourseModal');
 const courseModalContent = document.getElementById('courseModalContent');
 
 function openCourseModal(course) {
   const msg = `Hi, I want to enroll in *${course.name}* (Fee: Rs. ${course.fee}). Please guide me.`;
   const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-  
   courseModalContent.innerHTML = `
     <h2>${course.name}</h2>
     <p style="font-size:1.4rem; color:var(--gold); font-weight:700;">Fee: Rs. ${course.fee}</p>
     <p><strong>Duration:</strong> ${course.duration}</p>
-    <p><strong>Certificate:</strong> ${course.cert ? '✅ Yes' : '❌ No'}</p>
-    <p style="margin-top:10px;">${course.desc}</p>
-    <h4 style="margin-top:15px;">📚 Topics Covered:</h4>
-    <ul class="topic-list">
-      ${course.topics.map(t => `<li>✅ ${t}</li>`).join('')}
-    </ul>
-    <a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block; margin-top:15px;">Enroll Now via WhatsApp</a>
+    <p><strong>Certificate:</strong> ${course.cert ? 'Yes' : 'No'}</p>
+    <h4>Topics Covered:</h4>
+    <ul class="topic-list">${course.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul>
+    <a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block; margin-top:15px;">Enroll Now</a>
   `;
-  
   courseModal.classList.add('active');
   disableBodyScroll();
 }
 
-closeCourseModalBtn.addEventListener('click', () => {
+closeCourseModal.addEventListener('click', () => {
   courseModal.classList.remove('active');
   enableBodyScroll();
 });
-
-courseModal.addEventListener('click', (e) => {
+window.addEventListener('click', (e) => {
   if (e.target === courseModal) {
     courseModal.classList.remove('active');
     enableBodyScroll();
   }
 });
 
-// ========== REVIEWS SLIDER ==========
+// ---------- REVIEWS ----------
 const staticReviews = [
-  { name: "Ahmed Raza", text: "Best decision of my life! Got a job right after completing the course.", rating: 5 },
-  { name: "Sara Khan", text: "I was afraid of computers, now I teach others. Amazing academy!", rating: 5 },
-  { name: "Usman Ali", text: "Earned my first $100 online through freelancing skills learned here.", rating: 5 },
-  { name: "Ayesha Malik", text: "Canva course is amazing. I design social media posts professionally now.", rating: 5 },
-  { name: "Fatima Hassan", text: "Python course helped me land an internship at a tech company.", rating: 5 },
-  { name: "Zainab Bukhari", text: "The teachers are incredibly supportive and patient with beginners.", rating: 5 },
-  { name: "Bilal Ahmed", text: "Web development course changed my career completely.", rating: 5 },
-  { name: "Hira Noor", text: "Freelancing tips are gold! Already got two clients on Fiverr.", rating: 5 },
-  { name: "Ali Raza", text: "Ethical hacking basics were mind-blowing. Very practical training.", rating: 4 },
-  { name: "Marium Shah", text: "I built my first website thanks to this academy. So proud!", rating: 5 },
-  { name: "Owais Qureshi", text: "The AI tools section saved me hours every day in my work.", rating: 5 },
-  { name: "Anam Javed", text: "Resume and CV course helped me get noticed by top recruiters.", rating: 4 },
-  { name: "Hamza Tariq", text: "I love the practical assignments. Learning by doing is the best!", rating: 5 },
-  { name: "Kinza Sheikh", text: "Canva masterclass made designing fun and easy. Highly recommend!", rating: 5 },
-  { name: "Talha Mehmood", text: "Python is no longer scary. The instructor explains everything clearly.", rating: 5 }
+  { name: "Ahmed", text: "Best decision! Got a job.", rating: 5 },
+  { name: "Sara", text: "I was afraid of computers, now I teach others.", rating: 5 },
+  { name: "Usman", text: "Earned my first $100 online.", rating: 5 },
+  { name: "Ayesha", text: "Canva course is amazing.", rating: 5 },
+  { name: "Fatima", text: "Python course helped me land an internship.", rating: 5 },
+  { name: "Zainab", text: "The teachers are incredibly supportive.", rating: 5 },
+  { name: "Bilal", text: "Web development course changed my career.", rating: 5 },
+  { name: "Hira", text: "Freelancing tips are gold! Already got two clients.", rating: 5 },
+  { name: "Ali", text: "Ethical hacking basics were mind-blowing.", rating: 4 },
+  { name: "Marium", text: "I built my first website thanks to this academy.", rating: 5 },
+  { name: "Owais", text: "The AI tools section saved me hours every day.", rating: 5 },
+  { name: "Anam", text: "Resume and CV course helped me get noticed by recruiters.", rating: 4 },
+  { name: "Hamza", text: "I love the practical assignments.", rating: 5 },
+  { name: "Kinza", text: "Canva masterclass made designing fun.", rating: 5 },
+  { name: "Talha", text: "Python is no longer scary.", rating: 5 }
 ];
 
 const reviewTrack = document.getElementById('reviewTrack');
-let reviewIndex = 0;
-let reviewInterval;
-
-// Render static reviews
 staticReviews.forEach(r => {
   const div = document.createElement('div');
   div.className = 'review-card';
-  div.innerHTML = `
-    <p class="rating-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</p>
-    <p style="font-size:1.1rem;">"${r.text}"</p>
-    <strong style="color:var(--gold);">- ${r.name}</strong>
-  `;
+  div.innerHTML = `<p class="rating-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</p><p>"${r.text}"</p><strong>${r.name}</strong>`;
   reviewTrack.appendChild(div);
 });
 
+let reviewIndex = 0;
 function goToReview(idx) {
   reviewIndex = idx;
   reviewTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
 }
-
-function nextReview() {
+setInterval(() => {
   reviewIndex = (reviewIndex + 1) % staticReviews.length;
   goToReview(reviewIndex);
-}
+}, 4000);
 
-// Auto-slide reviews every 4 seconds
-reviewInterval = setInterval(nextReview, 4000);
-
-// ========== VIEW ALL REVIEWS MODAL ==========
+// ---------- VIEW ALL REVIEWS MODAL ----------
 const allReviewsModal = document.getElementById('allReviewsModal');
 const viewAllBtn = document.getElementById('viewAllReviews');
-const closeAllReviewsBtn = document.getElementById('closeAllReviewsModal');
+const closeAllReviewsModal = document.getElementById('closeAllReviewsModal');
 const allReviewsList = document.getElementById('allReviewsList');
 
 function renderAllReviews() {
   const userReviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
   const all = [...staticReviews, ...userReviews.map(u => ({ name: u.name, text: u.text, rating: u.rating }))];
-  
   allReviewsList.innerHTML = all.map(r => `
     <div class="review-item">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong style="color:var(--gold);">${r.name}</strong>
-        <span style="color:var(--gold);">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+      <div style="display:flex; justify-content:space-between;">
+        <strong>${r.name}</strong>
+        <span>${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
       </div>
-      <div style="margin-top:8px;">"${r.text}"</div>
+      <div style="margin-top:5px;">${r.text}</div>
     </div>
   `).join('');
 }
@@ -448,23 +245,21 @@ viewAllBtn.addEventListener('click', () => {
   allReviewsModal.classList.add('active');
   disableBodyScroll();
 });
-
-closeAllReviewsBtn.addEventListener('click', () => {
+closeAllReviewsModal.addEventListener('click', () => {
   allReviewsModal.classList.remove('active');
   enableBodyScroll();
 });
-
-allReviewsModal.addEventListener('click', (e) => {
+window.addEventListener('click', (e) => {
   if (e.target === allReviewsModal) {
     allReviewsModal.classList.remove('active');
     enableBodyScroll();
   }
 });
 
-// ========== REVIEW SUBMISSION MODAL ==========
+// ---------- USER REVIEW SUBMISSION ----------
 const reviewModal = document.getElementById('reviewModal');
 const openReviewBtn = document.getElementById('openReviewModal');
-const closeReviewBtn = document.getElementById('closeReviewModal');
+const closeReviewModal = document.getElementById('closeReviewModal');
 const submitReviewBtn = document.getElementById('submitReviewBtn');
 const reviewerNameInput = document.getElementById('reviewerName');
 const reviewMessageInput = document.getElementById('reviewMessage');
@@ -474,13 +269,11 @@ openReviewBtn.addEventListener('click', () => {
   reviewModal.classList.add('active');
   disableBodyScroll();
 });
-
-closeReviewBtn.addEventListener('click', () => {
+closeReviewModal.addEventListener('click', () => {
   reviewModal.classList.remove('active');
   enableBodyScroll();
 });
-
-reviewModal.addEventListener('click', (e) => {
+window.addEventListener('click', (e) => {
   if (e.target === reviewModal) {
     reviewModal.classList.remove('active');
     enableBodyScroll();
@@ -491,102 +284,61 @@ submitReviewBtn.addEventListener('click', () => {
   const name = reviewerNameInput.value.trim();
   const text = reviewMessageInput.value.trim();
   const ratingElem = document.querySelector('#starRating input[name="rating"]:checked');
-  
   if (!name || !text || !ratingElem) {
-    alert('⚠️ Please fill all fields and select a star rating.');
+    alert('Please fill all fields and select a rating.');
     return;
   }
-  
   const rating = parseInt(ratingElem.value);
   const reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
   reviews.unshift({ name, text, rating });
   localStorage.setItem('userReviews', JSON.stringify(reviews));
-  
-  // Clear form
   reviewerNameInput.value = '';
   reviewMessageInput.value = '';
-  starInputs.forEach(i => i.checked = false);
-  
-  // Close modal
+  starInputs.forEach(i => (i.checked = false));
   reviewModal.classList.remove('active');
   enableBodyScroll();
-  
-  // Show success message
-  alert('✅ Thank you for your review! Your feedback helps us improve.');
 });
 
-// ========== COMMENTS / SHOUTOUTS SLIDER ==========
-const comments = [
-  "Hamza: Just enrolled in Python course! 🚀",
-  "Zainab: The mentor helped me instantly with my assignment 💯",
-  "Owais: This academy feels like family. Best learning experience! ❤️",
-  "Kinza: Got my certificate today. So happy! 🎓",
-  "Bilal: From zero to building websites in just 6 weeks! 💻"
-];
-
+// ---------- COMMENTS AUTO-SLIDE ----------
+const comments = ["Hamza: Just enrolled! 🚀", "Zainab: Mentor helped me instantly 💯", "Owais: Academy feels like family ❤️"];
 const commentTrack = document.getElementById('commentTrack');
 let commentIndex = 0;
-let commentInterval;
-
 comments.forEach(c => {
   const div = document.createElement('div');
   div.className = 'comment-card';
   div.textContent = c;
   commentTrack.appendChild(div);
 });
-
 function goToComment(idx) {
   commentIndex = idx;
-  commentTrack.style.transform = `translateX(-${commentIndex * 100}%)`;
+  const cardWidth = commentTrack.firstElementChild.offsetWidth + 20;
+  commentTrack.style.transform = `translateX(-${commentIndex * cardWidth}px)`;
 }
-
-function nextComment() {
+setInterval(() => {
   commentIndex = (commentIndex + 1) % comments.length;
   goToComment(commentIndex);
-}
+}, 3000);
 
-// Auto-slide comments every 3 seconds
-commentInterval = setInterval(nextComment, 3000);
-
-// ========== FAQ ACCORDION ==========
+// ---------- FAQ ACCORDION ----------
 const faqContainer = document.getElementById('faqContainer');
 const faqs = [
-  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero. Our courses are designed for complete beginners." },
-  { q: "How to get certificate?", a: "Complete your course and all assigned projects. Certificate is issued within 24 hours of completion." },
-  { q: "How to pay?", a: "You can pay via JazzCash or EasyPaisa: <strong>0304 6491358</strong> (Account: Abid Hussain). We also accept bank transfer." },
-  { q: "Is there a refund policy?", a: "Yes! If you don't like the first class, we offer 100% money-back guarantee." },
-  { q: "Can I get a free demo class?", a: "Absolutely! We offer 3 FREE demo classes before enrollment. Contact us on WhatsApp to schedule." }
+  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero." },
+  { q: "How to get certificate?", a: "Complete course and projects." },
+  { q: "How to pay?", a: "JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." }
 ];
-
 faqs.forEach(f => {
   const div = document.createElement('div');
   div.className = 'faq-item';
-  div.innerHTML = `
-    <div class="faq-question">${f.q} <span>➕</span></div>
-    <div class="faq-answer">${f.a}</div>
-  `;
+  div.innerHTML = `<div class="faq-question">${f.q} <span>➕</span></div><div class="faq-answer">${f.a}</div>`;
   faqContainer.appendChild(div);
-  
-  div.querySelector('.faq-question').addEventListener('click', function() {
+  div.querySelector('.faq-question').addEventListener('click', function () {
     const ans = this.nextElementSibling;
-    const allAnswers = document.querySelectorAll('.faq-answer');
-    const allIcons = document.querySelectorAll('.faq-question span');
-    
-    // Close all other answers
-    allAnswers.forEach(a => {
-      if (a !== ans) a.classList.remove('open');
-    });
-    allIcons.forEach(icon => {
-      if (icon !== this.querySelector('span')) icon.textContent = '➕';
-    });
-    
-    // Toggle current answer
     ans.classList.toggle('open');
     this.querySelector('span').textContent = ans.classList.contains('open') ? '➖' : '➕';
   });
 });
 
-// ========== COUNTDOWN TIMER (3 Days) ==========
+// ---------- COUNTDOWN TIMER (smooth collapse) ----------
 const countdownSection = document.getElementById('countdownSection');
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date();
@@ -594,113 +346,65 @@ endDate.setDate(endDate.getDate() + 3);
 
 const timerInterval = setInterval(() => {
   const diff = endDate - new Date();
-  
   if (diff <= 0) {
-    countdownEl.textContent = 'Expired';
+    countdownEl.textContent = "Expired";
     clearInterval(timerInterval);
-    
-    // Smooth collapse
-    setTimeout(() => {
-      countdownSection.classList.add('collapsed');
-    }, 2000);
-    return;
+    countdownSection.style.maxHeight = '0px';
+    countdownSection.style.opacity = '0';
+    countdownSection.style.margin = '0 auto';
+    countdownSection.style.padding = '0';
+    countdownSection.style.border = 'none';
+  } else {
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    countdownEl.textContent = `${h}h ${m}m ${s}s`;
   }
-  
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  countdownEl.textContent = `${h}h ${m}m ${s}s`;
 }, 1000);
 
-// ========== LIVE NOTIFICATION ==========
+// ---------- LIVE NOTIFICATION ----------
 const notif = document.getElementById('liveNotification');
 const msgs = [
-  "🎉 Ahmed enrolled in Python",
-  "👏 Sara joined AI course",
-  "🚀 Usman booked a demo",
-  "✅ Ayesha accepted invite",
-  "💻 Bilal started Web Dev",
-  "🎓 Kinza got certified"
+  "Ahmed enrolled in Python 🎉",
+  "Sara joined AI course 👏",
+  "Usman booked demo 🚀",
+  "Ayesha accepted invite ✅"
 ];
-let notifIdx = 0;
-
-function showNotification() {
-  notif.textContent = msgs[notifIdx % msgs.length];
-  notif.classList.add('visible');
-  
+let idx = 0;
+setInterval(() => {
+  notif.style.opacity = '0';
   setTimeout(() => {
-    notif.classList.remove('visible');
-  }, 3500);
-  
-  notifIdx++;
-}
+    notif.textContent = msgs[idx % 4];
+    notif.classList.add('visible');
+  }, 200);
+  setTimeout(() => {
+    notif.style.opacity = '0';
+    setTimeout(() => notif.classList.remove('visible'), 200);
+  }, 4000);
+  idx++;
+}, 8000);
 
-// Show first notification after 3 seconds
-setTimeout(() => {
-  showNotification();
-  // Repeat every 8 seconds
-  setInterval(showNotification, 8000);
-}, 3000);
-
-// ========== BACK TO TOP BUTTON ==========
+// ---------- BACK TO TOP ----------
 const backToTop = document.getElementById('backToTop');
-
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    backToTop.classList.add('show');
-  } else {
-    backToTop.classList.remove('show');
-  }
+  backToTop.classList.toggle('show', window.scrollY > 300);
 });
-
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ========== BODY SCROLL LOCK (FOR MODALS) ==========
+// ---------- SCROLLBAR WIDTH COMPENSATION ----------
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth;
+}
 function disableBodyScroll() {
+  const scrollbarWidth = getScrollbarWidth();
+  document.documentElement.style.setProperty('--scrollbar-width', scrollbarWidth + 'px');
   body.classList.add('no-scroll');
 }
-
 function enableBodyScroll() {
   body.classList.remove('no-scroll');
 }
 
-// Close modals with Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    // Close all modals
-    reviewModal.classList.remove('active');
-    allReviewsModal.classList.remove('active');
-    courseModal.classList.remove('active');
-    enableBodyScroll();
-  }
-});
-
-// ========== AOS INITIALIZE ==========
-if (typeof AOS !== 'undefined') {
-  AOS.init({ 
-    duration: 800, 
-    once: true,
-    offset: 50
-  });
-}
-
-// ========== SMOOTH SCROLL FOR NAVIGATION LINKS ==========
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const targetId = this.getAttribute('href');
-    if (targetId === '#') return;
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      e.preventDefault();
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-console.log('🚀 Zero to Pro Academy - Website Loaded Successfully!');
-console.log('📚 Courses:', courses.length);
-console.log('⭐ Reviews:', staticReviews.length);
-console.log('🎴 Flip Posters:', flipPosters.length);
+// ---------- AOS INITIALIZE ----------
+AOS.init({ duration: 800, once: true });
