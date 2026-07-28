@@ -1,7 +1,7 @@
 // ========== PROMOTIONAL BANNER ==========
-// Just change the two values below to update the banner
+// Change the values below to update the banner
 const bannerData = {
-  show: true,   // false to hide
+  show: true,   // false to hide the banner
   text: "🚀 New Course Launched! 50% Discount – Enroll Now",
   link: "https://wa.me/923061565858?text=I%20want%20to%20enroll%20in%20the%20new%20course"
 };
