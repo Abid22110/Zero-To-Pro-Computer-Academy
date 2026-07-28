@@ -2,7 +2,7 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-const APP_VERSION = "2.1"; // Update version to show popup again
+const APP_VERSION = "2.2"; // Update version to show popup again
 
 // ---------- AUTO DARK / LIGHT MODE + MANUAL TOGGLE ----------
 const body = document.body;
