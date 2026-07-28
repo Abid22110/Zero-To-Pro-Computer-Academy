@@ -2,16 +2,31 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-const APP_VERSION = "1.7";
+const APP_VERSION = "2.0"; // Update version to show popup again
 
-// ---------- DARK / LIGHT MODE ----------
+// ---------- AUTO DARK / LIGHT MODE + MANUAL TOGGLE ----------
 const body = document.body;
 const darkToggle = document.getElementById('darkToggle');
-body.classList.remove('light');
-darkToggle.textContent = '☀️ Light';
+
+function setTheme(isDark) {
+  if (isDark) {
+    body.classList.remove('light');
+    darkToggle.textContent = '☀️ Light';
+  } else {
+    body.classList.add('light');
+    darkToggle.textContent = '🌙 Dark';
+  }
+}
+
+// Check system preference
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+setTheme(prefersDark.matches);
+prefersDark.addEventListener('change', (e) => setTheme(e.matches));
+
+// Manual toggle
 darkToggle.addEventListener('click', () => {
-  body.classList.toggle('light');
-  darkToggle.textContent = body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
+  const isLight = body.classList.contains('light');
+  setTheme(isLight);
 });
 
 // ---------- POPUP ----------
@@ -50,47 +65,120 @@ popupOverlay.addEventListener('click', (e) => {
   }
 });
 
-popupPoster.addEventListener('click', () => {
-  window.open('https://wa.me/923061565858', '_blank');
-});
+popupPoster.addEventListener('click', () => window.open('https://wa.me/923061565858', '_blank'));
 
-// ---------- MOBILE NAVIGATION ----------
+// ---------- MOBILE NAVIGATION (CLOSE ON SCROLL) ----------
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
+
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
+
+// Close menu when scrolling
+window.addEventListener('scroll', () => {
+  if (navLinks.classList.contains('active')) {
     navLinks.classList.remove('active');
+  }
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// ---------- TYPEWRITER EFFECT ----------
+const typewriterElement = document.getElementById('typewriter');
+const phrases = [
+  "Zero to Pro Computer & AI Academy",
+  "Learn Today • Build Tomorrow",
+  "Transform Your Future"
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 100;
+
+function typeWriter() {
+  const currentPhrase = phrases[phraseIndex];
+  if (isDeleting) {
+    typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+    typeSpeed = 50;
+  } else {
+    typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+    typeSpeed = 100;
+  }
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    typeSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typeSpeed = 500;
+  }
+  setTimeout(typeWriter, typeSpeed);
+}
+typeWriter();
+
+// ---------- ANIMATED COUNTERS ----------
+const counters = document.querySelectorAll('.counter-number');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counter = entry.target;
+      const target = +counter.getAttribute('data-target');
+      const isFloat = target % 1 !== 0;
+      const duration = 2000;
+      const start = +counter.innerText;
+      const startTime = performance.now();
+
+      function updateCounter(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = start + (target - start) * progress;
+        counter.innerText = isFloat ? value.toFixed(1) : Math.floor(value);
+        if (progress < 1) requestAnimationFrame(updateCounter);
+      }
+      requestAnimationFrame(updateCounter);
+      counterObserver.unobserve(counter);
+    }
+  });
+}, { threshold: 0.3 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+// ---------- COURSE FILTER ----------
+const filterButtons = document.querySelectorAll('.filter-btn');
+let activeFilter = 'all';
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderCourses();
+    goToCourse(0);
+    resetCourseInterval();
   });
 });
 
-// ---------- HERO POSTER SLIDESHOW ----------
-const posterImages = document.querySelectorAll('#heroPosterSlideshow img');
-let currentPoster = 0;
-if (posterImages.length > 0) {
-  setInterval(() => {
-    posterImages[currentPoster].classList.remove('active');
-    currentPoster = (currentPoster + 1) % posterImages.length;
-    posterImages[currentPoster].classList.add('active');
-  }, 4000);
-}
-
 // ---------- COURSES DATA & CUSTOM CAROUSEL ----------
 const courses = [
-  { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks" },
-  { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks" },
-  { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", topics: ["Basic Computer", "AI Tools", "AI Automation", "Workflow Automation", "Smart Productivity Tools"], cert: true, duration: "8 Weeks" },
-  { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", topics: ["Complete Basic Computer", "Advanced AI Tools", "Advanced Automation", "Real-World Projects", "3 Certificates"], cert: true, duration: "12 Weeks" },
-  { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", topics: ["Design Fundamentals", "Color Theory", "Typography", "Canva Mastery", "Adobe Photoshop Basics", "Logo Design", "Social Media Graphics"], cert: false, duration: "6 Weeks" },
-  { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", topics: ["Video Basics", "CapCut Pro", "Adobe Premiere Pro", "Transitions & Effects", "Color Grading", "Audio Editing", "Export & Delivery"], cert: false, duration: "6 Weeks" },
-  { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", topics: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git & GitHub", "Hosting & Deployment"], cert: false, duration: "12 Weeks" },
-  { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", topics: ["Python Syntax", "Data Types & Structures", "Functions & Modules", "File Handling", "Web Scraping", "Data Analysis (Pandas)"], cert: false, duration: "10 Weeks" },
-  { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", topics: ["SEO Fundamentals", "Google Ads", "Facebook Ads", "Email Marketing", "Social Media Strategy", "Analytics"], cert: false, duration: "8 Weeks" },
-  { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", topics: ["Profile Creation", "Gig Optimization", "Bidding Strategies", "Client Communication", "Payment Methods", "Portfolio Building"], cert: false, duration: "4 Weeks" },
-  { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", topics: ["Networking Basics", "Linux Fundamentals", "Footprinting & Recon", "Scanning Networks", "Vulnerability Analysis", "Exploitation Basics"], cert: false, duration: "10 Weeks" },
-  { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", topics: ["Resume Structure", "Action Verbs", "Formatting", "Cover Letter", "LinkedIn Optimization"], cert: false, duration: "1 Week" }
+  { name: "Basic Computer", fee: "1,500", desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks", category: "computer", progress: 85 },
+  { name: "Basic Computer + AI", fee: "2,500", desc: "ChatGPT, Gemini, Copilot, AI tools.", topics: ["Everything in Basic Computer", "ChatGPT", "Google Gemini", "Microsoft Copilot", "AI Prompt Engineering", "AI for Students", "AI for Office Work", "AI Content Creation", "AI Image Generation", "AI Presentations", "AI Resume Builder", "AI Productivity Tools"], cert: true, duration: "6 Weeks", category: "ai", progress: 70 },
+  { name: "Basic Computer + AI + Auto", fee: "3,500", desc: "AI automation, workflows. (Standard)", topics: ["Basic Computer", "AI Tools", "AI Automation", "Workflow Automation", "Smart Productivity Tools"], cert: true, duration: "8 Weeks", category: "ai", progress: 60 },
+  { name: "Premium Automation", fee: "5,000", desc: "All above + 3 certificates. Ultimate.", topics: ["Complete Basic Computer", "Advanced AI Tools", "Advanced Automation", "Real-World Projects", "3 Certificates"], cert: true, duration: "12 Weeks", category: "ai", progress: 40 },
+  { name: "Graphic Design", fee: "4,000", desc: "Design principles, Canva, Photoshop.", topics: ["Design Fundamentals", "Color Theory", "Typography", "Canva Mastery", "Adobe Photoshop Basics", "Logo Design", "Social Media Graphics"], cert: false, duration: "6 Weeks", category: "computer", progress: 75 },
+  { name: "Video Editing", fee: "5,000", desc: "CapCut, Premiere, effects.", topics: ["Video Basics", "CapCut Pro", "Adobe Premiere Pro", "Transitions & Effects", "Color Grading", "Audio Editing", "Export & Delivery"], cert: false, duration: "6 Weeks", category: "computer", progress: 65 },
+  { name: "Web Development", fee: "8,000", desc: "HTML, CSS, JS, responsive sites.", topics: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git & GitHub", "Hosting & Deployment"], cert: false, duration: "12 Weeks", category: "computer", progress: 50 },
+  { name: "Python Programming", fee: "7,000", desc: "Basics to automation, data analysis.", topics: ["Python Syntax", "Data Types & Structures", "Functions & Modules", "File Handling", "Web Scraping", "Data Analysis (Pandas)"], cert: false, duration: "10 Weeks", category: "computer", progress: 55 },
+  { name: "Digital Marketing", fee: "6,000", desc: "SEO, Ads, email marketing.", topics: ["SEO Fundamentals", "Google Ads", "Facebook Ads", "Email Marketing", "Social Media Strategy", "Analytics"], cert: false, duration: "8 Weeks", category: "freelancing", progress: 68 },
+  { name: "Freelancing", fee: "3,500", desc: "Fiverr, Upwork success.", topics: ["Profile Creation", "Gig Optimization", "Bidding Strategies", "Client Communication", "Payment Methods", "Portfolio Building"], cert: false, duration: "4 Weeks", category: "freelancing", progress: 90 },
+  { name: "Ethical Hacking", fee: "7,500", desc: "Penetration testing, security.", topics: ["Networking Basics", "Linux Fundamentals", "Footprinting & Recon", "Scanning Networks", "Vulnerability Analysis", "Exploitation Basics"], cert: false, duration: "10 Weeks", category: "computer", progress: 30 },
+  { name: "Resume & CV", fee: "1,000", desc: "ATS-friendly resumes.", topics: ["Resume Structure", "Action Verbs", "Formatting", "Cover Letter", "LinkedIn Optimization"], cert: false, duration: "1 Week", category: "freelancing", progress: 95 },
+  { name: "Al-Quran Al-Karim", fee: "FREE", desc: "Learn specific Surahs with proper Tajweed – completely free for everyone", topics: ["Surah Al-Fatiha", "Surah Yaseen", "Surah Ar-Rahman", "Surah Al-Mulk", "Surah Al-Waqi'ah", "Tajweed Basics"], cert: false, duration: "Ongoing", category: "free", progress: 100 }
 ];
 
 const track = document.getElementById('coursesTrack');
@@ -98,20 +186,34 @@ const dotsContainer = document.getElementById('courseDots');
 let courseIndex = 0;
 let courseInterval;
 
+function getFilteredCourses() {
+  return courses.filter(c => activeFilter === 'all' || c.category === activeFilter);
+}
+
 function renderCourses() {
   track.innerHTML = '';
   dotsContainer.innerHTML = '';
-  courses.forEach((c, i) => {
-    const msg = `Hi, I want to enroll in *${c.name}* (Fee: Rs. ${c.fee}). Please guide me.`;
+  const filtered = getFilteredCourses();
+
+  if (filtered.length === 0) {
+    track.innerHTML = '<div style="width:100%;text-align:center;padding:40px;color:var(--text);">No courses found for this category.</div>';
+    return;
+  }
+
+  filtered.forEach((c, i) => {
+    const msg = `Hi, I want to enroll in *${c.name}* (Fee: ${c.fee}). Please guide me.`;
     const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
     const card = document.createElement('div');
     card.className = 'course-card';
     card.innerHTML = `
       <h3>${c.name}</h3>
-      <p class="course-fee">Rs. ${c.fee}</p>
+      <p class="course-fee">${c.fee === 'FREE' ? 'FREE' : 'Rs. ' + c.fee}</p>
       <p>${c.desc}</p>
       ${c.cert ? '<span style="background:#06b6d4; color:#000; padding:4px 12px; border-radius:12px; display:inline-block; margin:10px 0;">🎓 Certificate</span>' : ''}
-      <button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" style="width:0%" data-width="${c.progress}%"></div>
+      </div>
+      <button class="btn btn-outline view-details" data-index="${courses.indexOf(c)}" style="margin:10px 0;">📋 View Details</button>
       <a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>
     `;
     track.appendChild(card);
@@ -125,10 +227,23 @@ function renderCourses() {
 
   document.querySelectorAll('.view-details').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const index = e.target.dataset.index;
+      const index = +e.target.dataset.index;
       openCourseModal(courses[index]);
     });
   });
+
+  // Animate progress bars when visible
+  const progressBars = document.querySelectorAll('.progress-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bar = entry.target;
+        bar.style.width = bar.dataset.width;
+        barObserver.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.5 });
+  progressBars.forEach(bar => barObserver.observe(bar));
 }
 renderCourses();
 
@@ -140,26 +255,34 @@ function equalizeCourseCards() {
   cards.forEach(c => { c.style.height = maxHeight + 'px'; });
 }
 
-// Recalculate heights after all assets load and on resize
-window.addEventListener('load', () => {
-  equalizeCourseCards();
-});
-window.addEventListener('resize', () => {
-  equalizeCourseCards();
-});
+window.addEventListener('load', equalizeCourseCards);
+window.addEventListener('resize', equalizeCourseCards);
 
 function goToCourse(index) {
+  const filtered = getFilteredCourses();
+  if (filtered.length === 0) return;
   courseIndex = index;
   track.style.transform = `translateX(-${index * 100}%)`;
   document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
   resetCourseInterval();
 }
 
-function nextCourse() { courseIndex = (courseIndex + 1) % courses.length; goToCourse(courseIndex); }
-function resetCourseInterval() { clearInterval(courseInterval); courseInterval = setInterval(nextCourse, 3000); }
+function nextCourse() {
+  const filtered = getFilteredCourses();
+  if (filtered.length === 0) return;
+  courseIndex = (courseIndex + 1) % filtered.length;
+  goToCourse(courseIndex);
+}
+
+function resetCourseInterval() {
+  clearInterval(courseInterval);
+  courseInterval = setInterval(nextCourse, 3000);
+}
 
 document.getElementById('prevCourse').addEventListener('click', () => {
-  courseIndex = (courseIndex - 1 + courses.length) % courses.length;
+  const filtered = getFilteredCourses();
+  if (filtered.length === 0) return;
+  courseIndex = (courseIndex - 1 + filtered.length) % filtered.length;
   goToCourse(courseIndex);
 });
 document.getElementById('nextCourse').addEventListener('click', () => nextCourse());
@@ -171,11 +294,11 @@ const closeCourseModal = document.getElementById('closeCourseModal');
 const courseModalContent = document.getElementById('courseModalContent');
 
 function openCourseModal(course) {
-  const msg = `Hi, I want to enroll in *${course.name}* (Fee: Rs. ${course.fee}). Please guide me.`;
+  const msg = `Hi, I want to enroll in *${course.name}* (Fee: ${course.fee}). Please guide me.`;
   const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
   courseModalContent.innerHTML = `
     <h2>${course.name}</h2>
-    <p style="font-size:1.4rem; color:var(--gold); font-weight:700;">Fee: Rs. ${course.fee}</p>
+    <p style="font-size:1.4rem; color:var(--gold); font-weight:700;">Fee: ${course.fee === 'FREE' ? 'FREE' : 'Rs. ' + course.fee}</p>
     <p><strong>Duration:</strong> ${course.duration}</p>
     <p><strong>Certificate:</strong> ${course.cert ? 'Yes' : 'No'}</p>
     <h4>Topics Covered:</h4>
@@ -320,7 +443,7 @@ faqs.forEach(f => {
   });
 });
 
-// ---------- COUNTDOWN TIMER (SMOOTH – KEEPS SPACE) ----------
+// ---------- COUNTDOWN TIMER (SMOOTH - KEEPS SPACE) ----------
 const countdownSection = document.getElementById('countdownSection');
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date();
@@ -331,7 +454,6 @@ const timerInterval = setInterval(() => {
   if (diff <= 0) {
     countdownEl.textContent = "Expired";
     clearInterval(timerInterval);
-    // Instead of collapsing height, just hide the content while keeping the section space
     countdownSection.style.opacity = '0';
     countdownSection.style.visibility = 'hidden';
     countdownSection.style.pointerEvents = 'none';
@@ -386,6 +508,33 @@ function disableBodyScroll() {
 function enableBodyScroll() {
   body.classList.remove('no-scroll');
 }
+
+// ---------- ENROLLMENT STEPS ANIMATION ----------
+const steps = document.querySelectorAll('.step');
+const stepObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+steps.forEach(step => stepObserver.observe(step));
+
+// ---------- LIVE STATUS BAR ----------
+const statusBar = document.getElementById('liveStatusBar');
+const statusMessages = [
+  "🔥 3 students are viewing this course right now",
+  "⚡ Only 2 seats left in AI Automation batch",
+  "🎉 A new student just enrolled in Freelancing",
+  "📢 Special discount ends soon – Enroll now!"
+];
+let statusIdx = 0;
+setInterval(() => {
+  statusBar.textContent = statusMessages[statusIdx % statusMessages.length];
+  statusBar.style.display = 'block';
+  setTimeout(() => { statusBar.style.display = 'none'; }, 4000);
+  statusIdx++;
+}, 15000);
 
 // ---------- AOS INITIALIZE ----------
 AOS.init({ duration: 800, once: true });
