@@ -154,19 +154,17 @@ a { text-decoration:none; color:inherit; }
 .dot { width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer; transition:0.3s; }
 .dot.active { background:var(--cyan); }
 
-/* Scholarship */
+/* Scholarship (static – no shine animation) */
 .scholar-card {
-  background:linear-gradient(135deg, var(--gold), #f59e0b); padding:35px; border-radius:24px;
-  text-align:center; margin:40px 0; position:relative;
-  box-shadow:0 15px 35px rgba(245,158,11,0.3); color:#000;
+  background:linear-gradient(135deg, var(--gold), #fbbf24);
+  padding:40px; border-radius:24px; text-align:center;
+  margin:40px 0; box-shadow:0 12px 30px rgba(245,158,11,0.25);
+  color:#000; position:relative;
+  border:2px solid rgba(255,255,255,0.3);
 }
-.shine::after {
-  content:''; position:absolute; top:0; left:-50%; width:50%; height:100%;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation:shine 4s infinite;
-}
-@keyframes shine { 0% { left:-50%; } 100% { left:150%; } }
-.cta-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:25px 0; }
+.scholar-card h2 { margin-bottom:15px; }
+.scholar-card p { margin-bottom:25px; font-size:1.1rem; }
+.cta-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
 
 .title { text-align:center; font-size:2.2rem; margin:50px 0 30px; font-weight:700; color:var(--gold); }
 
