@@ -2,7 +2,7 @@
    Zero to Pro Computer & AI Academy – script.js
    =================================================== */
 
-const APP_VERSION = "2.0"; // Update version to show popup again
+const APP_VERSION = "2.1"; // Update version to show popup again
 
 // ---------- AUTO DARK / LIGHT MODE + MANUAL TOGGLE ----------
 const body = document.body;
@@ -404,32 +404,17 @@ submitReviewBtn.addEventListener('click', () => {
   enableBodyScroll();
 });
 
-// ---------- COMMENTS AUTO-SLIDE ----------
-const comments = ["Hamza: Just enrolled! 🚀", "Zainab: Mentor helped me instantly 💯", "Owais: Academy feels like family ❤️"];
-const commentTrack = document.getElementById('commentTrack');
-let commentIndex = 0;
-comments.forEach(c => {
-  const div = document.createElement('div');
-  div.className = 'comment-card';
-  div.textContent = c;
-  commentTrack.appendChild(div);
-});
-function goToComment(idx) {
-  commentIndex = idx;
-  const cardWidth = commentTrack.firstElementChild.offsetWidth + 20;
-  commentTrack.style.transform = `translateX(-${commentIndex * cardWidth}px)`;
-}
-setInterval(() => {
-  commentIndex = (commentIndex + 1) % comments.length;
-  goToComment(commentIndex);
-}, 3000);
-
 // ---------- FAQ ACCORDION ----------
 const faqContainer = document.getElementById('faqContainer');
 const faqs = [
-  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero." },
-  { q: "How to get certificate?", a: "Complete course and projects." },
-  { q: "How to pay?", a: "JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." }
+  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero. Even if you have never touched a computer, our Basic Computer course will guide you step by step." },
+  { q: "How to get certificate?", a: "After completing the course and submitting all projects, you will receive a verifiable certificate. Attendance must be above 70% to be eligible." },
+  { q: "How to pay?", a: "We accept JazzCash and EasyPaisa. Our account number is 0304 6491358 (Abid Hussain). You can also pay via bank transfer." },
+  { q: "Is there a demo class?", a: "Yes! We offer 3 FREE demo classes before enrollment so you can experience our teaching style." },
+  { q: "What courses do you offer?", a: "We offer Basic Computer, AI, Automation, Graphic Design, Video Editing, Freelancing, Web Development, Python, Ethical Hacking, and more. Plus a free Quran course." },
+  { q: "Can I get a scholarship?", a: "Yes. Take our scholarship test. If you pass, you can study any basic course completely free." },
+  { q: "Are the classes online or physical?", a: "All classes are online via recorded lectures and live sessions. You can learn from anywhere." },
+  { q: "How long does a course take?", a: "Course duration varies from 4 weeks to 12 weeks, depending on the topic." }
 ];
 faqs.forEach(f => {
   const div = document.createElement('div');
@@ -535,6 +520,13 @@ setInterval(() => {
   setTimeout(() => { statusBar.style.display = 'none'; }, 4000);
   statusIdx++;
 }, 15000);
+
+// ---------- FLIP CARDS CLICK TOGGLE ----------
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('flipped');
+  });
+});
 
 // ---------- AOS INITIALIZE ----------
 AOS.init({ duration: 800, once: true });
