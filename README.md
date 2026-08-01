@@ -1,245 +1,570 @@
-🚀 Zero to Pro Computer & AI Academy – Website Documentation
-📌 Website Overview
-Yeh Zero to Pro Computer & AI Academy ki official website hai.
-Isay HTML5, CSS3, aur JavaScript mein banaya gaya hai aur GitHub Pages par host kiya gaya hai.
+███████╗███████╗██████╗  ██████╗     ████████╗ ██████╗     ██████╗ ██████╗  ██████╗
+╚══███╔╝╚══███╔╝╚════██╗██╔═══██╗    ╚══██╔══╝██╔═══██╗   ██╔═══██╗██╔══██╗██╔═══██╗
+  ███╔╝   ███╔╝  █████╔╝██║   ██║       ██║   ██║   ██║   ██║   ██║██████╔╝██║   ██║
+ ███╔╝   ███╔╝   ╚═══██╗██║   ██║       ██║   ██║   ██║   ██║   ██║██╔═══╝ ██║   ██║
+███████╗███████╗██████╔╝╚██████╔╝       ██║   ╚██████╔╝   ╚██████╔╝██║     ╚██████╔╝
+╚══════╝╚══════╝╚═════╝  ╚═════╝        ╚═╝    ╚═════╝     ╚═════╝ ╚═╝      ╚═════╝
 
-Website fully responsive hai — mobile, tablet, aur desktop sab par perfect dikhti hai.
-Isme Dark/Light Mode, Animations, Course Carousel, 50% Discount System, Countdown Timer, Student Reviews, aur Certificate System mojood hain.
+              ZERO TO PRO COMPUTER & AI ACADEMY
+                 LEARN TODAY • BUILD TOMORROW • LEAD THE FUTURE
 
-📁 File Structure
-text
-/ (root)
-├── index.html              (Main website)
-├── style.css               (All styles)
-├── script.js               (All functionality)
-├── banner.js               (Promotional banner)
-├── README.md               (Ye file)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Zero to Pro Computer & AI Academy
+
+Official Website Documentation
+
+This is the official website of Zero to Pro Computer & AI Academy.
+
+The website is developed using HTML, CSS, and JavaScript and is hosted on GitHub Pages.
+
+It is fully responsive and designed to provide a smooth experience across mobile, tablet, and desktop devices.
+
+The platform allows students to explore professional courses, view course details, check discount offers, read student reviews, explore scholarships, view success stories, learn about certificates, and contact the academy.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                              WEBSITE FEATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Responsive Design
+
+The website is fully responsive and works across:
+
+- Mobile devices
+- Tablets
+- Laptops
+- Desktop computers
+
+The layout automatically adjusts according to the screen size.
+
+
+Dark and Light Mode
+
+The website supports both Dark Mode and Light Mode.
+
+Features include:
+
+- Automatic system theme detection
+- Manual theme switching
+- Smooth theme transition
+- Mobile-friendly theme control
+
+
+Navigation Menu
+
+The navigation system includes:
+
+- Desktop navigation
+- Mobile menu
+- Menu toggle button
+- Automatic menu closing while scrolling
+- Smooth navigation between sections
+
+
+Welcome Popup
+
+A welcome popup appears when users visit the website for the first time.
+
+It includes:
+
+- Academy poster
+- Promotional information
+- WhatsApp contact options
+- Close button
+
+
+Hero Section
+
+The main hero section includes:
+
+- Professional academy introduction
+- Animated typewriter effect
+- Multiple heading phrases
+- Call-to-action buttons
+- Promotional information
+
+
+Animated Statistics
+
+The website displays animated statistics including:
+
+- 1200+ Students
+- 17 Courses
+- 4.9 Rating
+- 500+ Certificates
+
+The counters animate when the section becomes visible.
+
+
+Course Slider
+
+The course section contains 17+ professional courses.
+
+Features include:
+
+- Automatic course slider
+- Previous and next buttons
+- Slider dots
+- Course categories
+- Course filtering
+- Course details modal
+- Admission button
+- WhatsApp integration
+
+Available categories include:
+
+- Computer
+- AI
+- Freelancing
+- Free Courses
+
+
+Discount System
+
+The website includes a 50% discount system.
+
+Each course can display:
+
+- Original price
+- Discounted price
+- Discount percentage
+- Admission option
+
+Students can directly contact the academy through WhatsApp for admission.
+
+
+Learning Path
+
+The learning path provides students with a simple journey:
+
+Zero → Basic → AI → Pro
+
+This section helps students understand how they can progress from beginner level to professional skills.
+
+
+Scholarship Section
+
+The scholarship section provides students with information about available learning opportunities.
+
+It includes:
+
+- Free learning opportunities
+- Scholarship information
+- Scholarship test
+- Admission form
+
+
+Student Reviews
+
+The website contains a student review section.
+
+Features include:
+
+- 15+ student reviews
+- Star ratings
+- Automatic review slider
+- Review modal
+- View all reviews
+- Student review submission
+
+
+Success Stories
+
+The success stories section showcases student achievements through interactive cards.
+
+The cards include flip animations and provide additional information when clicked.
+
+
+Certificate Section
+
+A dedicated certificate section displays a professional sample certificate and represents the academy's certification system.
+
+
+Founder Section
+
+The website includes a dedicated founder section.
+
+Founder:
+
+Abid Hussain
+
+Position:
+
+Founder & CEO
+
+Organization:
+
+Zero to Pro Computer & AI Academy
+
+
+FAQ Section
+
+The Frequently Asked Questions section provides answers to common student questions.
+
+The FAQ system includes:
+
+- Expandable questions
+- Click-to-open answers
+- Simple user interface
+
+
+Contact Section
+
+Students can contact the academy through:
+
+- WhatsApp
+- Facebook
+- Instagram
+- Email
+
+Payment information is also available through JazzCash and EasyPaisa.
+
+
+Floating Buttons
+
+The website includes floating action buttons for:
+
+- Student reviews
+- Back to top
+
+
+Live Notifications
+
+The website displays live notification messages for important announcements, promotional updates, and academy activities.
+
+
+Countdown Timer
+
+A countdown timer can be used for special promotional campaigns.
+
+The timer:
+
+- Displays remaining time
+- Continues after page refresh
+- Automatically hides when the campaign ends
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                              PROJECT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+root folder/
+├── index.html
+├── style.css
+├── script.js
+├── banner.js
+├── README.md
 └── assets/
-    ├── logo.jpg            (Academy logo)
-    ├── independenceday.jpeg (Independence Day poster)
-    └── certificate.png     (Sample certificate)
-🎨 Color Scheme
-Mode	Background	Cards	Text	Accent
-Light	#f8f9fa	#ffffff	#1e293b	#f59e0b
-Dark	#0d1f0a	#1a3a14	#ffffff	#00A651
-Primary Green: #01411c (Pakistan flag green)
+    ├── logo.jpg
+    ├── independenceday.jpeg
+    └── certificate.png
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                              COLOR SCHEME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+| Mode  | Background | Cards   | Text  | Gold      |
+|-------|------------|---------|-------|-----------|
+| Light | #f8f9fa    | #ffffff | Dark  | #f59e0b   |
+| Dark  | #0d1f0a    | #1a3a14 | White | #f59e0b   |
+
+Primary Green: #01411c
 
 Light Green: #00A651
 
 Gold: #f59e0b
 
-📋 Features List
-🎯 1. Welcome Popup
-Pehli baar visit par popup show hota hai
 
-Poster image, welcome message, aur contact buttons
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             COURSES AND FEES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Close button ya background click se band hota hai
+| Course              | Original Fee | 50% Discount |
+|---------------------|--------------|--------------|
+| Basic Computer      | Rs. 2,500    | Rs. 1,250    |
+| Typing Course       | Rs. 2,500    | Rs. 1,250    |
+| Microsoft Office    | Rs. 4,000    | Rs. 2,000    |
+| Graphic Designing   | Rs. 7,500    | Rs. 3,750    |
+| Video Editing       | Rs. 8,000    | Rs. 4,000    |
+| Digital Marketing   | Rs. 8,500    | Rs. 4,250    |
+| Freelancing         | Rs. 5,000    | Rs. 2,500    |
+| Web Development     | Rs. 10,000   | Rs. 5,000    |
+| Programming         | Rs. 12,000   | Rs. 6,000    |
+| Networking          | Rs. 10,000   | Rs. 5,000    |
+| Database            | Rs. 9,000    | Rs. 4,500    |
+| Cloud Computing     | Rs. 12,000   | Rs. 6,000    |
+| Cyber Security      | Rs. 15,000   | Rs. 7,500    |
+| Ethical Hacking     | Rs. 18,000   | Rs. 9,000    |
+| AI                  | Rs. 20,000   | Rs. 10,000   |
+| AI Automation       | Rs. 25,000   | Rs. 12,500   |
+| Al-Quran Al-Karim   | FREE         | FREE         |
 
-Version update hone par dobara show hota hai
 
-📱 2. Responsive Navigation
-Sticky header with logo and navigation links
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             FILE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Mobile par hamburger menu (☰)
+index.html
 
-Scroll karne par menu auto-close
+The main structure of the website.
 
-Dark/Light mode toggle button
+It contains:
 
-⌨️ 3. Typewriter Effect
-Hero section mein heading typewriter style mein likhti hai
+- Header
+- Navigation
+- Hero section
+- Courses
+- Learning path
+- Scholarship
+- Reviews
+- Success stories
+- Certificate
+- Founder
+- FAQ
+- Contact
+- Footer
 
-3 rotating phrases
 
-🔢 4. Animated Counters
-Scroll karne par numbers count-up hote hain
+style.css
 
-Students, Courses, Rating, Certificates
+Contains the complete visual design of the website.
 
-⏳ 5. Independence Day Countdown
-14 August 2025 tak countdown
+It controls:
 
-Din, ghante, minute, second dikhata hai
+- Colors
+- Layout
+- Responsive design
+- Animations
+- Cards
+- Buttons
+- Modals
+- Dark Mode
+- Light Mode
+- Mobile styling
 
-Refresh par kabhi disappear nahi hota
 
-Expire hone par automatic hide
+script.js
 
-📚 6. Courses Carousel
-17 courses with full details
+Contains the main website functionality.
 
-Auto-slide (3 seconds) + manual arrows/dots
+It controls:
 
-Course filter (All, Computer, AI, Freelancing, Free)
+- Course data
+- Course slider
+- Filters
+- Course modals
+- Counters
+- Reviews
+- FAQ
+- Theme switching
+- Countdown timer
+- Interactive elements
 
-Har course ke liye "View Details" modal
 
-💰 7. 50% Independence Day Discount
-Original price strikethrough
+banner.js
 
-Discounted price + "50% OFF" red badge
+Controls the top promotional banner and its content.
 
-WhatsApp enrollment link with discounted price
 
-🛤️ 8. Learning Path
-4 steps: Zero → Basic → AI → Pro
+assets/
 
-Animated with icons and descriptions
+Contains website images and media files.
 
-🎓 9. Scholarship Section
-"Want FREE Learning?" card
+Current assets include:
 
-Scholarship test aur admission form links
+- logo.jpg
+- independenceday.jpeg
+- certificate.png
 
-⭐ 10. Student Reviews
-Auto-sliding reviews (15 reviews)
 
-Star ratings
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                              HOW TO RUN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"View all reviews" modal
+Run on Computer
 
-User review submission (localStorage)
+1. Download or clone the project.
+2. Place all files inside the same project folder.
+3. Make sure the assets folder is present.
+4. Open index.html in any modern web browser.
+5. The website will start running.
 
-🏆 11. Success Stories
-4 flip cards (click/hover to flip)
+No server is required for basic local use.
 
-3 girls + 1 boy stories
 
-🎓 12. Certificate Section
-Sample certificate image display
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                           GITHUB PAGES DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👨‍🏫 13. Meet Founder
-Abid Hussain introduction
+1. Create a new repository on GitHub.
+2. Upload all project files.
+3. Make sure index.html is in the root directory.
+4. Open repository Settings.
+5. Select Pages.
+6. Choose the required branch.
+7. Save the settings.
+8. GitHub Pages will publish the website.
 
-Avatar + quote
 
-❓ 14. FAQ Section
-Accordion style (click to expand)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             CUSTOMIZATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-8 common questions with answers
+Change Poster
 
-📞 15. Contact Section
-3 contact cards (Abid Hussain, Miss Anayea, Ms. Eman Fatima)
+Place the new image inside the assets folder.
 
-WhatsApp chat links
+Then update the image name in index.html.
 
-JazzCash/EasyPaisa payment info
 
-Facebook, Instagram, Email links
+Change Course Fees
 
-🔼 16. Floating Buttons
-Review button (green, bottom-right)
+Open script.js and find the courses array.
 
-Back to Top button (appears after scroll)
+Update the fee values according to your requirements.
 
-📢 17. Live Notification
-Bottom-left corner notification
 
-Enrollment/activity messages
+Change Discount Percentage
 
-🌙 18. Dark/Light Mode
-System preference auto-detect
-
-Manual toggle button
-
-Smooth transition
-
-🚀 How to Use
-Local Development:
-Sab files ek folder mein rakhein
-
-index.html ko browser mein kholen
-
-Koi server ki zaroorat nahi
-
-Deploy to GitHub Pages:
-GitHub repository banayein
-
-Sab files upload karein
-
-Settings → Pages → Branch select karein
-
-Website live ho jayegi
-
-🔧 Customization Guide
-Poster Change Karna:
-index.html mein 2 jagah poster change karein:
-
-Line ~30: Popup mein <img src="assets/independenceday.jpeg"
-
-Line ~80: Hero section mein <img src="assets/independenceday.jpeg"
-
-Course Fees Update Karna:
-script.js mein courses array mein har course ki fee value change karein
-
-Countdown Date Change Karna:
-script.js mein ye line change karein:
-
-javascript
-const endDate = new Date('2025-08-14T23:59:59');
-Discount Percent Change Karna:
-script.js mein ye value change karein:
-
-javascript
 const DISCOUNT_PERCENT = 50;
-Banner Text Change Karna:
-banner.js mein bannerData object ki text aur link values change karein
 
-📊 Courses List (17 Courses)
-#	Course Name	Original Fee	Discounted (50%)
-1	Basic Computer	Rs. 2,500	Rs. 1,250
-2	Typing Course	Rs. 2,500	Rs. 1,250
-3	Microsoft Office	Rs. 4,000	Rs. 2,000
-4	Graphic Designing	Rs. 7,500	Rs. 3,750
-5	Video Editing	Rs. 8,000	Rs. 4,000
-6	Digital Marketing	Rs. 8,500	Rs. 4,250
-7	Freelancing	Rs. 5,000	Rs. 2,500
-8	Web Development	Rs. 10,000	Rs. 5,000
-9	Programming	Rs. 12,000	Rs. 6,000
-10	Networking	Rs. 10,000	Rs. 5,000
-11	Database Management	Rs. 9,000	Rs. 4,500
-12	Cloud Computing	Rs. 12,000	Rs. 6,000
-13	Cyber Security	Rs. 15,000	Rs. 7,500
-14	Ethical Hacking	Rs. 18,000	Rs. 9,000
-15	AI (Artificial Intelligence)	Rs. 20,000	Rs. 10,000
-16	AI Automation	Rs. 25,000	Rs. 12,500
-17	Al-Quran Al-Karim	FREE	FREE
-📞 Contact Information
-Person	Role	WhatsApp
-Abid Hussain	Founder & CEO	+92 306 1565858
-Miss Anayea	Coordinator	+92 315 5344783
-Ms. Eman Fatima	Coordinator	+92 370 4979576
-Email: zerotoproaccedmy@gmail.com
+Change 50 to the required discount percentage.
 
-Facebook: Zero to Pro Academy
 
-Instagram: @zero_to_pro_ai_accedmy
+Change Countdown Date
 
-Payment: JazzCash / EasyPaisa: 0304 6491358 (Abid Hussain)
+const endDate = new Date('2025-08-14T23:59:59');
 
-🛠️ Technologies Used
+Update the date and time according to your campaign.
+
+
+Change Promotional Banner
+
+Open banner.js and update the banner text and link.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            CONTACT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Founder & CEO
+
+Abid Hussain
+
+WhatsApp:
++92 306 1565858
+
+
+Coordinator
+
+Miss Anayea
+
+WhatsApp:
++92 315 5344783
+
+
+Coordinator
+
+Ms. Eman Fatima
+
+WhatsApp:
++92 370 4979576
+
+
+Email:
+
+zerotoproaccedmy@gmail.com
+
+
+Facebook:
+
+fb.com/share/1BDiP5cddB
+
+
+Instagram:
+
+@zero_to_pro_ai_accedmy
+
+
+Payment:
+
+JazzCash / EasyPaisa
+0304 6491358
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             TECHNOLOGY STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 HTML5
+CSS3
+JavaScript
+AOS Animation Library
+Font Awesome
+Google Fonts
+GitHub Pages
 
-CSS3 (Custom Properties, Flexbox, Animations)
 
-JavaScript (ES6+)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             VERSION HISTORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-AOS (Animate on Scroll Library)
+| Version | Date       | Changes                                  |
+|---------|------------|------------------------------------------|
+| 5.0     | 2 Aug 2025 | Independence Day Theme and 50% Discount |
+| 4.0     | 1 Aug 2025 | New Professional Design                 |
+| 3.0     | July 2025  | All Courses and Reviews                 |
+| 2.0     | July 2025  | Dark Mode and FAQ                       |
+| 1.0     | June 2025  | Initial Release                         |
 
-Font Awesome Icons
 
-Google Fonts (Poppins, Nunito, Great Vibes, Playfair Display)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             ACADEMY MISSION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📝 Version History
-Version	Date	Changes
-5.0	2 Aug 2025	Independence Day theme, 50% discount, countdown fix
-4.0	1 Aug 2025	Pakistan Academy style redesign
-3.0	July 2025	All courses added, carousel, reviews
-2.0	July 2025	Dark mode, counters, FAQ
-1.0	June 2025	Initial release
-📄 License
-© 2025 Zero to Pro Computer & AI Academy. All rights reserved.
+Zero to Pro Computer & AI Academy is committed to providing practical, affordable, and career-focused technology education.
 
-Made with ❤️ by Abid Hussain
-Learn Today • Build Tomorrow • Lead the Future
+The academy aims to help students start from the basics and gradually develop professional skills.
+
+Our learning areas include:
+
+Computer Skills
+Artificial Intelligence
+Cyber Security
+Web Development
+Programming
+Graphic Designing
+Video Editing
+Digital Marketing
+Freelancing
+AI Automation
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                              OUR VISION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Our vision is to make quality technology education accessible to students and help them build practical skills for education, freelancing, employment, and future careers.
+
+We believe that every learner can move from beginner level to professional level with the right guidance, practice, and consistency.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+███████╗███████╗██████╗  ██████╗     ████████╗ ██████╗     ██████╗ ██████╗  ██████╗
+╚══███╔╝╚══███╔╝╚════██╗██╔═══██╗    ╚══██╔══╝██╔═══██╗   ██╔═══██╗██╔══██╗██╔═══██╗
+  ███╔╝   ███╔╝  █████╔╝██║   ██║       ██║   ██║   ██║   ██║   ██║██████╔╝██║   ██║
+ ███╔╝   ███╔╝   ╚═══██╗██║   ██║       ██║   ██║   ██║   ██║   ██║██╔═══╝ ██║   ██║
+███████╗███████╗██████╔╝╚██████╔╝       ██║   ╚██████╔╝   ╚██████╔╝██║     ╚██████╔╝
+╚══════╝╚══════╝╚═════╝  ╚═════╝        ╚═╝    ╚═════╝     ╚═════╝ ╚═╝      ╚═════╝
+
+              ZERO TO PRO COMPUTER & AI ACADEMY
+
+                 LEARN TODAY • BUILD TOMORROW •
+                         LEAD THE FUTURE
+
+                    © 2025 ALL RIGHTS RESERVED
