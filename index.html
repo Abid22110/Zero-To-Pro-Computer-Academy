@@ -2,26 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zero to Pro Computer & AI Academy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Zero to Pro Computer & AI Academy – Independence Day Offer</title>
   <meta name="description" content="Learn Today • Build Tomorrow • Lead the Future" />
+  <meta property="og:title" content="Zero to Pro Computer & AI Academy" />
+  <meta property="og:description" content="Take scholarship test, learn modern computer and AI skills" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.jpg" />
 
+  <!-- Favicon -->
   <link rel="icon" href="assets/logo.jpg" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Main Stylesheet (Independence Day Green Theme) -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="live-status-bar" id="liveStatusBar">🇵🇰 Independence Day Special Offer Live</div>
-  <div id="bannerRoot"></div>
 
-  <!-- Popup -->
+  <!-- ============================================ -->
+  <!-- LIVE STATUS BAR                              -->
+  <!-- ============================================ -->
+  <div class="live-status-bar" id="liveStatusBar"></div>
+
+  <!-- ============================================ -->
+  <!-- WELCOME POPUP                                -->
+  <!-- ============================================ -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
       <button class="close-btn" id="closePopup">&times;</button>
-      <img src="assets/poster-1.jpeg" alt="Academy Poster" class="popup-poster" id="popupPoster" onerror="this.src='assets/logo.jpg'" />
+      <img src="assets/poster-1.jpeg" alt="Academy Poster" class="popup-poster" id="popupPoster"
+           onerror="this.src='assets/logo.jpg'" />
       <h3>Want to learn Basic Computer + AI from Zero to Pro?</h3>
       <p>Join our beginner-friendly course with practical training and 3 FREE Demo Classes before enrollment.</p>
       <div class="popup-buttons">
@@ -35,19 +56,26 @@
     </div>
   </div>
 
+  <!-- ============================================ -->
+  <!-- MAIN WEBSITE CONTENT                         -->
+  <!-- ============================================ -->
   <div id="mainSite" style="display:none;">
+
+    <!-- ============================================ -->
+    <!-- HEADER / NAVIGATION BAR                      -->
+    <!-- ============================================ -->
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="#home">
-          <img src="assets/logo.jpg" alt="Logo" class="logo" />
+          <img src="assets/logo.jpg" alt="Zero to Pro Academy Logo" class="logo" />
           <div class="brand-text">
             <strong>Zero to Pro Academy</strong>
             <span>Learn Today • Build Tomorrow</span>
           </div>
         </a>
-        <button class="hamburger" id="hamburger">☰</button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
         <nav class="nav-links" id="navLinks">
-          <a href="#home">Home</a>
+          <a href="#about">Home</a>
           <a href="#courses">Courses</a>
           <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
@@ -58,20 +86,33 @@
     </header>
 
     <main>
-      <section id="home" class="hero section">
+
+      <!-- ============================================ -->
+      <!-- HERO SECTION                                 -->
+      <!-- ============================================ -->
+      <section id="about" class="hero section">
         <div class="container">
-          <div class="pk-flag">🇵🇰</div>
-          <h1 id="typewriter"></h1>
+          <h1 id="typewriter" data-aos="fade-up"></h1>
           <p class="sub">Learn Today • Build Tomorrow • Lead the Future</p>
-          <p class="desc">Turn your curiosity into a career. Practical skills, real support. Join 1,200+ students.</p>
+          <p class="desc">Turn your curiosity into a career. Practical skills, real support. Join 1,200+ students already transforming their lives.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSddjFSlOpm-6FgeZ9NbTTEeCNxGzGTKjpo_6qVSYWzItYFFJQ/viewform?usp=dialog">🎓 Scholarship Test</a>
             <a class="btn btn-outline" href="#courses">🚀 Explore Courses</a>
           </div>
           <div class="free-badge">🎉 1,200+ Students Enrolled</div>
+          <!-- Pakistan Flag -->
+          <div style="font-size:4rem; margin-top:30px;">🇵🇰</div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <img src="assets/poster-1.jpeg" alt="Academy Poster" onerror="this.src='assets/logo.jpg'" />
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- ============================================ -->
+      <!-- ANIMATED COUNTERS                            -->
+      <!-- ============================================ -->
       <div class="container counters-grid" id="counters">
         <div class="counter-item"><div class="counter-number" data-target="1200">0</div><div class="counter-label">Students</div></div>
         <div class="counter-item"><div class="counter-number" data-target="17">0</div><div class="counter-label">Courses</div></div>
@@ -79,20 +120,30 @@
         <div class="counter-item"><div class="counter-number" data-target="500">0</div><div class="counter-label">Certificates</div></div>
       </div>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- ABOUT ACADEMY                                -->
+      <!-- ============================================ -->
+      <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
         <h2 class="title">🌟 About Our Academy</h2>
-        <p class="about-text">
-          Zero to Pro Computer & AI Academy provides affordable, practical, career-focused training in digital and AI skills.
+        <p style="max-width:700px; margin:0 auto; font-size:1.1rem; opacity:0.9;">
+          Zero to Pro Computer & AI Academy is dedicated to providing affordable, practical, and career-focused training.
+          Our mission is to empower every student with the digital and AI skills needed to succeed in today's world.
         </p>
       </div>
 
-      <div id="countdownSection" class="container countdown-box">
+      <!-- ============================================ -->
+      <!-- COUNTDOWN TIMER                              -->
+      <!-- ============================================ -->
+      <div id="countdownSection" class="container" data-aos="zoom-in" style="margin: 35px auto; background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease; max-height: 200px; opacity: 1;">
         <h3>🇵🇰 Independence Day Offer Ends In</h3>
-        <p class="countdown-text"><span id="countdown"></span></p>
+        <p style="font-size: 1.4rem; font-weight: 700; color: var(--gold);"><span id="countdown"></span></p>
         <a href="https://wa.me/923061565858?text=I%20want%20to%20avail%20the%2050%25%20Independence%20Day%20discount" target="_blank" class="btn btn-primary">Claim 50% Discount</a>
       </div>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- LEARNING PATH                                -->
+      <!-- ============================================ -->
+      <div class="container" data-aos="fade-up" style="text-align:center; margin:40px auto;">
         <h2 class="title">🛤️ Your Learning Path</h2>
         <div class="learning-path">
           <div class="path-step">🔰 Zero</div><div class="path-arrow">→</div>
@@ -102,9 +153,12 @@
         </div>
       </div>
 
+      <!-- ============================================ -->
+      <!-- SCHOLARSHIP SECTION                          -->
+      <!-- ============================================ -->
       <section class="section">
         <div class="container">
-          <div class="scholar-card">
+          <div class="scholar-card" data-aos="fade-up">
             <h2>🎓 Want FREE Learning?</h2>
             <p>Take our simple scholarship test. Pass it, and study any basic course completely free!</p>
             <div class="cta-row">
@@ -115,6 +169,9 @@
         </div>
       </section>
 
+      <!-- ============================================ -->
+      <!-- COURSE FILTER                                -->
+      <!-- ============================================ -->
       <div class="container">
         <div class="filter-buttons" id="courseFilters">
           <button class="filter-btn active" data-filter="all">All</button>
@@ -125,9 +182,12 @@
         </div>
       </div>
 
+      <!-- ============================================ -->
+      <!-- COURSES CAROUSEL                             -->
+      <!-- ============================================ -->
       <section id="courses" class="section">
         <div class="container">
-          <h2 class="title">📚 All Courses</h2>
+          <h2 class="title" data-aos="fade-up">📚 All Courses</h2>
           <div class="courses-carousel">
             <div class="courses-track" id="coursesTrack"></div>
             <button class="carousel-arrow left" id="prevCourse"><i class="fas fa-chevron-left"></i></button>
@@ -137,42 +197,55 @@
         </div>
       </section>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- ENROLLMENT STEPS                             -->
+      <!-- ============================================ -->
+      <div class="container" style="margin:50px auto;">
         <h2 class="title">🚀 How to Get Started</h2>
-        <div class="enrollment-steps">
-          <div class="step"><div class="step-icon">1️⃣</div><div><h4>Choose Your Course</h4><p>Pick a course that matches your goal.</p></div></div>
-          <div class="step"><div class="step-icon">2️⃣</div><div><h4>Book a FREE Demo</h4><p>Try a demo class first.</p></div></div>
-          <div class="step"><div class="step-icon">3️⃣</div><div><h4>Enroll & Pay</h4><p>Secure your seat via JazzCash/EasyPaisa.</p></div></div>
-          <div class="step"><div class="step-icon">4️⃣</div><div><h4>Start Learning</h4><p>Get training, assignments and support.</p></div></div>
+        <div class="enrollment-steps" id="enrollmentSteps">
+          <div class="step"><div class="step-icon">1️⃣</div><div class="step-text"><h4>Choose Your Course</h4><p>Explore our wide range of courses and pick what fits your goal.</p></div></div>
+          <div class="step"><div class="step-icon">2️⃣</div><div class="step-text"><h4>Book a FREE Demo</h4><p>Try a demo class to experience our teaching style.</p></div></div>
+          <div class="step"><div class="step-icon">3️⃣</div><div class="step-text"><h4>Enroll & Pay</h4><p>Secure your seat with easy payment via JazzCash/EasyPaisa.</p></div></div>
+          <div class="step"><div class="step-icon">4️⃣</div><div class="step-text"><h4>Start Learning</h4><p>Get access to videos, notes, assignments and become a Pro!</p></div></div>
         </div>
       </div>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- SUCCESS STORIES (FLIP CARDS)                 -->
+      <!-- ============================================ -->
+      <div class="container" style="margin:50px auto;">
         <h2 class="title">🏆 Success Stories</h2>
-        <div class="flip-cards">
-          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Ayesha</strong><br>⭐⭐⭐⭐⭐<br>Graphic Design</div><div class="flip-card-back">"From zero to earning with design skills!"</div></div></div>
-          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Fatima</strong><br>⭐⭐⭐⭐⭐<br>AI Automation</div><div class="flip-card-back">"Automated my tasks and saved hours daily."</div></div></div>
-          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Zainab</strong><br>⭐⭐⭐⭐⭐<br>Canva Masterclass</div><div class="flip-card-back">"Now I run my own design services."</div></div></div>
-          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Ali</strong><br>⭐⭐⭐⭐⭐<br>Freelancing</div><div class="flip-card-back">"Got first international client in weeks."</div></div></div>
+        <div class="flip-cards" id="flipCards">
+          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Ayesha</strong><br>⭐⭐⭐⭐⭐<br>Graphic Design</div><div class="flip-card-back">"From zero to freelance designer, earning Rs. 50k/month!"</div></div></div>
+          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Fatima</strong><br>⭐⭐⭐⭐⭐<br>AI Automation</div><div class="flip-card-back">"Automated her office tasks and got a promotion."</div></div></div>
+          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Zainab</strong><br>⭐⭐⭐⭐⭐<br>Canva Masterclass</div><div class="flip-card-back">"Now runs her own social media agency."</div></div></div>
+          <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><strong>Ali</strong><br>⭐⭐⭐⭐⭐<br>Freelancing</div><div class="flip-card-back">"Got his first international client within 2 weeks."</div></div></div>
         </div>
       </div>
 
+      <!-- ============================================ -->
+      <!-- STUDENT REVIEWS                              -->
+      <!-- ============================================ -->
       <section id="reviews" class="section">
         <div class="container">
-          <h2 class="title">⭐ Student Reviews <span class="small">(4.9 ★ – 50+ reviews)</span></h2>
-          <div class="review-slider">
-            <div class="review-track" id="reviewTrack"></div>
-          </div>
-          <div class="center"><span class="view-all-reviews" id="viewAllReviews">📋 View all reviews</span></div>
+          <h2 class="title">⭐ Student Reviews <span style="font-size:1rem; color:var(--text);">(4.9 ★ – 50+ reviews)</span></h2>
+          <div class="review-slider"><div class="review-track" id="reviewTrack"></div></div>
+          <div style="text-align:center;"><span class="view-all-reviews" id="viewAllReviews">📋 View all reviews</span></div>
         </div>
       </section>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- SAMPLE CERTIFICATE                           -->
+      <!-- ============================================ -->
+      <div class="container" data-aos="zoom-in" style="margin:50px auto;">
         <h2 class="title">🎓 Sample Certificate</h2>
-        <img src="assets/certificate.png" alt="Sample Certificate" class="certificate-img" onerror="this.style.display='none'" />
+        <img src="assets/certificate.png" alt="Sample Certificate" class="certificate-img" onerror="this.style.display='none'">
       </div>
 
-      <div class="container section-mini">
+      <!-- ============================================ -->
+      <!-- MEET FOUNDER                                 -->
+      <!-- ============================================ -->
+      <div class="container" data-aos="fade-up" style="margin:40px auto;">
         <h2 class="title">👨‍🏫 Meet Founder</h2>
         <div class="founder-card">
           <div class="founder-avatar">👨‍💼</div>
@@ -184,6 +257,9 @@
         </div>
       </div>
 
+      <!-- ============================================ -->
+      <!-- FAQ SECTION                                  -->
+      <!-- ============================================ -->
       <section id="faq" class="section">
         <div class="container">
           <h2 class="title">❓ FAQ</h2>
@@ -191,66 +267,83 @@
         </div>
       </section>
 
+      <!-- ============================================ -->
+      <!-- CONTACT SECTION                              -->
+      <!-- ============================================ -->
       <section id="contact" class="section">
-        <div class="container center">
+        <div class="container" style="text-align:center;">
           <h2 class="title">📞 Contact Us</h2>
           <div class="contact-cards">
-            <div class="contact-card"><div class="avatar-large">👨‍💼</div><h3>Abid Hussain</h3><a href="https://wa.me/923061565858" target="_blank" class="wa-link">WhatsApp</a></div>
-            <div class="contact-card"><div class="avatar-large">👩‍💼</div><h3>Miss Anayea</h3><a href="https://wa.me/923155344783" target="_blank" class="wa-link">WhatsApp</a></div>
-            <div class="contact-card"><div class="avatar-large">👩‍💼</div><h3>Ms. Eman Fatima</h3><a href="https://wa.me/923704979576" target="_blank" class="wa-link">WhatsApp</a></div>
+            <div class="contact-card"><div class="avatar-large">👨‍💼</div><h3>Abid Hussain</h3><a href="https://wa.me/923061565858" target="_blank" class="wa-link"><i class="fab fa-whatsapp"></i> Chat</a></div>
+            <div class="contact-card"><div class="avatar-large">👩‍💼</div><h3>Miss Anayea</h3><a href="https://wa.me/923155344783" target="_blank" class="wa-link"><i class="fab fa-whatsapp"></i> Chat</a></div>
+            <div class="contact-card"><div class="avatar-large">👩‍💼</div><h3>Ms. Eman Fatima</h3><a href="https://wa.me/923704979576" target="_blank" class="wa-link"><i class="fab fa-whatsapp"></i> Chat</a></div>
           </div>
-          <p class="mt20">📱 JazzCash / EasyPaisa: <strong>0304 6491358</strong> | Account: <strong>Abid Hussain</strong></p>
-          <p>📘 <a href="https://www.facebook.com/share/1BDiP5cddB/" target="_blank">Facebook</a> | 📸 <a href="https://www.instagram.com/zero_to_pro_ai_accedmy?igsh=MWN2MG90Y2Z2dWc5Yw==" target="_blank">Instagram</a></p>
+          <p style="margin-top:20px;">📱 JazzCash / EasyPaisa: <strong>0304 6491358</strong> | Account: <strong>Abid Hussain</strong></p>
+          <p>📘 <a href="https://www.facebook.com/share/1BDiP5cddB/" target="_blank" style="color:var(--cyan);">Facebook Page</a> | 📸 <a href="https://www.instagram.com/zero_to_pro_ai_accedmy?igsh=MWN2MG90Y2Z2dWc5Yw==" target="_blank" style="color:var(--cyan);">Instagram</a> | ✉️ zerotoproaccedmy@gmail.com</p>
         </div>
       </section>
+
     </main>
 
+    <!-- ============================================ -->
+    <!-- FOOTER                                        -->
+    <!-- ============================================ -->
     <footer class="site-footer">
-      <div class="container center">
-        <img src="assets/logo.jpg" alt="Logo" class="footer-logo" />
+      <div class="container">
+        <img src="assets/logo.jpg" alt="Zero to Pro Academy Logo" class="footer-logo" />
         <p>🚀 Join Today – Build Your Future!</p>
         <div class="social-icons">
-          <a href="https://wa.me/923061565858" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.facebook.com/share/1BDiP5cddB/" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/zero_to_pro_ai_accedmy?igsh=MWN2MG90Y2Z2dWc5Yw==" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/abid-hussain-9b918139a" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/Abid22110" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/923061565858" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1BDiP5cddB/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/zero_to_pro_ai_accedmy?igsh=MWN2MG90Y2Z2dWc5Yw==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/abid-hussain-9b918139a" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/Abid22110" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
-        <p class="policy">© 2026 Zero to Pro Computer & AI Academy. All rights reserved.</p>
+        <p class="policy">© 2025 Zero to Pro Computer & AI Academy. All rights reserved.<br>Terms of Service | Privacy Policy | Refund Policy</p>
       </div>
     </footer>
 
+    <!-- Floating Buttons -->
     <button class="floating-review" id="openReviewModal"><i class="fas fa-pen"></i> Review</button>
     <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
     <div class="live-notification" id="liveNotification"></div>
-  </div>
 
-  <!-- Modals -->
+  </div>
+  <!-- END OF MAIN SITE -->
+
+  <!-- ============================================ -->
+  <!-- MODALS                                        -->
+  <!-- ============================================ -->
+
+  <!-- Review Modal -->
   <div class="modal-overlay" id="reviewModal">
     <div class="modal-content">
       <span class="modal-close" id="closeReviewModal">&times;</span>
       <h3>Leave a Review</h3>
+      <p style="font-size:0.9rem; opacity:0.8;">Your review is very valuable to us 🌟</p>
       <div class="star-rating" id="starRating">
-        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+        <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
       </div>
-      <input type="text" id="reviewerName" class="review-input" placeholder="Your Name" />
-      <textarea id="reviewMessage" class="review-textarea" placeholder="Write your review..."></textarea>
+      <input type="text" id="reviewerName" placeholder="Your Name" class="review-input" />
+      <textarea id="reviewMessage" placeholder="Write your review..." class="review-textarea"></textarea>
       <button class="submit-review" id="submitReviewBtn">Submit Review</button>
     </div>
   </div>
 
+  <!-- All Reviews Modal -->
   <div class="modal-overlay" id="allReviewsModal">
     <div class="modal-content">
       <span class="modal-close" id="closeAllReviewsModal">&times;</span>
       <h3>All Reviews</h3>
-      <div id="allReviewsList"></div>
+      <div class="all-reviews-list" id="allReviewsList"></div>
     </div>
   </div>
 
+  <!-- Course Details Modal -->
   <div class="modal-overlay" id="courseModal">
     <div class="modal-content">
       <span class="modal-close" id="closeCourseModal">&times;</span>
@@ -258,6 +351,10 @@
     </div>
   </div>
 
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                       -->
+  <!-- ============================================ -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="script.js"></script>
   <script src="banner.js"></script>
 </body>
