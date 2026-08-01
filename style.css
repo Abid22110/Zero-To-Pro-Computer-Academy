@@ -2,8 +2,9 @@
    Zero to Pro Computer & AI Academy – style.css
    Professional Academy Design – Independence Day
    Pakistan Flag Colors: Green #01411c + White
-   All Section Titles: White Color
-   Compact Spacing (No Extra Empty Space)
+   All Section Titles & Text: White
+   Countdown Never Disappears
+   Compact Spacing – No Extra Empty Space
    ============================================= */
 
 /* ---------- CSS Variables ---------- */
@@ -50,10 +51,10 @@ body.no-scroll { overflow: hidden; padding-right: var(--scrollbar-width, 0px); }
 a { text-decoration:none; color:inherit; }
 img { max-width:100%; height:auto; display:block; }
 
-/* ---------- Section Spacing (COMPACT) ---------- */
+/* ---------- Section Spacing ---------- */
 section, .section { padding: 35px 0; }
 
-/* ---------- Section Titles (ALL WHITE) ---------- */
+/* ---------- Section Titles ---------- */
 .title {
   text-align:center; font-size:2rem; font-weight:700;
   margin-bottom:25px; color:#ffffff; position:relative;
@@ -125,12 +126,17 @@ body.dark .counter-number { color:var(--gold); }
 
 /* ---------- About ---------- */
 .about-section { padding:35px 0; background:var(--bg); }
-.about-text { max-width:800px; margin:0 auto; text-align:center; font-size:1rem; color:var(--text-secondary); line-height:1.7; }
+.about-text { max-width:800px; margin:0 auto; text-align:center; font-size:1rem; color:#ffffff; line-height:1.7; }
 
 /* ---------- Countdown ---------- */
 .countdown-section { padding:35px 0; background:var(--card-bg); }
-#countdownSection { background:var(--bg); padding:30px; border-radius:20px; text-align:center; box-shadow:var(--shadow); border:2px solid var(--light-green); max-width:600px; margin:0 auto; }
-#countdownSection h3 { font-size:1.4rem; margin-bottom:8px; color:var(--text); }
+#countdownSection {
+  background: var(--bg); padding: 30px; border-radius: 20px;
+  text-align: center; box-shadow: var(--shadow);
+  border: 2px solid var(--light-green); max-width: 600px; margin: 0 auto;
+  display: block !important; opacity: 1 !important; visibility: visible !important;
+}
+#countdownSection h3 { font-size:1.4rem; margin-bottom:8px; color:#ffffff; }
 .countdown-timer { font-size:1.6rem; font-weight:700; color:var(--light-green); margin:12px 0; }
 
 /* ---------- Learning Path ---------- */
@@ -140,7 +146,7 @@ body.dark .counter-number { color:var(--gold); }
 .path-step:hover { border-color:var(--light-green); transform:translateY(-5px); }
 .path-icon { font-size:2.2rem; margin-bottom:8px; }
 .path-step h4 { font-weight:700; margin-bottom:6px; color:#ffffff; }
-.path-step p { font-size:0.82rem; color:var(--text-secondary); }
+.path-step p { font-size:0.82rem; color:#ffffff; }
 .path-arrow { font-size:1.8rem; color:var(--light-green); align-self:center; font-weight:700; }
 @media (max-width:768px) {
   .learning-path { flex-direction:column; align-items:center; }
@@ -186,7 +192,7 @@ body.dark .filter-btn.active, body.dark .filter-btn:hover { background:var(--lig
 .step:hover { transform:translateX(8px); border-left:4px solid var(--light-green); }
 .step-icon { width:55px; height:55px; border-radius:50%; background:var(--deep-green); display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:white; flex-shrink:0; }
 .step-text h4 { font-weight:700; margin-bottom:4px; color:#ffffff; }
-.step-text p { color:var(--text-secondary); font-size:0.88rem; }
+.step-text p { color:#ffffff; font-size:0.88rem; }
 
 /* ---------- Success Stories ---------- */
 .success-section { padding:35px 0; background:var(--bg); }
@@ -222,7 +228,7 @@ body.dark .filter-btn.active, body.dark .filter-btn:hover { background:var(--lig
 .faq-section { padding:35px 0; background:var(--bg); }
 .faq-item { border:1px solid var(--border); border-radius:12px; margin-bottom:10px; background:var(--card-bg); overflow:hidden; }
 .faq-question { padding:14px 18px; cursor:pointer; font-weight:600; display:flex; justify-content:space-between; align-items:center; color:#ffffff; }
-.faq-answer { padding:0 18px 14px; display:none; color:var(--text-secondary); line-height:1.7; }
+.faq-answer { padding:0 18px 14px; display:none; color:#ffffff; line-height:1.7; }
 .faq-answer.open { display:block; }
 
 /* ---------- Modals ---------- */
@@ -261,7 +267,7 @@ body.dark .filter-btn.active, body.dark .filter-btn:hover { background:var(--lig
 .contact-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-hover); }
 .avatar-large { width:75px; height:75px; border-radius:50%; background:var(--deep-green); display:flex; align-items:center; justify-content:center; font-size:2.3rem; margin:0 auto 12px; color:white; }
 .contact-card h3 { margin-bottom:4px; font-size:1.1rem; color:#ffffff; }
-.contact-card p { color:var(--text-secondary); font-size:0.85rem; margin-bottom:12px; }
+.contact-card p { color:#ffffff; font-size:0.85rem; margin-bottom:12px; }
 .wa-link { color:#25D366; font-weight:600; font-size:0.95rem; }
 .wa-link:hover { color:#128c7e; }
 .contact-info { text-align:center; color:#ffffff; margin-top:20px; font-size:0.95rem; }
