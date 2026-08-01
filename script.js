@@ -1,9 +1,10 @@
 /* ===================================================
    Zero to Pro Computer & AI Academy – script.js
    Full Featured – 50% Independence Day Discount
+   Countdown Fixed – APP_VERSION Updated
    =================================================== */
 
-const APP_VERSION = "4.0";
+const APP_VERSION = "5.0"; // Updated version so countdown always shows
 
 // ========== DARK / LIGHT MODE ==========
 const body = document.body;
