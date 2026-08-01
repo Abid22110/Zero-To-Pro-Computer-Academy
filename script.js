@@ -217,11 +217,11 @@ function renderCourses() {
     card.className = 'course-card';
     let feeHTML = '';
     if (DISCOUNT_ACTIVE && originalFee > 0) {
-      feeHTML = `<div style="margin:10px 0;"><span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-right:10px;">${formatFee(originalFee)}</span><span style="font-size:1.8rem;font-weight:800;color:var(--gold);">${formatFee(discountedFee)}</span><span style="background:#dc2626;color:white;padding:4px 12px;border-radius:15px;font-size:0.8rem;margin-left:10px;">50% OFF</span></div>`;
+      feeHTML = `<div style="margin:10px 0;"><span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-right:10px;">${formatFee(originalFee)}</span><span style="font-size:1.8rem;font-weight:800;color:var(--accent-gold);">${formatFee(discountedFee)}</span><span style="background:#dc2626;color:white;padding:4px 12px;border-radius:15px;font-size:0.8rem;margin-left:10px;">50% OFF</span></div>`;
     } else {
-      feeHTML = `<p style="font-size:1.6rem;font-weight:800;color:var(--deep-blue);">${formatFee(originalFee)}</p>`;
+      feeHTML = `<p style="font-size:1.6rem;font-weight:800;color:var(--deep-green);">${formatFee(originalFee)}</p>`;
     }
-    card.innerHTML = `<h3>${c.name}</h3>${feeHTML}<p>${c.desc}</p>${c.cert ? '<span style="background:#1a237e;color:white;padding:4px 14px;border-radius:12px;display:inline-block;margin:10px 0;">🎓 Certificate</span>' : ''}<div class="progress-bar-container"><div class="progress-bar-fill" style="width:0%" data-width="${c.progress}%"></div></div><button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button><a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>`;
+    card.innerHTML = `<h3>${c.name}</h3>${feeHTML}<p>${c.desc}</p>${c.cert ? '<span style="background:var(--deep-green);color:white;padding:4px 14px;border-radius:12px;display:inline-block;margin:10px 0;">🎓 Certificate</span>' : ''}<div class="progress-bar-container"><div class="progress-bar-fill" style="width:0%" data-width="${c.progress}%"></div></div><button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button><a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>`;
     track.appendChild(card);
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -285,7 +285,7 @@ function openCourseModal(c) {
   const discountedFee = DISCOUNT_ACTIVE ? getDiscountedPrice(c.fee) : c.fee;
   const msg = `Hi, I want to enroll in *${c.name}* (Fee: ${formatFee(discountedFee)}). Please guide me.`;
   const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-  courseModalContent.innerHTML = `<h2>${c.name}</h2><p style="font-size:1.4rem;color:var(--gold);font-weight:700;">Fee: ${formatFee(discountedFee)} ${DISCOUNT_ACTIVE && c.fee > 0 ? `<span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-left:10px;">${formatFee(c.fee)}</span><span style="background:#dc2626;color:white;padding:3px 10px;border-radius:12px;font-size:0.8rem;margin-left:8px;">50% OFF</span>` : ''}</p><p><strong>Duration:</strong> ${c.duration}</p><p><strong>Certificate:</strong> ${c.cert ? 'Yes' : 'No'}</p><h4>Topics:</h4><ul class="topic-list">${c.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul><a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block;margin-top:15px;">Enroll Now</a>`;
+  courseModalContent.innerHTML = `<h2>${c.name}</h2><p style="font-size:1.4rem;color:var(--accent-gold);font-weight:700;">Fee: ${formatFee(discountedFee)} ${DISCOUNT_ACTIVE && c.fee > 0 ? `<span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-left:10px;">${formatFee(c.fee)}</span><span style="background:#dc2626;color:white;padding:3px 10px;border-radius:12px;font-size:0.8rem;margin-left:8px;">50% OFF</span>` : ''}</p><p><strong>Duration:</strong> ${c.duration}</p><p><strong>Certificate:</strong> ${c.cert ? 'Yes' : 'No'}</p><h4>Topics:</h4><ul class="topic-list">${c.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul><a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block;margin-top:15px;">Enroll Now</a>`;
   courseModal.classList.add('active');
   disableBodyScroll();
 }
@@ -354,13 +354,6 @@ submitReviewBtn.addEventListener('click', () => {
   reviewerNameInput.value = ''; reviewMessageInput.value = ''; starInputs.forEach(i => i.checked = false);
   reviewModal.classList.remove('active'); enableBodyScroll();
 });
-
-// ========== COMMENTS ==========
-const comments = ["Hamza: Just enrolled! 🚀", "Zainab: Mentor helped me instantly 💯", "Owais: Academy feels like family ❤️"];
-const commentTrack = document.getElementById('commentTrack');
-let commentIndex = 0;
-comments.forEach(c => { const d = document.createElement('div'); d.className = 'comment-card'; d.textContent = c; commentTrack.appendChild(d); });
-setInterval(() => { commentIndex = (commentIndex + 1) % comments.length; commentTrack.style.transform = `translateX(-${commentIndex * (commentTrack.firstElementChild.offsetWidth + 20)}px)`; }, 3000);
 
 // ========== FAQ ==========
 const faqContainer = document.getElementById('faqContainer');
