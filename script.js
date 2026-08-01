@@ -1,9 +1,9 @@
 /* ===================================================
    Zero to Pro Computer & AI Academy – script.js
-   Full Featured – All Courses + 50% Independence Day Discount
+   Full Featured – 50% Independence Day Discount
    =================================================== */
 
-const APP_VERSION = "3.0";
+const APP_VERSION = "4.0";
 
 // ========== DARK / LIGHT MODE ==========
 const body = document.body;
@@ -11,10 +11,10 @@ const darkToggle = document.getElementById('darkToggle');
 
 function setTheme(isDark) {
   if (isDark) {
-    body.classList.remove('light');
+    body.classList.add('dark');
     darkToggle.textContent = '☀️ Light';
   } else {
-    body.classList.add('light');
+    body.classList.remove('dark');
     darkToggle.textContent = '🌙 Dark';
   }
 }
@@ -24,8 +24,8 @@ setTheme(prefersDark.matches);
 prefersDark.addEventListener('change', (e) => setTheme(e.matches));
 
 darkToggle.addEventListener('click', () => {
-  const isLight = body.classList.contains('light');
-  setTheme(isLight);
+  const isDark = body.classList.contains('dark');
+  setTheme(!isDark);
 });
 
 // ========== POPUP ==========
@@ -172,125 +172,23 @@ function getDiscountedPrice(original) {
 
 // ========== ALL COURSES ==========
 const courses = [
-  {
-    name: "Basic Computer",
-    fee: 2500,
-    desc: "Computer fundamentals, MS Office, internet, safety.",
-    topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"],
-    cert: true, duration: "4 Weeks", category: "computer", progress: 85
-  },
-  {
-    name: "Typing Course",
-    fee: 2500,
-    desc: "Professional typing skills in English and Urdu.",
-    topics: ["English Typing", "Urdu Typing", "Speed Building", "Accuracy Practice", "Formatting"],
-    cert: false, duration: "2 Weeks", category: "computer", progress: 90
-  },
-  {
-    name: "Microsoft Office",
-    fee: 4000,
-    desc: "Complete MS Word, Excel, PowerPoint, and Outlook.",
-    topics: ["MS Word Advanced", "MS Excel Advanced", "MS PowerPoint", "Outlook", "Google Workspace"],
-    cert: true, duration: "4 Weeks", category: "computer", progress: 80
-  },
-  {
-    name: "Graphic Designing",
-    fee: 7500,
-    desc: "Canva, Photoshop, Illustrator – from basics to pro.",
-    topics: ["Design Fundamentals", "Color Theory", "Typography", "Canva Mastery", "Adobe Photoshop", "Adobe Illustrator", "Logo Design"],
-    cert: true, duration: "6 Weeks", category: "computer", progress: 75
-  },
-  {
-    name: "Video Editing",
-    fee: 8000,
-    desc: "CapCut, Premiere Pro, After Effects.",
-    topics: ["Video Basics", "CapCut Pro", "Adobe Premiere Pro", "Transitions & Effects", "Color Grading", "Audio Editing", "Export & Delivery"],
-    cert: true, duration: "6 Weeks", category: "computer", progress: 70
-  },
-  {
-    name: "Digital Marketing",
-    fee: 8500,
-    desc: "SEO, Social Media, Google Ads, Email Marketing.",
-    topics: ["SEO Fundamentals", "Google Ads", "Facebook Ads", "Email Marketing", "Social Media Strategy", "Analytics"],
-    cert: true, duration: "8 Weeks", category: "freelancing", progress: 65
-  },
-  {
-    name: "Freelancing",
-    fee: 5000,
-    desc: "Fiverr, Upwork – profile, bidding, clients.",
-    topics: ["Profile Creation", "Gig Optimization", "Bidding Strategies", "Client Communication", "Payment Methods", "Portfolio Building"],
-    cert: false, duration: "4 Weeks", category: "freelancing", progress: 90
-  },
-  {
-    name: "Web Development",
-    fee: 10000,
-    desc: "HTML, CSS, JavaScript, React, responsive sites.",
-    topics: ["HTML5", "CSS3", "JavaScript", "React Basics", "Responsive Design", "Git & GitHub", "Hosting & Deployment"],
-    cert: true, duration: "12 Weeks", category: "computer", progress: 60
-  },
-  {
-    name: "Programming",
-    fee: 12000,
-    desc: "Python, C++, Java – fundamentals to advanced.",
-    topics: ["Python", "C++", "Java", "Data Structures", "Algorithms", "OOP"],
-    cert: true, duration: "12 Weeks", category: "computer", progress: 55
-  },
-  {
-    name: "Networking",
-    fee: 10000,
-    desc: "CCNA basics, routing, switching, subnetting.",
-    topics: ["IP Addressing", "Routing", "Switching", "Subnetting", "CCNA Prep"],
-    cert: true, duration: "8 Weeks", category: "computer", progress: 50
-  },
-  {
-    name: "Database Management",
-    fee: 9000,
-    desc: "SQL, MySQL, MongoDB, data modeling.",
-    topics: ["SQL", "MySQL", "MongoDB", "Data Modeling", "Queries"],
-    cert: true, duration: "8 Weeks", category: "computer", progress: 45
-  },
-  {
-    name: "Cloud Computing",
-    fee: 12000,
-    desc: "AWS, Azure, Google Cloud fundamentals.",
-    topics: ["AWS", "Azure", "Google Cloud", "Cloud Architecture", "Deployment"],
-    cert: true, duration: "10 Weeks", category: "computer", progress: 40
-  },
-  {
-    name: "Cyber Security",
-    fee: 15000,
-    desc: "Network security, firewalls, threat analysis.",
-    topics: ["Security Basics", "Firewalls", "Threat Analysis", "Encryption", "Incident Response"],
-    cert: true, duration: "10 Weeks", category: "computer", progress: 35
-  },
-  {
-    name: "Ethical Hacking",
-    fee: 18000,
-    desc: "Penetration testing, vulnerability assessment.",
-    topics: ["Networking", "Linux", "Reconnaissance", "Scanning", "Exploitation", "Reporting"],
-    cert: true, duration: "12 Weeks", category: "computer", progress: 30
-  },
-  {
-    name: "Artificial Intelligence (AI)",
-    fee: 20000,
-    desc: "Machine learning, deep learning, NLP.",
-    topics: ["ML Basics", "Deep Learning", "NLP", "Computer Vision", "Python AI"],
-    cert: true, duration: "12 Weeks", category: "ai", progress: 25
-  },
-  {
-    name: "AI Automation",
-    fee: 25000,
-    desc: "Advanced AI tools, workflow automation, chatbots.",
-    topics: ["AI Tools", "Workflow Automation", "Chatbots", "API Integration", "Real Projects"],
-    cert: true, duration: "12 Weeks", category: "ai", progress: 20
-  },
-  {
-    name: "Al-Quran Al-Karim",
-    fee: 0,
-    desc: "Learn specific Surahs with proper Tajweed – completely free for everyone.",
-    topics: ["Surah Al-Fatiha", "Surah Yaseen", "Surah Ar-Rahman", "Surah Al-Mulk", "Surah Al-Waqi'ah", "Tajweed Basics"],
-    cert: false, duration: "Ongoing", category: "free", progress: 100
-  }
+  { name: "Basic Computer", fee: 2500, desc: "Computer fundamentals, MS Office, internet, safety.", topics: ["Computer Fundamentals", "Windows OS", "File/Folder Management", "Internet & Browsing", "Gmail & Google Workspace", "MS Word", "MS Excel", "MS PowerPoint", "PDF Tools", "Typing Skills", "Printing & Scanning", "Digital Safety"], cert: true, duration: "4 Weeks", category: "computer", progress: 85 },
+  { name: "Typing Course", fee: 2500, desc: "Professional typing skills in English and Urdu.", topics: ["English Typing", "Urdu Typing", "Speed Building", "Accuracy Practice", "Formatting"], cert: false, duration: "2 Weeks", category: "computer", progress: 90 },
+  { name: "Microsoft Office", fee: 4000, desc: "Complete MS Word, Excel, PowerPoint, and Outlook.", topics: ["MS Word Advanced", "MS Excel Advanced", "MS PowerPoint", "Outlook", "Google Workspace"], cert: true, duration: "4 Weeks", category: "computer", progress: 80 },
+  { name: "Graphic Designing", fee: 7500, desc: "Canva, Photoshop, Illustrator – from basics to pro.", topics: ["Design Fundamentals", "Color Theory", "Typography", "Canva Mastery", "Adobe Photoshop", "Adobe Illustrator", "Logo Design"], cert: true, duration: "6 Weeks", category: "computer", progress: 75 },
+  { name: "Video Editing", fee: 8000, desc: "CapCut, Premiere Pro, After Effects.", topics: ["Video Basics", "CapCut Pro", "Adobe Premiere Pro", "Transitions & Effects", "Color Grading", "Audio Editing", "Export & Delivery"], cert: true, duration: "6 Weeks", category: "computer", progress: 70 },
+  { name: "Digital Marketing", fee: 8500, desc: "SEO, Social Media, Google Ads, Email Marketing.", topics: ["SEO Fundamentals", "Google Ads", "Facebook Ads", "Email Marketing", "Social Media Strategy", "Analytics"], cert: true, duration: "8 Weeks", category: "freelancing", progress: 65 },
+  { name: "Freelancing", fee: 5000, desc: "Fiverr, Upwork – profile, bidding, clients.", topics: ["Profile Creation", "Gig Optimization", "Bidding Strategies", "Client Communication", "Payment Methods", "Portfolio Building"], cert: false, duration: "4 Weeks", category: "freelancing", progress: 90 },
+  { name: "Web Development", fee: 10000, desc: "HTML, CSS, JavaScript, React, responsive sites.", topics: ["HTML5", "CSS3", "JavaScript", "React Basics", "Responsive Design", "Git & GitHub", "Hosting & Deployment"], cert: true, duration: "12 Weeks", category: "computer", progress: 60 },
+  { name: "Programming", fee: 12000, desc: "Python, C++, Java – fundamentals to advanced.", topics: ["Python", "C++", "Java", "Data Structures", "Algorithms", "OOP"], cert: true, duration: "12 Weeks", category: "computer", progress: 55 },
+  { name: "Networking", fee: 10000, desc: "CCNA basics, routing, switching, subnetting.", topics: ["IP Addressing", "Routing", "Switching", "Subnetting", "CCNA Prep"], cert: true, duration: "8 Weeks", category: "computer", progress: 50 },
+  { name: "Database Management", fee: 9000, desc: "SQL, MySQL, MongoDB, data modeling.", topics: ["SQL", "MySQL", "MongoDB", "Data Modeling", "Queries"], cert: true, duration: "8 Weeks", category: "computer", progress: 45 },
+  { name: "Cloud Computing", fee: 12000, desc: "AWS, Azure, Google Cloud fundamentals.", topics: ["AWS", "Azure", "Google Cloud", "Cloud Architecture", "Deployment"], cert: true, duration: "10 Weeks", category: "computer", progress: 40 },
+  { name: "Cyber Security", fee: 15000, desc: "Network security, firewalls, threat analysis.", topics: ["Security Basics", "Firewalls", "Threat Analysis", "Encryption", "Incident Response"], cert: true, duration: "10 Weeks", category: "computer", progress: 35 },
+  { name: "Ethical Hacking", fee: 18000, desc: "Penetration testing, vulnerability assessment.", topics: ["Networking", "Linux", "Reconnaissance", "Scanning", "Exploitation", "Reporting"], cert: true, duration: "12 Weeks", category: "computer", progress: 30 },
+  { name: "Artificial Intelligence (AI)", fee: 20000, desc: "Machine learning, deep learning, NLP.", topics: ["ML Basics", "Deep Learning", "NLP", "Computer Vision", "Python AI"], cert: true, duration: "12 Weeks", category: "ai", progress: 25 },
+  { name: "AI Automation", fee: 25000, desc: "Advanced AI tools, workflow automation, chatbots.", topics: ["AI Tools", "Workflow Automation", "Chatbots", "API Integration", "Real Projects"], cert: true, duration: "12 Weeks", category: "ai", progress: 20 },
+  { name: "Al-Quran Al-Karim", fee: 0, desc: "Learn specific Surahs with proper Tajweed – completely free for everyone.", topics: ["Surah Al-Fatiha", "Surah Yaseen", "Surah Ar-Rahman", "Surah Al-Mulk", "Surah Al-Waqi'ah", "Tajweed Basics"], cert: false, duration: "Ongoing", category: "free", progress: 100 }
 ];
 
 // ========== COURSES CAROUSEL ==========
@@ -319,11 +217,11 @@ function renderCourses() {
     card.className = 'course-card';
     let feeHTML = '';
     if (DISCOUNT_ACTIVE && originalFee > 0) {
-      feeHTML = `<div style="margin:10px 0;"><span style="text-decoration:line-through;opacity:0.6;font-size:1rem;">${formatFee(originalFee)}</span><span style="font-size:1.6rem;font-weight:800;color:var(--gold);margin-left:10px;">${formatFee(discountedFee)}</span><span style="background:#dc2626;color:white;padding:3px 10px;border-radius:12px;font-size:0.8rem;margin-left:8px;">50% OFF</span></div>`;
+      feeHTML = `<div style="margin:10px 0;"><span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-right:10px;">${formatFee(originalFee)}</span><span style="font-size:1.8rem;font-weight:800;color:var(--gold);">${formatFee(discountedFee)}</span><span style="background:#dc2626;color:white;padding:4px 12px;border-radius:15px;font-size:0.8rem;margin-left:10px;">50% OFF</span></div>`;
     } else {
       feeHTML = `<p class="course-fee">${formatFee(originalFee)}</p>`;
     }
-    card.innerHTML = `<h3>${c.name}</h3>${feeHTML}<p>${c.desc}</p>${c.cert ? '<span style="background:#06b6d4;color:#000;padding:4px 12px;border-radius:12px;display:inline-block;margin:10px 0;">🎓 Certificate</span>' : ''}<div class="progress-bar-container"><div class="progress-bar-fill" style="width:0%" data-width="${c.progress}%"></div></div><button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button><a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>`;
+    card.innerHTML = `<h3>${c.name}</h3>${feeHTML}<p>${c.desc}</p>${c.cert ? '<span style="background:#1a237e;color:white;padding:4px 14px;border-radius:12px;display:inline-block;margin:10px 0;">🎓 Certificate</span>' : ''}<div class="progress-bar-container"><div class="progress-bar-fill" style="width:0%" data-width="${c.progress}%"></div></div><button class="btn btn-outline view-details" data-index="${i}" style="margin:10px 0;">📋 View Details</button><a href="${link}" target="_blank" class="btn btn-primary" style="margin-top:10px;">Enroll Now</a>`;
     track.appendChild(card);
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -387,7 +285,7 @@ function openCourseModal(c) {
   const discountedFee = DISCOUNT_ACTIVE ? getDiscountedPrice(c.fee) : c.fee;
   const msg = `Hi, I want to enroll in *${c.name}* (Fee: ${formatFee(discountedFee)}). Please guide me.`;
   const link = `https://wa.me/923061565858?text=${encodeURIComponent(msg)}`;
-  courseModalContent.innerHTML = `<h2>${c.name}</h2><p style="font-size:1.4rem;color:var(--gold);font-weight:700;">Fee: ${formatFee(discountedFee)} ${DISCOUNT_ACTIVE && c.fee > 0 ? `<span style="text-decoration:line-through;opacity:0.6;font-size:1rem;margin-left:10px;">${formatFee(c.fee)}</span><span style="background:#dc2626;color:white;padding:3px 10px;border-radius:12px;font-size:0.8rem;margin-left:8px;">50% OFF</span>` : ''}</p><p><strong>Duration:</strong> ${c.duration}</p><p><strong>Certificate:</strong> ${c.cert ? 'Yes' : 'No'}</p><h4>Topics:</h4><ul class="topic-list">${c.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul><a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block;margin-top:15px;">Enroll Now</a>`;
+  courseModalContent.innerHTML = `<h2>${c.name}</h2><p style="font-size:1.4rem;color:var(--gold);font-weight:700;">Fee: ${formatFee(discountedFee)} ${DISCOUNT_ACTIVE && c.fee > 0 ? `<span style="text-decoration:line-through;opacity:0.5;font-size:1rem;margin-left:10px;">${formatFee(c.fee)}</span><span style="background:#dc2626;color:white;padding:3px 10px;border-radius:12px;font-size:0.8rem;margin-left:8px;">50% OFF</span>` : ''}</p><p><strong>Duration:</strong> ${c.duration}</p><p><strong>Certificate:</strong> ${c.cert ? 'Yes' : 'No'}</p><h4>Topics:</h4><ul class="topic-list">${c.topics.map(t => `<li>✅ ${t}</li>`).join('')}</ul><a href="${link}" target="_blank" class="btn btn-primary" style="display:inline-block;margin-top:15px;">Enroll Now</a>`;
   courseModal.classList.add('active');
   disableBodyScroll();
 }
@@ -467,14 +365,14 @@ setInterval(() => { commentIndex = (commentIndex + 1) % comments.length; comment
 // ========== FAQ ==========
 const faqContainer = document.getElementById('faqContainer');
 const faqs = [
-  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero." },
-  { q: "How to get certificate?", a: "Complete course and projects." },
-  { q: "How to pay?", a: "JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." },
-  { q: "Is there a demo class?", a: "Yes! 3 FREE demo classes." },
-  { q: "What courses do you offer?", a: "Basic Computer, AI, Automation, Design, Freelancing, Programming, Cybersecurity, and more." },
-  { q: "Can I get a scholarship?", a: "Yes. Take our scholarship test." },
-  { q: "Online or physical?", a: "All classes are online." },
-  { q: "How long?", a: "2 to 12 weeks depending on course." }
+  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero. Even if you have never touched a computer, our Basic Computer course will guide you step by step." },
+  { q: "How to get certificate?", a: "After completing the course and submitting all projects, you will receive a verifiable certificate. Attendance must be above 70%." },
+  { q: "How to pay?", a: "We accept JazzCash and EasyPaisa. Our account number is 0304 6491358 (Abid Hussain). You can also pay via bank transfer." },
+  { q: "Is there a demo class?", a: "Yes! We offer 3 FREE demo classes before enrollment so you can experience our teaching style." },
+  { q: "What courses do you offer?", a: "We offer Basic Computer, Typing, MS Office, Graphic Designing, Video Editing, Digital Marketing, Freelancing, Web Development, Programming, Networking, Database, Cloud, Cyber Security, Ethical Hacking, AI, AI Automation, and a free Quran course." },
+  { q: "Can I get a scholarship?", a: "Yes. Take our scholarship test. If you pass, you can study any basic course completely free." },
+  { q: "Are the classes online or physical?", a: "All classes are online via recorded lectures and live sessions. You can learn from anywhere." },
+  { q: "How long does a course take?", a: "Course duration varies from 2 weeks to 12 weeks, depending on the topic." }
 ];
 faqs.forEach(f => {
   const d = document.createElement('div'); d.className = 'faq-item';
@@ -507,9 +405,6 @@ backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
 function getScrollbarWidth() { return window.innerWidth - document.documentElement.clientWidth; }
 function disableBodyScroll() { document.documentElement.style.setProperty('--scrollbar-width', getScrollbarWidth() + 'px'); body.classList.add('no-scroll'); }
 function enableBodyScroll() { body.classList.remove('no-scroll'); }
-
-// ========== ENROLLMENT STEPS ==========
-document.querySelectorAll('.step').forEach(s => new IntersectionObserver((e) => { if (e[0].isIntersecting) s.classList.add('visible'); }, { threshold: 0.3 }).observe(s));
 
 // ========== LIVE STATUS BAR ==========
 const statusBar = document.getElementById('liveStatusBar');
