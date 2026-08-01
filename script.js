@@ -359,14 +359,14 @@ submitReviewBtn.addEventListener('click', () => {
 // ========== FAQ ==========
 const faqContainer = document.getElementById('faqContainer');
 const faqs = [
-  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero. Even if you have never touched a computer, our Basic Computer course will guide you step by step." },
-  { q: "How to get certificate?", a: "After completing the course and submitting all projects, you will receive a verifiable certificate. Attendance must be above 70%." },
-  { q: "How to pay?", a: "We accept JazzCash and EasyPaisa. Our account number is 0304 6491358 (Abid Hussain). You can also pay via bank transfer." },
-  { q: "Is there a demo class?", a: "Yes! We offer 3 FREE demo classes before enrollment so you can experience our teaching style." },
-  { q: "What courses do you offer?", a: "We offer Basic Computer, Typing, MS Office, Graphic Designing, Video Editing, Digital Marketing, Freelancing, Web Development, Programming, Networking, Database, Cloud, Cyber Security, Ethical Hacking, AI, AI Automation, and a free Quran course." },
-  { q: "Can I get a scholarship?", a: "Yes. Take our scholarship test. If you pass, you can study any basic course completely free." },
-  { q: "Are the classes online or physical?", a: "All classes are online via recorded lectures and live sessions. You can learn from anywhere." },
-  { q: "How long does a course take?", a: "Course duration varies from 2 weeks to 12 weeks, depending on the topic." }
+  { q: "Do I need prior knowledge?", a: "No, we start from absolute zero." },
+  { q: "How to get certificate?", a: "Complete course and projects." },
+  { q: "How to pay?", a: "JazzCash/EasyPaisa: 0304 6491358 (Abid Hussain)." },
+  { q: "Is there a demo class?", a: "Yes! 3 FREE demo classes." },
+  { q: "What courses do you offer?", a: "Basic Computer to AI Automation, 17 courses." },
+  { q: "Can I get a scholarship?", a: "Yes. Take scholarship test." },
+  { q: "Online or physical?", a: "All classes online." },
+  { q: "How long?", a: "2 to 12 weeks." }
 ];
 faqs.forEach(f => {
   const d = document.createElement('div'); d.className = 'faq-item';
@@ -375,39 +375,30 @@ faqs.forEach(f => {
   d.querySelector('.faq-question').addEventListener('click', function() { const a = this.nextElementSibling; a.classList.toggle('open'); this.querySelector('span').textContent = a.classList.contains('open') ? '➖' : '➕'; });
 });
 
-// ========== COUNTDOWN TIMER (FIXED – NEVER DISAPPEARS) ==========
+// ========== COUNTDOWN TIMER (NEVER DISAPPEARS) ==========
 const countdownSection = document.getElementById('countdownSection');
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date('2025-08-14T23:59:59');
 
 // Force show on load
-if (countdownSection) {
-  countdownSection.style.opacity = '1';
-  countdownSection.style.visibility = 'visible';
-  countdownSection.style.pointerEvents = 'auto';
-  countdownSection.style.maxHeight = '300px';
-}
+countdownSection.style.display = 'block';
+countdownSection.style.opacity = '1';
+countdownSection.style.visibility = 'visible';
 
-const timerInterval = setInterval(() => {
+setInterval(() => {
   const diff = endDate - new Date();
   if (diff <= 0) {
     countdownEl.textContent = 'Offer Expired';
-    clearInterval(timerInterval);
-    countdownSection.style.opacity = '0';
-    countdownSection.style.visibility = 'hidden';
-    countdownSection.style.pointerEvents = 'none';
-    countdownSection.style.maxHeight = '0px';
+    countdownSection.style.display = 'none';
   } else {
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
     countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
-    // Force visibility on every tick
+    countdownSection.style.display = 'block';
     countdownSection.style.opacity = '1';
     countdownSection.style.visibility = 'visible';
-    countdownSection.style.pointerEvents = 'auto';
-    countdownSection.style.maxHeight = '300px';
   }
 }, 1000);
 
