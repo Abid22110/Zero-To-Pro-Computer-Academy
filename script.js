@@ -1,10 +1,10 @@
 /* ===================================================
    Zero to Pro Computer & AI Academy – script.js
    Full Featured – 50% Independence Day Discount
-   Countdown Fixed – APP_VERSION Updated
+   Countdown Fixed – Never Disappears Until Expired
    =================================================== */
 
-const APP_VERSION = "5.0"; // Updated version so countdown always shows
+const APP_VERSION = "5.0"; // Updated version
 
 // ========== DARK / LIGHT MODE ==========
 const body = document.body;
@@ -375,14 +375,40 @@ faqs.forEach(f => {
   d.querySelector('.faq-question').addEventListener('click', function() { const a = this.nextElementSibling; a.classList.toggle('open'); this.querySelector('span').textContent = a.classList.contains('open') ? '➖' : '➕'; });
 });
 
-// ========== COUNTDOWN (14 AUGUST) ==========
+// ========== COUNTDOWN TIMER (FIXED – NEVER DISAPPEARS) ==========
 const countdownSection = document.getElementById('countdownSection');
 const countdownEl = document.getElementById('countdown');
 const endDate = new Date('2025-08-14T23:59:59');
+
+// Force show on load
+if (countdownSection) {
+  countdownSection.style.opacity = '1';
+  countdownSection.style.visibility = 'visible';
+  countdownSection.style.pointerEvents = 'auto';
+  countdownSection.style.maxHeight = '300px';
+}
+
 const timerInterval = setInterval(() => {
   const diff = endDate - new Date();
-  if (diff <= 0) { countdownEl.textContent = 'Offer Expired'; clearInterval(timerInterval); countdownSection.style.opacity = '0'; countdownSection.style.visibility = 'hidden'; countdownSection.style.pointerEvents = 'none'; }
-  else { const d = Math.floor(diff / (1000 * 60 * 60 * 24)), h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)), m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)), s = Math.floor((diff % (1000 * 60)) / 1000); countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`; }
+  if (diff <= 0) {
+    countdownEl.textContent = 'Offer Expired';
+    clearInterval(timerInterval);
+    countdownSection.style.opacity = '0';
+    countdownSection.style.visibility = 'hidden';
+    countdownSection.style.pointerEvents = 'none';
+    countdownSection.style.maxHeight = '0px';
+  } else {
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+    // Force visibility on every tick
+    countdownSection.style.opacity = '1';
+    countdownSection.style.visibility = 'visible';
+    countdownSection.style.pointerEvents = 'auto';
+    countdownSection.style.maxHeight = '300px';
+  }
 }, 1000);
 
 // ========== LIVE NOTIFICATION ==========
