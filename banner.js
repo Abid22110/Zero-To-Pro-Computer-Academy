@@ -1,10 +1,10 @@
-// ===================================================
-// Zero to Pro Computer & AI Academy – banner.js
-// Promotional Banner – Independence Day Edition
-// ===================================================
+/* ===================================================
+   Zero to Pro Computer & AI Academy – banner.js
+   Independence Day Promotional Banner
+   =================================================== */
 
 const bannerData = {
-  show: true,   // false to hide the banner
+  show: true,
   text: "🇵🇰 Independence Day Offer! 50% Off on All Courses – Limited Time",
   link: "https://wa.me/923061565858?text=I%20want%20to%20avail%20the%2050%25%20Independence%20Day%20discount"
 };
@@ -15,7 +15,7 @@ if (bannerData.show) {
   banner.innerHTML = `
     <div style="
       position: fixed; top: 0; left: 0; width: 100%;
-      background: linear-gradient(90deg, #1a237e, #283593);
+      background: linear-gradient(90deg, #01411c, #00A651);
       color: white; text-align: center; padding: 12px 20px;
       font-weight: 600; z-index: 9998; display: flex;
       align-items: center; justify-content: center; gap: 15px;
@@ -29,5 +29,4 @@ if (bannerData.show) {
     </div>
   `;
   document.body.prepend(banner);
-  document.body.style.paddingTop = '50px';
 }
